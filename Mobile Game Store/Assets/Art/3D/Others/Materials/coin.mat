@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: coin
+  m_Shader: {fileID: 10708, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: FRESNEL FXLAYER_REFLECTION GLOWEFFECT_MULTIPLY_COLOR_OFF GLOWEFFECT_USE_GLOWCOLOR_OFF
+    GLOWEFFECT_USE_GLOWTEX_OFF GLOWEFFECT_USE_MAINTEX_OFF GLOWEFFECT_USE_VERTEXCOLOR_OFF
+    NORMALMAP SELFILLUMINATE_NORMAL SPECULAR _ZWRITE_ON
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: dc8ee15e0aef1aa4980b5832f235e4e3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailTex:
+        m_Texture: {fileID: 2800000, guid: 20da0382ac9797e4a83cb1e28b997256, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FireMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlowTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: bda1c6fc361edbc40b24f21e516d7d5f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCap:
+        m_Texture: {fileID: 2800000, guid: fc83aa10b2d1264459fc18fe1ea152d9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectionMap:
+        m_Texture: {fileID: 8900000, guid: 14ca732449041b64aa36929057e32ebc, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - FXLayer: 1
+    - SelfIlluminate: 0
+    - _BlendMode: 0
+    - _ColorRampAmount: 0
+    - _ColorRampID0: 0
+    - _ColorRampID1: 0
+    - _Cull: 0
+    - _Cutoff: 0.5
+    - _DissolveAmount: 0
+    - _DissolveLowerLimit: -1
+    - _DissolveMargin: 0.1
+    - _DissolveUpperLimit: 1
+    - _DstBlend: 0
+    - _EnableBlendFresnel: 0
+    - _EnableCutoff: 0
+    - _EnableDoublesided: 0
+    - _EnableFresnel: 1
+    - _EnableNormalMap: 1
+    - _EnableOpaqueFresnel: 0
+    - _EnableOpaqueSpecular: 0
+    - _EnableSilhouette: 0
+    - _EnableSpecular: 1
+    - _EnableVertexOffset: 0
+    - _FireAmount: 0
+    - _FireSpeed: 1
+    - _Fresnel: 4.31
+    - _FresnelFactor: 0.21
+    - _InnerLightAdd: 0
+    - _InnerLightWavePhase: 1
+    - _InnerLightWaveSpeed: 1
+    - _MatCapAccurate: 0
+    - _NormalStrenght: 1
+    - _NormalStrength: 0.8
+    - _ReflectionAmount: 0.211
+    - _RimFactor: 1.92
+    - _Shininess: 0.07
+    - _SpecExponent: 75
+    - _SpecIntensity: 0.58
+    - _SpecularPower: 10
+    - _SrcBlend: 1
+    - _StencilMask: 10
+    - _ZWrite: 1
+    m_Colors:
+    - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorAdd: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissiveColor: {r: 1, g: 0.7254902, b: 0, a: 0}
+    - _FresnelColor: {r: 0.9485294, g: 0.9249605, b: 0.6067799, a: 1}
+    - _FresnelFinalColor: {r: 0.41911763, g: 0.2688133, b: 0, a: 1}
+    - _FresnelInitialColor: {r: 0.04411763, g: 0.031368934, b: 0.0016219706, a: 1}
+    - _GlowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _InnerLightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LightColor: {r: 0.86764705, g: 0.7853702, b: 0.51676035, a: 0.241}
+    - _LightDir: {r: 6, g: 2.5, b: 1, a: 1}
+    - _RimColor: {r: 0.747, g: 0.6512941, b: 0.428778, a: 1}
+    - _SecondLightColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SecondLightDir: {r: 0.31912747, g: 0.9477118, b: -0, a: 0}
+    - _SpecularDir: {r: -50, g: -20, b: -50, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}

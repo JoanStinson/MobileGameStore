@@ -1,0 +1,249 @@
+fileFormatVersion: 2
+guid: fcfb63b22b6e840a0ac2fa07b4e0fb2a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Pet_Comisure
+    100002: //RootNode
+    100004: Pet_Head
+    100006: Pet_Hip
+    100008: Pet_Jaw
+    100010: Pet_L_Down_EyeLead
+    100012: Pet_L_Pupil
+    100014: Pet_L_Up_EyeLead
+    100016: Pet_LLeg_1
+    100018: Pet_LLeg_2
+    100020: Pet_LLeg_3
+    100022: Pet_LLeg_Platform
+    100024: Pet_LWing_1
+    100026: Pet_LWing_2
+    100028: Pet_LWing_3
+    100030: Pet_R_Down_EyeLead
+    100032: Pet_R_Pupil
+    100034: Pet_R_Up_EyeLead
+    100036: Pet_RLeg_1
+    100038: Pet_RLeg_2
+    100040: Pet_RLeg_3
+    100042: Pet_RLeg_Platform
+    100044: Pet_RWing_1
+    100046: Pet_RWing_2
+    100048: Pet_RWing_3
+    100050: Pet_Tail1
+    100052: Pet_Tail2
+    100054: Pet_Tail3
+    100056: Pet_Tail4
+    100058: Pet_Tongue_01
+    100060: Pet_Tongue_02
+    100062: Pet_Tongue_03
+    400000: Pet_Comisure
+    400002: //RootNode
+    400004: Pet_Head
+    400006: Pet_Hip
+    400008: Pet_Jaw
+    400010: Pet_L_Down_EyeLead
+    400012: Pet_L_Pupil
+    400014: Pet_L_Up_EyeLead
+    400016: Pet_LLeg_1
+    400018: Pet_LLeg_2
+    400020: Pet_LLeg_3
+    400022: Pet_LLeg_Platform
+    400024: Pet_LWing_1
+    400026: Pet_LWing_2
+    400028: Pet_LWing_3
+    400030: Pet_R_Down_EyeLead
+    400032: Pet_R_Pupil
+    400034: Pet_R_Up_EyeLead
+    400036: Pet_RLeg_1
+    400038: Pet_RLeg_2
+    400040: Pet_RLeg_3
+    400042: Pet_RLeg_Platform
+    400044: Pet_RWing_1
+    400046: Pet_RWing_2
+    400048: Pet_RWing_3
+    400050: Pet_Tail1
+    400052: Pet_Tail2
+    400054: Pet_Tail3
+    400056: Pet_Tail4
+    400058: Pet_Tongue_01
+    400060: Pet_Tongue_02
+    400062: Pet_Tongue_03
+    7400000: Idle
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 18
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pet_Hip
+        weight: 1
+      - path: Pet_Hip/Pet_Head
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_Comisure
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_Jaw
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_Jaw/Pet_Tongue_01
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_Jaw/Pet_Tongue_01/Pet_Tongue_02
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_Jaw/Pet_Tongue_01/Pet_Tongue_02/Pet_Tongue_03
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_L_Down_EyeLead
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_L_Pupil
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_L_Up_EyeLead
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_LWing_1
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_LWing_1/Pet_LWing_2
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_LWing_1/Pet_LWing_2/Pet_LWing_3
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_R_Down_EyeLead
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_R_Pupil
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_R_Up_EyeLead
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_RWing_1
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_RWing_1/Pet_RWing_2
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_RWing_1/Pet_RWing_2/Pet_RWing_3
+        weight: 1
+      - path: Pet_Hip/Pet_LLeg_1
+        weight: 1
+      - path: Pet_Hip/Pet_LLeg_1/Pet_LLeg_2
+        weight: 1
+      - path: Pet_Hip/Pet_LLeg_1/Pet_LLeg_2/Pet_LLeg_3
+        weight: 1
+      - path: Pet_Hip/Pet_RLeg_1
+        weight: 1
+      - path: Pet_Hip/Pet_RLeg_1/Pet_RLeg_2
+        weight: 1
+      - path: Pet_Hip/Pet_RLeg_1/Pet_RLeg_2/Pet_RLeg_3
+        weight: 1
+      - path: Pet_Hip/Pet_Tail1
+        weight: 1
+      - path: Pet_Hip/Pet_Tail1/Pet_Tail2
+        weight: 1
+      - path: Pet_Hip/Pet_Tail1/Pet_Tail2/Pet_Tail3
+        weight: 1
+      - path: Pet_Hip/Pet_Tail1/Pet_Tail2/Pet_Tail3/Pet_Tail4
+        weight: 1
+      - path: Pet_LLeg_Platform
+        weight: 1
+      - path: Pet_RLeg_Platform
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

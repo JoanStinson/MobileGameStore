@@ -1,0 +1,16 @@
+﻿TID_COINS_NAME=Монеты
+TID_GEMS_NAME=Самоцветы
+TID_CHARACTER_1_NAME=Sunna
+TID_CHARACTER_2_NAME=Hodur
+TID_CHARACTER_3_NAME=Lagnar
+TID_BUTTON_GOT_IT=Понятно!
+TID_BUTTON_DO_IT=Да!
+TID_ERROR_GENERIC=Что-то пошло не так!
+TID_CONFIRM_MESSAGE=Уверены?
+TID_TAP_TO_CONTINUE=Коснитесь, чтобы продолжить
+TID_OFFER_PACK_BASIC=Базовый комплект
+TID_OFFER_PACK_SUPER=Суперкомплект
+TID_OFFER_PACK_MEGA=Мегакомплект
+TID_OFFER_PACK_STARTER=Начальный комплект
+TID_OFFER_PACK_INTERMEDIATE=Гиперкомплект
+TID_OFFER_PACK_FLASHOFFER=Молниеносное предложение

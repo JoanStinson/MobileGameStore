@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: hodur
+  m_Shader: {fileID: 10708, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: FRESNEL NORMALMAP SPECULAR
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    QUEUE: Geometry
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 1a9d99149723c401893effbef1fc24b9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailTex:
+        m_Texture: {fileID: 2800000, guid: 46249f685603648df8cc92e2ce59f22a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FireMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 1f4d3decb7178436b9c91fdfeaf9848b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - FXLayer: 0
+    - SelfIlluminate: 0
+    - _Alpha_as_depth: 0
+    - _BlendMode: 0
+    - _BumpScale: 1
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _EnableBlendFresnel: 0
+    - _EnableCutoff: 0
+    - _EnableDoublesided: 0
+    - _EnableFresnel: 1
+    - _EnableNormalMap: 1
+    - _EnableOpaqueFresnel: 0
+    - _EnableOpaqueSpecular: 0
+    - _EnableSilhouette: 0
+    - _EnableSpecular: 1
+    - _EnableVertexOffset: 0
+    - _FireAmount: 0
+    - _FireSpeed: 1
+    - _Fresnel: 2.74
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _InnerLightAdd: 0
+    - _InnerLightWavePhase: 1
+    - _InnerLightWaveSpeed: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _NormalStrenght: 1
+    - _OcclusionStrength: 1
+    - _OutlineGradient: 2
+    - _OutlineWidth: 0.2
+    - _Parallax: 0.02
+    - _ReflectionAmount: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecExponent: 3.82
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _StencilMask: 10
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _AmbientAdd: {r: 0.021969333, g: 0.04411763, b: 0.01492214, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorAdd: {r: 0.01145449, g: 0.029411793, b: 0.010813159, a: 0}
+    - _ColorMultiply: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FresnelColor: {r: 0.2647059, g: 0.2647059, b: 0.2647059, a: 1}
+    - _InnerLightColor: {r: 0.15084344, g: 0.33088237, b: 0.18933451, a: 1}
+    - _OutlineColor: {r: 0.809, g: 1, b: 0.072, a: 1}
+    - _SecondLightColor: {r: 0, g: 0, b: 0, a: 0}
+    - _SecondLightDir: {r: 0, g: 0, b: -1, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}

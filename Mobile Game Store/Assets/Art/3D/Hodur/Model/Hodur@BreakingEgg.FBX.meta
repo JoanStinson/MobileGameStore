@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: 990dd9d1e7b6d4800ba34beb124d2d33
+timeCreated: 1482490360
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Pet_Comisure
+    100002: //RootNode
+    100004: Pet_Head
+    100006: Pet_Hip
+    100008: Pet_Jaw
+    100010: Pet_L_Down_EyeLead
+    100012: Pet_L_Pupil
+    100014: Pet_L_Up_EyeLead
+    100016: Pet_LLeg_1
+    100018: Pet_LLeg_2
+    100020: Pet_LLeg_3
+    100022: Pet_LLeg_Platform
+    100024: Pet_LWing_1
+    100026: Pet_LWing_2
+    100028: Pet_LWing_3
+    100030: Pet_R_Down_EyeLead
+    100032: Pet_R_Pupil
+    100034: Pet_R_Up_EyeLead
+    100036: Pet_RLeg_1
+    100038: Pet_RLeg_2
+    100040: Pet_RLeg_3
+    100042: Pet_RLeg_Platform
+    100044: Pet_RWing_1
+    100046: Pet_RWing_2
+    100048: Pet_RWing_3
+    100050: Pet_Tail1
+    100052: Pet_Tail2
+    100054: Pet_Tail3
+    100056: Pet_Tail4
+    100058: Pet_Tongue_01
+    100060: Pet_Tongue_02
+    100062: Pet_Tongue_03
+    400000: Pet_Comisure
+    400002: //RootNode
+    400004: Pet_Head
+    400006: Pet_Hip
+    400008: Pet_Jaw
+    400010: Pet_L_Down_EyeLead
+    400012: Pet_L_Pupil
+    400014: Pet_L_Up_EyeLead
+    400016: Pet_LLeg_1
+    400018: Pet_LLeg_2
+    400020: Pet_LLeg_3
+    400022: Pet_LLeg_Platform
+    400024: Pet_LWing_1
+    400026: Pet_LWing_2
+    400028: Pet_LWing_3
+    400030: Pet_R_Down_EyeLead
+    400032: Pet_R_Pupil
+    400034: Pet_R_Up_EyeLead
+    400036: Pet_RLeg_1
+    400038: Pet_RLeg_2
+    400040: Pet_RLeg_3
+    400042: Pet_RLeg_Platform
+    400044: Pet_RWing_1
+    400046: Pet_RWing_2
+    400048: Pet_RWing_3
+    400050: Pet_Tail1
+    400052: Pet_Tail2
+    400054: Pet_Tail3
+    400056: Pet_Tail4
+    400058: Pet_Tongue_01
+    400060: Pet_Tongue_02
+    400062: Pet_Tongue_03
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

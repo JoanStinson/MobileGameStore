@@ -1,0 +1,42 @@
+﻿{
+	"english":{
+		"isoCode": "en",
+		"fontName": "FNT_Default"
+	},
+	"french": {
+		"isoCode": "fr",
+		"fontName": "FNT_Default"
+	},
+	"italian": {
+		"isoCode": "it",
+		"fontName": "FNT_Default"
+	},
+	"german": {
+		"isoCode": "de",
+		"fontName": "FNT_Default"
+	},
+	"spanish": {
+		"isoCode": "es",
+		"fontName": "FNT_Default"
+	},
+	"portuguese": {
+		"isoCode": "pt",
+		"fontName": "FNT_Default"
+	},
+	"russian": {
+		"isoCode": "ru",
+		"fontName": "FNT_RU"
+	},
+	"chinese": {
+		"isoCode": "zh",
+		"fontName": "FNT_CJK"
+	},
+	"japanese": {
+		"isoCode": "ja",
+		"fontName": "FNT_CJK"
+	},
+	"korean": {
+		"isoCode": "ko",
+		"fontName": "FNT_CJK"
+	}
+}

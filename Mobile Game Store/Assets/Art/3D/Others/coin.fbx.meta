@@ -1,0 +1,131 @@
+fileFormatVersion: 2
+guid: 0a8c52aa664cf8e498113204428799ec
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: coin_eye_MID_Mesh
+    100004: coin_eye_MID_Mesh1
+    100006: coin_HIGH_Group27762
+    100008: coin_HIGH_Group6760
+    100010: coin_LOW_bakesize
+    100012: coin_LOW_geo
+    100014: coin_MID
+    100016: coin_MID_geo
+    100018: coin_MID_Mesh5
+    400000: //RootNode
+    400002: coin_eye_MID_Mesh
+    400004: coin_eye_MID_Mesh1
+    400006: coin_HIGH_Group27762
+    400008: coin_HIGH_Group6760
+    400010: coin_LOW_bakesize
+    400012: coin_LOW_geo
+    400014: coin_MID
+    400016: coin_MID_geo
+    400018: coin_MID_Mesh5
+    2300000: coin_eye_MID_Mesh
+    2300002: coin_eye_MID_Mesh1
+    2300004: coin_HIGH_Group27762
+    2300006: coin_HIGH_Group6760
+    2300008: coin_LOW_bakesize
+    2300010: coin_LOW_geo
+    2300012: coin_MID_geo
+    2300014: coin_MID_Mesh5
+    2300016: //RootNode
+    3300000: coin_eye_MID_Mesh
+    3300002: coin_eye_MID_Mesh1
+    3300004: coin_HIGH_Group27762
+    3300006: coin_HIGH_Group6760
+    3300008: coin_LOW_bakesize
+    3300010: coin_LOW_geo
+    3300012: coin_MID_geo
+    3300014: coin_MID_Mesh5
+    3300016: //RootNode
+    4300000: coin_eye_MID_Mesh1
+    4300002: coin_MID_Mesh5
+    4300004: coin_eye_MID_Mesh
+    4300006: coin_LOW_bakesize
+    4300008: coin_HIGH_Group27762
+    4300010: coin_HIGH_Group6760
+    4300012: coin_LOW_geo
+    4300014: coin_MID_geo
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 0
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

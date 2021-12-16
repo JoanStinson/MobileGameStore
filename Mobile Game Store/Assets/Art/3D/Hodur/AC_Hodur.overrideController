@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AC_Hodur
+  m_Controller: {fileID: 9100000, guid: bd8f003d750484ac6bf645c6a55d8d2d, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 9cd7d6104dc614cbf848d0bcbf73b94b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a3e6d8c8026684699aa72bd2f48adc33, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: e7c61154c86fc47a68d2da85480d727e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 990dd9d1e7b6d4800ba34beb124d2d33, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 7748b0162e96948c5b86e7bf7d9bf97b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fcfb63b22b6e840a0ac2fa07b4e0fb2a, type: 3}

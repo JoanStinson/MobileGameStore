@@ -1,0 +1,348 @@
+﻿{
+	"packs" :  [
+		{
+			"id": "shop_pack_offer_1",
+			"type": "offer",
+			"order": 3,
+			"duration": 1,
+			"tidName": "TID_OFFER_PACK_BASIC",
+			"featured": true,
+			"price": 9.99,
+			"currency": "dollars",
+			"discount": 0.5,
+			"items": [
+				{
+					"type": "gems",
+					"amount": 500,
+					"tidName": "TID_GEMS_NAME",
+					"icon": "icon_item_gems",
+					"prefab": "PF_ItemGems"
+				},
+				{
+					"type": "coins",
+					"amount": 50000,
+					"tidName": "TID_COINS_NAME",
+					"icon": "icon_item_coins",
+					"prefab": "PF_ItemCoins"
+				}
+			]
+		},
+		{
+			"id": "shop_pack_offer_2",
+			"type": "offer",
+			"order": 3,
+			"duration": 1,
+			"tidName": "TID_OFFER_PACK_INTERMEDIATE",
+			"featured": true,
+			"price": 7.99,
+			"currency": "dollars",
+			"discount": 0.6,
+			"items": [
+				{
+					"type": "coins",
+					"amount": 100000,
+					"tidName": "TID_COINS_NAME",
+					"icon": "icon_item_coins",
+					"prefab": "PF_ItemCoins"
+				},
+				{
+					"type": "gems",
+					"amount": 200,
+					"tidName": "TID_GEMS_NAME",
+					"icon": "icon_item_gems",
+					"prefab": "PF_ItemGems"
+				}
+			]
+		},
+		{
+			"id": "shop_pack_offer_3",
+			"type": "offer",
+			"order": 2,
+			"duration": 1,
+			"tidName": "TID_OFFER_PACK_SUPER",
+			"featured": true,
+			"price": 19.99,
+			"currency": "dollars",
+			"discount": 0.75,
+			"items": [
+				{
+					"type": "character",
+					"amount": 1,
+					"itemId": "character_1",
+					"tidName": "TID_CHARACTER_1_NAME",
+					"icon": "icon_character_1",
+					"prefab": "PF_Character1"
+				},
+				{
+					"type": "gems",
+					"amount": 500,
+					"tidName": "TID_GEMS_NAME",
+					"icon": "icon_item_gems",
+					"prefab": "PF_ItemGems"
+				},
+				{
+					"type": "coins",
+					"amount": 50000,
+					"tidName": "TID_COINS_NAME",
+					"icon": "icon_item_coins",
+					"prefab": "PF_ItemCoins"
+				}
+			]
+		},
+		{
+			"id": "shop_pack_offer_4",
+			"type": "offer",
+			"order": 1,
+			"duration": 1,
+			"tidName": "TID_OFFER_PACK_STARTER",
+			"featured": true,
+			"price": 39.99,
+			"currency": "dollars",
+			"discount": 0.9,
+			"items": [
+				{
+					"type": "character",
+					"amount": 1,
+					"itemId": "character_1",
+					"tidName": "TID_CHARACTER_1_NAME",
+					"icon": "icon_character_1",
+					"prefab": "PF_Character1"
+				},
+				{
+					"type": "character",
+					"amount": 1,
+					"itemId": "character_2",
+					"tidName": "TID_CHARACTER_2_NAME",
+					"icon": "icon_character_2",
+					"prefab": "PF_Character2"
+				},
+				{
+					"type": "character",
+					"amount": 1,
+					"itemId": "character_3",
+					"tidName": "TID_CHARACTER_3_NAME",
+					"icon": "icon_character_3",
+					"prefab": "PF_Character3"
+				}
+			]
+		},
+		{
+			"id": "shop_pack_offer_5",
+			"type": "offer",
+			"order": 1,
+			"duration": 1,
+			"tidName": "TID_OFFER_PACK_FLASHOFFER",
+			"featured": true,
+			"price": 19.99,
+			"currency": "dollars",
+			"discount": 0.5,
+			"items": [
+				{
+					"type": "character",
+					"amount": 1,
+					"itemId": "character_3",
+					"tidName": "TID_CHARACTER_3_NAME",
+					"icon": "icon_character_3",
+					"prefab": "PF_Character3"
+				}
+			]
+		},
+		{
+			"id": "shop_pack_offer_6",
+			"type": "offer",
+			"order": 2,
+			"duration": 1,
+			"tidName": "TID_OFFER_PACK_SUPER",
+			"featured": true,
+			"price": 19.99,
+			"currency": "dollars",
+			"discount": 0.75,
+			"items": [
+				{
+					"type": "character",
+					"amount": 1,
+					"itemId": "character_2",
+					"tidName": "TID_CHARACTER_1_NAME",
+					"icon": "icon_character_2",
+					"prefab": "PF_Character2"
+				},
+				{
+					"type": "gems",
+					"amount": 500,
+					"tidName": "TID_GEMS_NAME",
+					"icon": "icon_item_gems",
+					"prefab": "PF_ItemGems"
+				},
+				{
+					"type": "coins",
+					"amount": 50000,
+					"tidName": "TID_COINS_NAME",
+					"icon": "icon_item_coins",
+					"prefab": "PF_ItemCoins"
+				}
+			]
+		},
+		{
+			"id": "shop_pack_offer_7",
+			"type": "offer",
+			"order": 2,
+			"duration": 1,
+			"tidName": "TID_OFFER_PACK_SUPER",
+			"featured": true,
+			"price": 19.99,
+			"currency": "dollars",
+			"discount": 0.75,
+			"items": [
+				{
+					"type": "character",
+					"amount": 1,
+					"itemId": "character_3",
+					"tidName": "TID_CHARACTER_3_NAME",
+					"icon": "icon_character_3",
+					"prefab": "PF_Character3"
+				},
+				{
+					"type": "gems",
+					"amount": 500,
+					"tidName": "TID_GEMS_NAME",
+					"icon": "icon_item_gems",
+					"prefab": "PF_ItemGems"
+				},
+				{
+					"type": "coins",
+					"amount": 50000,
+					"tidName": "TID_COINS_NAME",
+					"icon": "icon_item_coins",
+					"prefab": "PF_ItemCoins"
+				}
+			]
+		},
+
+
+
+
+
+
+		{
+			"id": "shop_pack_gems_1",
+			"type": "gems",
+			"order": 10,
+			"duration": -1,
+			"featured": false,
+			"price": 1.99,
+			"currency": "dollars",
+			"discount": 0,
+			"items": [
+				{
+					"type": "gems",
+					"amount": 50,
+					"tidName": "TID_GEMS_NAME",
+					"icon": "icon_pack_gems_1",
+					"prefab": "PF_ItemGems"
+				}
+			]
+		},
+		{
+			"id": "shop_pack_gems_2",
+			"type": "gems",
+			"order": 11,
+			"duration": -1,
+			"featured": false,
+			"price": 4.99,
+			"currency": "dollars",
+			"discount": 0.4,
+			"items": [
+				{
+					"type": "gems",
+					"amount": 175,
+					"tidName": "TID_GEMS_NAME",
+					"icon": "icon_pack_gems_2",
+					"prefab": "PF_ItemGems"
+				}
+			]
+		},
+		{
+			"id": "shop_pack_gems_3",
+			"type": "gems",
+			"order": 12,
+			"duration": -1,
+			"featured": false,
+			"price": 9.99,
+			"currency": "dollars",
+			"discount": 0.6,
+			"items": [
+				{
+					"type": "gems",
+					"amount": 400,
+					"tidName": "TID_GEMS_NAME",
+					"icon": "icon_pack_gems_3",
+					"prefab": "PF_ItemGems"
+				}
+			]
+		},
+
+
+
+
+
+
+
+		{
+			"id": "shop_pack_coins_1",
+			"type": "coins",
+			"order": 20,
+			"duration": -1,
+			"featured": false,
+			"price": 100,
+			"currency": "gems",
+			"discount": 0,
+			"items": [
+				{
+					"type": "coins",
+					"amount": 10000,
+					"tidName": "TID_COINS_NAME",
+					"icon": "icon_pack_coins_1",
+					"prefab": "PF_ItemCoins"
+				}
+			]
+		},
+		{
+			"id": "shop_pack_coins_2",
+			"type": "coins",
+			"order": 21,
+			"duration": -1,
+			"featured": false,
+			"price": 150,
+			"currency": "gems",
+			"discount": 0.25,
+			"items": [
+				{
+					"type": "coins",
+					"amount": 20000,
+					"tidName": "TID_COINS_NAME",
+					"icon": "icon_pack_coins_2",
+					"prefab": "PF_ItemCoins"
+				}
+			]
+		},
+		{
+			"id": "shop_pack_coins_3",
+			"type": "coins",
+			"order": 22,
+			"duration": -1,
+			"featured": false,
+			"price": 200,
+			"currency": "gems",
+			"discount": 0.5,
+			"items": [
+				{
+					"type": "coins",
+					"amount": 40000,
+					"tidName": "TID_COINS_NAME",
+					"icon": "icon_pack_coins_3",
+					"prefab": "PF_ItemCoins"
+				}
+			]
+		}
+	]
+}

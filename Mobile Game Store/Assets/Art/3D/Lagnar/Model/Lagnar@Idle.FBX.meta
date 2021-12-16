@@ -1,0 +1,221 @@
+fileFormatVersion: 2
+guid: ce14c27df834248459d2665888fb6675
+timeCreated: 1501065231
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Fire_Dummy
+    100002: Pet_Head
+    100004: Pet_Hip
+    100006: Pet_Jaw
+    100008: Pet_L_Down_EyeLead
+    100010: Pet_L_Leg_Back1
+    100012: Pet_L_Leg_Back2
+    100014: Pet_L_Leg_BackAnkle
+    100016: Pet_L_Leg_Front1
+    100018: Pet_L_Leg_Front2
+    100020: Pet_L_Leg_FrontAnkle
+    100022: Pet_L_Up_EyeLead
+    100024: Pet_LWing1
+    100026: Pet_LWing2
+    100028: Pet_Master
+    100030: Pet_R_Down_EyeLead
+    100032: Pet_R_Leg_Back1
+    100034: Pet_R_Leg_Back2
+    100036: Pet_R_Leg_BackAnkle
+    100038: Pet_R_Leg_Front1
+    100040: Pet_R_Leg_Front2
+    100042: Pet_R_Leg_FrontAnkle
+    100044: Pet_R_Up_EyeLead
+    100046: Pet_RWing1
+    100048: Pet_RWing2
+    100050: Pet_Tail1
+    100052: Pet_Tail2
+    100054: Pet_Tail3
+    100056: //RootNode
+    400000: Fire_Dummy
+    400002: Pet_Head
+    400004: Pet_Hip
+    400006: Pet_Jaw
+    400008: Pet_L_Down_EyeLead
+    400010: Pet_L_Leg_Back1
+    400012: Pet_L_Leg_Back2
+    400014: Pet_L_Leg_BackAnkle
+    400016: Pet_L_Leg_Front1
+    400018: Pet_L_Leg_Front2
+    400020: Pet_L_Leg_FrontAnkle
+    400022: Pet_L_Up_EyeLead
+    400024: Pet_LWing1
+    400026: Pet_LWing2
+    400028: Pet_Master
+    400030: Pet_R_Down_EyeLead
+    400032: Pet_R_Leg_Back1
+    400034: Pet_R_Leg_Back2
+    400036: Pet_R_Leg_BackAnkle
+    400038: Pet_R_Leg_Front1
+    400040: Pet_R_Leg_Front2
+    400042: Pet_R_Leg_FrontAnkle
+    400044: Pet_R_Up_EyeLead
+    400046: Pet_RWing1
+    400048: Pet_RWing2
+    400050: Pet_Tail1
+    400052: Pet_Tail2
+    400054: Pet_Tail3
+    400056: //RootNode
+    7400000: Idle
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pet_Hip
+        weight: 1
+      - path: Pet_Hip/Pet_Head
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Fire_Dummy
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_Jaw
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_L_Down_EyeLead
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_L_Up_EyeLead
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_R_Down_EyeLead
+        weight: 1
+      - path: Pet_Hip/Pet_Head/Pet_R_Up_EyeLead
+        weight: 1
+      - path: Pet_Hip/Pet_L_Leg_Back1
+        weight: 1
+      - path: Pet_Hip/Pet_L_Leg_Back1/Pet_L_Leg_Back2
+        weight: 1
+      - path: Pet_Hip/Pet_L_Leg_Back1/Pet_L_Leg_Back2/Pet_L_Leg_BackAnkle
+        weight: 1
+      - path: Pet_Hip/Pet_L_Leg_Front1
+        weight: 1
+      - path: Pet_Hip/Pet_L_Leg_Front1/Pet_L_Leg_Front2
+        weight: 1
+      - path: Pet_Hip/Pet_L_Leg_Front1/Pet_L_Leg_Front2/Pet_L_Leg_FrontAnkle
+        weight: 1
+      - path: Pet_Hip/Pet_LWing1
+        weight: 1
+      - path: Pet_Hip/Pet_LWing1/Pet_LWing2
+        weight: 1
+      - path: Pet_Hip/Pet_R_Leg_Back1
+        weight: 1
+      - path: Pet_Hip/Pet_R_Leg_Back1/Pet_R_Leg_Back2
+        weight: 1
+      - path: Pet_Hip/Pet_R_Leg_Back1/Pet_R_Leg_Back2/Pet_R_Leg_BackAnkle
+        weight: 1
+      - path: Pet_Hip/Pet_R_Leg_Front1
+        weight: 1
+      - path: Pet_Hip/Pet_R_Leg_Front1/Pet_R_Leg_Front2
+        weight: 1
+      - path: Pet_Hip/Pet_R_Leg_Front1/Pet_R_Leg_Front2/Pet_R_Leg_FrontAnkle
+        weight: 1
+      - path: Pet_Hip/Pet_RWing1
+        weight: 1
+      - path: Pet_Hip/Pet_RWing1/Pet_RWing2
+        weight: 1
+      - path: Pet_Hip/Pet_Tail1
+        weight: 1
+      - path: Pet_Hip/Pet_Tail1/Pet_Tail2
+        weight: 1
+      - path: Pet_Hip/Pet_Tail1/Pet_Tail2/Pet_Tail3
+        weight: 1
+      - path: Pet_Master
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

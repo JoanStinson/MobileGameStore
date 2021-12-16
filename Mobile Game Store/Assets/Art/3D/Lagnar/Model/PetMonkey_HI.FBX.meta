@@ -1,0 +1,212 @@
+fileFormatVersion: 2
+guid: 0c82eab1db358480ab7bc1e2ee674841
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Fire_Dummy
+    100002: Pet_Head
+    100004: Pet_Hip
+    100006: Pet_Jaw
+    100008: Pet_L_Down_EyeLead
+    100010: Pet_L_Leg_Back1
+    100012: Pet_L_Leg_Back2
+    100014: Pet_L_Leg_BackAnkle
+    100016: Pet_L_Leg_BackPlatform
+    100018: Pet_L_Leg_Front1
+    100020: Pet_L_Leg_Front2
+    100022: Pet_L_Leg_FrontAnkle
+    100024: Pet_L_Up_EyeLead
+    100026: Pet_LWing1
+    100028: Pet_LWing2
+    100030: Pet_R_Down_EyeLead
+    100032: Pet_R_Leg_Back1
+    100034: Pet_R_Leg_Back2
+    100036: Pet_R_Leg_BackAnkle
+    100038: Pet_R_Leg_BackPlatform
+    100040: Pet_R_Leg_Front1
+    100042: Pet_R_Leg_Front2
+    100044: Pet_R_Leg_FrontAnkle
+    100046: Pet_R_Up_EyeLead
+    100048: Pet_RWing1
+    100050: Pet_RWing2
+    100052: Pet_Tail1
+    100054: Pet_Tail2
+    100056: Pet_Tail3
+    100058: PetMonkey_HI
+    100060: //RootNode
+    100062: PetMonkeyImp_Head_HI
+    100064: PetMonkeyImp_Tail_HI
+    100066: PetMonkeyKing_Ears_HI
+    100068: PetMonkeyPoisonlvy_Head_HI
+    100070: PetMonkeyPoisonlvy_Tail_HI
+    100072: PetMonkeyRocket_Head_Hi
+    100074: PetMonkeyRocket_Rocket_HI
+    100076: PetMonkeyVampire_Bag_HI
+    100078: PetMonkeyVampire_Ears_HI
+    100080: PetMonkeyVampire_Gold_HI
+    100082: PetMonkeyVampire_Tail_HI
+    100084: Pet_Master
+    100086: PetMonkeyRocket_Head_HI
+    400000: Fire_Dummy
+    400002: Pet_Head
+    400004: Pet_Hip
+    400006: Pet_Jaw
+    400008: Pet_L_Down_EyeLead
+    400010: Pet_L_Leg_Back1
+    400012: Pet_L_Leg_Back2
+    400014: Pet_L_Leg_BackAnkle
+    400016: Pet_L_Leg_BackPlatform
+    400018: Pet_L_Leg_Front1
+    400020: Pet_L_Leg_Front2
+    400022: Pet_L_Leg_FrontAnkle
+    400024: Pet_L_Up_EyeLead
+    400026: Pet_LWing1
+    400028: Pet_LWing2
+    400030: Pet_R_Down_EyeLead
+    400032: Pet_R_Leg_Back1
+    400034: Pet_R_Leg_Back2
+    400036: Pet_R_Leg_BackAnkle
+    400038: Pet_R_Leg_BackPlatform
+    400040: Pet_R_Leg_Front1
+    400042: Pet_R_Leg_Front2
+    400044: Pet_R_Leg_FrontAnkle
+    400046: Pet_R_Up_EyeLead
+    400048: Pet_RWing1
+    400050: Pet_RWing2
+    400052: Pet_Tail1
+    400054: Pet_Tail2
+    400056: Pet_Tail3
+    400058: PetMonkey_HI
+    400060: //RootNode
+    400062: PetMonkeyImp_Head_HI
+    400064: PetMonkeyImp_Tail_HI
+    400066: PetMonkeyKing_Ears_HI
+    400068: PetMonkeyPoisonlvy_Head_HI
+    400070: PetMonkeyPoisonlvy_Tail_HI
+    400072: PetMonkeyRocket_Head_Hi
+    400074: PetMonkeyRocket_Rocket_HI
+    400076: PetMonkeyVampire_Bag_HI
+    400078: PetMonkeyVampire_Ears_HI
+    400080: PetMonkeyVampire_Gold_HI
+    400082: PetMonkeyVampire_Tail_HI
+    400084: Pet_Master
+    400086: PetMonkeyRocket_Head_HI
+    2300000: PetMonkeyImp_Head_HI
+    2300002: PetMonkeyImp_Tail_HI
+    2300004: PetMonkeyKing_Ears_HI
+    2300006: PetMonkeyPoisonlvy_Head_HI
+    2300008: PetMonkeyPoisonlvy_Tail_HI
+    2300010: PetMonkeyRocket_Head_Hi
+    2300012: PetMonkeyRocket_Rocket_HI
+    2300014: PetMonkeyVampire_Bag_HI
+    2300016: PetMonkeyVampire_Ears_HI
+    2300018: PetMonkeyVampire_Gold_HI
+    2300020: PetMonkeyVampire_Tail_HI
+    2300022: PetMonkeyRocket_Head_HI
+    3300000: PetMonkeyImp_Head_HI
+    3300002: PetMonkeyImp_Tail_HI
+    3300004: PetMonkeyKing_Ears_HI
+    3300006: PetMonkeyPoisonlvy_Head_HI
+    3300008: PetMonkeyPoisonlvy_Tail_HI
+    3300010: PetMonkeyRocket_Head_Hi
+    3300012: PetMonkeyRocket_Rocket_HI
+    3300014: PetMonkeyVampire_Bag_HI
+    3300016: PetMonkeyVampire_Ears_HI
+    3300018: PetMonkeyVampire_Gold_HI
+    3300020: PetMonkeyVampire_Tail_HI
+    3300022: PetMonkeyRocket_Head_HI
+    4300000: PetMonkey_HI
+    4300002: PetMonkeyKing_Ears_HI
+    4300004: PetMonkeyVampire_Tail_HI
+    4300006: PetMonkeyRocket_Head_Hi
+    4300008: PetMonkeyImp_Head_HI
+    4300010: PetMonkeyPoisonlvy_Head_HI
+    4300012: PetMonkeyVampire_Ears_HI
+    4300014: PetMonkeyVampire_Gold_HI
+    4300016: PetMonkeyVampire_Bag_HI
+    4300018: PetMonkeyImp_Tail_HI
+    4300020: PetMonkeyPoisonlvy_Tail_HI
+    4300022: PetMonkeyRocket_Rocket_HI
+    4300024: PetMonkeyRocket_Head_HI
+    9500000: //RootNode
+    13700000: PetMonkey_HI
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
