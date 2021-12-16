@@ -1,0 +1,16 @@
+{
+    "name": "JGM.GameStore",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9eef474a900b49641ad7331aa1027ee0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
