@@ -36,7 +36,7 @@ public class CoinsPack : MonoBehaviour, IPurchasePack
         }
         _priceBeforeDiscount.text = packData.PackData.PriceBeforeDiscount.ToString();
         _price.text = packData.PackData.Price.ToString();
-        _amount.text = packData.PackData.Items[0].Amount.ToString();
+        _amount.text = $"{packData.PackData.Items[0].Amount} Coins";
         _icon.sprite = AssetLoader.GetSprite(packData.PackData.Items[0].IconName);
     }
 }

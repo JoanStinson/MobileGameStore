@@ -38,7 +38,18 @@ public class OfferPack : MonoBehaviour, IPurchasePack
             if (packItemGO.TryGetComponent<PackItemToPurchase>(out var itemToPurchase))
             {
                 itemToPurchase._icon.sprite = AssetLoader.GetSprite(item.IconName);
-                itemToPurchase._amount.text = item.Amount.ToString();
+                if (item.ItemType == StoreItemData.Type.Character)
+                {
+                    itemToPurchase._amount.text = $"{item.Amount} Dragons";
+                }
+                else if (item.ItemType == StoreItemData.Type.Coins)
+                {
+                    itemToPurchase._amount.text = $"{item.Amount} Coins";
+                }
+                else if (item.ItemType == StoreItemData.Type.Gems)
+                {
+                    itemToPurchase._amount.text = $"{item.Amount} Gems";
+                }
             }
         }
     }
