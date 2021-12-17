@@ -12,6 +12,7 @@ public class CoinsPack : MonoBehaviour, IPurchasePack
     [SerializeField] private TextMeshProUGUI _price;
     [SerializeField] private TextMeshProUGUI _amount;
     [SerializeField] private Image _icon;
+    [SerializeField] private Transform _discountBanner;
 
     public void OnPurchase()
     {
@@ -25,7 +26,14 @@ public class CoinsPack : MonoBehaviour, IPurchasePack
 
     public void PopulatePackData(StorePack packData)
     {
-        _discount.text = packData.PackData.Discount.ToString();
+        if (packData.PackData.Discount > 0)
+        {
+            _discount.text = packData.PackData.Discount.ToString();
+        }
+        else
+        {
+            _discountBanner.gameObject.SetActive(false);
+        }
         _priceBeforeDiscount.text = packData.PackData.PriceBeforeDiscount.ToString();
         _price.text = packData.PackData.Price.ToString();
         _amount.text = packData.PackData.Items[0].Amount.ToString();

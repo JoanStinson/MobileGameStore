@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Game_Store;
+using System.Linq;
 using TMPro;
 using Ubisoft.UIProgrammerTest.Data;
 using Ubisoft.UIProgrammerTest.Logic;
@@ -29,8 +30,8 @@ public class OfferPack : MonoBehaviour, IPurchasePack
         _remainingTime.text = packData.RemainingTime.ToString();
         _discount.text = packData.PackData.Discount.ToString();
         _priceBeforeDiscount.text = packData.PackData.PriceBeforeDiscount.ToString();
-        _price.text = packData.PackData.Price.ToString();
-        foreach(var item in packData.PackData.Items)
+        var sortedOfferList = packData.PackData.Items.OrderByDescending(o => o.ItemType);
+        foreach (var item in sortedOfferList)
         {
             var packItemGO = Instantiate(_packItemPrefab);
             packItemGO.transform.SetParent(_packItemsParent, false);
