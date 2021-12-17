@@ -1,26 +1,12 @@
-﻿// LocalizationManager.cs
-// UI Programmer Test 2021
-// 
-// Copyright (c) 2021 Ubisoft. All rights reserved.
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Ubisoft.UIProgrammerTest.Utils;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Ubisoft.UIProgrammerTest.Singletons
 {
-    /// <summary>
-    /// Centralized class to handle all localization management.
-    /// </summary>
     public class LocalizationManager
     {
-        #region CONSTANTS -----------------------------------------------------
-        private const Language DefaultLanguage = Language.English;
-        private const string DataFolder = "Localization/";
-        #endregion
-
-        #region AUX CLASSES ---------------------------------------------------
         public enum Language
         {
             English,
@@ -33,163 +19,109 @@ namespace Ubisoft.UIProgrammerTest.Singletons
             Chinese,
             Japanese,
             Korean,
-
             Count
         }
 
-        /// <summary>
-        /// Data for a single language.
-        /// </summary>
-        public class LangData
+        public class LanguageData
         {
-            public Language language = Language.Count;
-            public string isoCode = "";
-            public string fontName = "";
-            public Dictionary<string, string> dict = new Dictionary<string, string>();
+            public Language Language = Language.Count;
+            public string IsoCode;
+            public string FontName;
+            public Dictionary<string, string> Library = new Dictionary<string, string>();
         }
 
-        /// <summary>
-        /// Event for when the active language has changed.
-        /// </summary>
         public class LanguageChangedEvent : UnityEvent<Language, Language> { }
-        #endregion
+        public LanguageChangedEvent OnLanguageChanged = new LanguageChangedEvent();
+        public Language CurrentLanguage { get; private set; } = Language.Count;
 
-        #region SINGLETON -----------------------------------------------------
-        // Singleton instance
-        private static LocalizationManager s_instance = null;
-        public static LocalizationManager instance
+        private const Language _defaultLanguage = Language.English;
+        private const string _dataFolder = "Localization/";
+
+        private LanguageData _currentLanguageData => _languages[CurrentLanguage];
+        private Dictionary<Language, LanguageData> _languages = null;
+
+        private static LocalizationManager _instance = null;
+
+        public static LocalizationManager Instance
         {
             get
             {
                 ValidateSingletonInstance();
-                return s_instance;
+                return _instance;
             }
         }
 
-        /// <summary>
-        /// Static method to automatically create the singleton instance if needed.
-        /// Will be automatically invoked upon app initialization.
-        /// </summary>
         [RuntimeInitializeOnLoadMethod]
         private static void ValidateSingletonInstance()
         {
-            if (s_instance == null)
+            if (_instance == null)
             {
-                s_instance = new LocalizationManager();
+                _instance = new LocalizationManager();
             }
         }
-        #endregion
 
-        #region FIELDS AND PROPERTIES -----------------------------------------
-        // Languages
-        private Language m_currentLanguage = Language.Count;
-        public Language currentLanguage
-        {
-            get { return m_currentLanguage; }
-        }
-
-        // Dictionary
-        private Dictionary<Language, LangData> m_languages = null;
-        private LangData currentLanguageData
-        {
-            get { return m_languages[m_currentLanguage]; }
-        }
-
-        // Events
-        public LanguageChangedEvent OnLanguageChanged = new LanguageChangedEvent();
-        #endregion
-
-        #region METHODS -------------------------------------------------------
-        /// <summary>
-        /// Private constructor. Accessible by the singleton instance.
-        /// </summary>
         private LocalizationManager()
         {
-            // Read data file from disk
-            TextAsset txt = Resources.Load<TextAsset>("Data/localization_manager");
+            var localizationText = Resources.Load<TextAsset>("Data/localization_manager");
+            var localizationJson = JSONNode.Parse(localizationText.text);
 
-            // Parse json data
-            JSONNode jsonData = JSONNode.Parse(txt.text);
-
-            // Load all languages
-            m_languages = new Dictionary<Language, LangData>();
-            for (Language lang = Language.English; lang < Language.Count; ++lang)
+            _languages = new Dictionary<Language, LanguageData>();
+            for (Language language = Language.English; language < Language.Count; ++language)
             {
-                // Create a new data object for this language and store it in the dictionary
-                LangData newLangData = new LangData();
-                newLangData.language = lang;
-                m_languages[lang] = newLangData;
+                var newLanguageData = new LanguageData();
+                newLanguageData.Language = language;
+                _languages[language] = newLanguageData;
 
-                // Do we have data for this language?
-                string langKey = lang.ToString().ToLowerInvariant();
-                if (jsonData.HasKey(langKey))
+                string langKey = language.ToString().ToLowerInvariant();
+                if (localizationJson.HasKey(langKey))
                 {
-                    // Yes!! Parse it
-                    ParseLangData(ref newLangData, jsonData[langKey]);
+                    ParseLanguageData(ref newLanguageData, localizationJson[langKey]);
                 }
             }
 
-            // Set default language as the current one
-            SetLanguage(DefaultLanguage);
+            SetLanguage(_defaultLanguage);
         }
 
-        /// <summary>
-        /// Change the current language.
-        /// </summary>
-        /// <param name="lang">The new language.</param>
-        public void SetLanguage(Language lang)
+        public void SetLanguage(Language language)
         {
-            // Ignore if not valid
-            if (lang == Language.Count) return;
-
-            // Store new language
-            Language oldLang = m_currentLanguage;
-            m_currentLanguage = lang;
-
-            // Broadcast
-            OnLanguageChanged.Invoke(oldLang, m_currentLanguage);
-        }
-
-        /// <summary>
-        /// Given a text ID, return it localized in the current language.
-        /// </summary>
-        /// <returns>The localized test.</returns>
-        /// <param name="tid">ID of the text to be localized.</param>
-        public string Localize(string tid)
-        {
-            if (currentLanguageData.dict.ContainsKey(tid))
+            if (language == Language.Count)
             {
-                return currentLanguageData.dict[tid];
+                return;
             }
-            return tid;
+
+            var previousLanguage = CurrentLanguage;
+            CurrentLanguage = language;
+            OnLanguageChanged?.Invoke(previousLanguage, CurrentLanguage);
         }
 
-        /// <summary>
-        /// Parse json data into the target object.
-        /// Loads the dictionary as well.
-        /// </summary>
-        /// <param name="target">Target LangData object.</param>
-        /// <param name="jsonData">Json data to be parsed.</param>
-        private void ParseLangData(ref LangData target, JSONNode jsonData)
+        public string Localize(string textId)
         {
-            // Parse basic data
+            if (_currentLanguageData.Library.ContainsKey(textId))
+            {
+                return _currentLanguageData.Library[textId];
+            }
+
+            return textId;
+        }
+
+        private void ParseLanguageData(ref LanguageData languageData, JSONNode jsonData)
+        {
             if (jsonData.HasKey("isoCode"))
             {
-                target.isoCode = jsonData["isoCode"];
+                languageData.IsoCode = jsonData["isoCode"];
             }
 
             if (jsonData.HasKey("fontName"))
             {
-                target.fontName = jsonData["fontName"];
+                languageData.FontName = jsonData["fontName"];
             }
 
-            // Parse dictionary
-            TextAsset txt = Resources.Load<TextAsset>(DataFolder + target.isoCode);
-            if (txt != null)
+            var languageText = Resources.Load<TextAsset>(_dataFolder + languageData.IsoCode);
+            if (languageText != null)
             {
-                string[] lines = txt.text.Split('\n');
+                string[] lines = languageText.text.Split('\n');
                 char[] separator = { '=' };
-                for (int i = 0; i < lines.Length; i++)
+                for (int i = 0; i < lines.Length; ++i)
                 {
                     // Parse line: make sure it has the exact expected format (key=value)
                     string[] split = lines[i].Split(separator, 2, System.StringSplitOptions.RemoveEmptyEntries);
@@ -197,13 +129,11 @@ namespace Ubisoft.UIProgrammerTest.Singletons
                     {
                         // Remove spaces at the end of the line for both keys and values
                         string key = split[0].Trim();
-                        string value = split[1].Trim().Replace("\\n", "\n");    // Replace custom \n characters
-
-                        target.dict[key] = value;
+                        string value = split[1].Trim().Replace("\\n", "\n");
+                        languageData.Library[key] = value;
                     }
                 }
             }
         }
-        #endregion
     }
 }
