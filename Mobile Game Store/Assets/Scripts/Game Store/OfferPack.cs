@@ -27,7 +27,7 @@ public class OfferPack : MonoBehaviour, IPurchasePack
 
     public void PopulatePackData(StorePack packData)
     {
-        _remainingTime.text = packData.RemainingTime.ToString();
+        _remainingTime.text = $"{packData.RemainingTime.Days}d {packData.RemainingTime.Hours}h {packData.RemainingTime.Minutes}m {packData.RemainingTime.Seconds}s";
         _discount.text = $"{packData.PackData.Discount * 100}%";
         _priceBeforeDiscount.text = packData.PackData.PriceBeforeDiscount.ToString();
         var sortedOfferList = packData.PackData.Items.OrderByDescending(o => o.ItemType);

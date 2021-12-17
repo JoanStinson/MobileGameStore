@@ -49,7 +49,7 @@ public class StoreController : MonoBehaviour
         {
             if (!featuredPackOccupied)
             {
-                if (pack.PackData.PackType == StorePackData.Type.Offer)
+                if (pack.PackData.PackType == StorePackData.Type.Offer && pack.PackData.Featured)
                 {
                     featuredPackOccupied = true;
                     var offerGO = Instantiate(_featuredPackPrefab);
