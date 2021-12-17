@@ -28,7 +28,7 @@ public class CoinsPack : MonoBehaviour, IPurchasePack
     {
         if (packData.PackData.Discount > 0)
         {
-            _discount.text = packData.PackData.Discount.ToString();
+            _discount.text = $"{packData.PackData.Discount * 100}%";
         }
         else
         {

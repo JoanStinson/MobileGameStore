@@ -17,18 +17,18 @@ public class OfferPack : MonoBehaviour, IPurchasePack
 
     public void OnPurchase()
     {
-        
+
     }
 
     public void OnSelect()
     {
-        
+
     }
 
     public void PopulatePackData(StorePack packData)
     {
         _remainingTime.text = packData.RemainingTime.ToString();
-        _discount.text = packData.PackData.Discount.ToString();
+        _discount.text = $"{packData.PackData.Discount * 100}%";
         _priceBeforeDiscount.text = packData.PackData.PriceBeforeDiscount.ToString();
         var sortedOfferList = packData.PackData.Items.OrderByDescending(o => o.ItemType);
         foreach (var item in sortedOfferList)
