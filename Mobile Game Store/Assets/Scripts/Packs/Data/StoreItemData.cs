@@ -1,5 +1,7 @@
-﻿using JGM.GameStore.Utils;
+﻿using JGM.GameStore.Transaction;
+using JGM.GameStore.Utils;
 using System;
+using static JGM.GameStore.Transaction.UserWallet;
 
 namespace JGM.GameStore.Packs.Data
 {
@@ -21,6 +23,7 @@ namespace JGM.GameStore.Packs.Data
         public string IconName { get; private set; }
         public string PrefabName { get; private set; }
 
+        private IUserWallet _userWallet;
         private Type _itemType = Type.Coins;
 
         public void ApplyTransaction()
@@ -29,14 +32,14 @@ namespace JGM.GameStore.Packs.Data
             {
                 case Type.Coins:
                     {
-                        Transaction trans = UserProfile.Instance.CreateTransaction(UserProfile.Currency.Coins, Amount);
+                        Transaction.Transaction trans = _userWallet.CreateTransaction(Currency.Coins, Amount);
                         trans.StartTransaction();
                     }
                     break;
 
                 case Type.Gems:
                     {
-                        Transaction trans = UserProfile.Instance.CreateTransaction(UserProfile.Currency.Gems, Amount);
+                        Transaction.Transaction trans = _userWallet.CreateTransaction(Currency.Gems, Amount);
                         trans.StartTransaction();
                     }
                     break;

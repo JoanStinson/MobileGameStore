@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using JGM.GameStore.Packs.Displayers;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace JGM.GameStore.Tabs
