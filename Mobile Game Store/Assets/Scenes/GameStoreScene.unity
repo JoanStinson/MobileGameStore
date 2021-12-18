@@ -241,9 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 21680039}
-  - component: {fileID: 21680041}
   - component: {fileID: 21680040}
-  - component: {fileID: 21680042}
   m_Layer: 0
   m_Name: StoreManager
   m_TagString: Untagged
@@ -285,31 +283,7 @@ MonoBehaviour:
   _gemsPacksParent: {fileID: 1325493261}
   _coinsPacksParent: {fileID: 1325493261}
   _featuredPacksParent: {fileID: 124187800}
-  _storeController: {fileID: 21680042}
---- !u!114 &21680041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21680038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99ac7326b72af0047aff0eca7859f3b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &21680042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21680038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fefbc0e68ca9594b9fe4469dffdf18b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _storeRefreshFrequencyInSeconds: 1
 --- !u!1 &23602510
 GameObject:
   m_ObjectHideFlags: 0
@@ -4154,7 +4128,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 197915881}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.3175293
+  m_Size: 0.31895915
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

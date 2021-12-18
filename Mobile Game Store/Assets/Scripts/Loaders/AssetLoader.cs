@@ -3,30 +3,29 @@ using UnityEngine;
 
 namespace JGM.GameStore.Loaders
 {
-    //TODO make into a template
-    public class AssetLoader : MonoBehaviour, IAssetLoader
+    public class AssetLoader<T> where T : Object
     {
-        private Sprite[] _sprites;
-        private static Dictionary<string, Sprite> _spriteLibrary;
+        private Dictionary<string, T> _assetsLibrary;
 
-        private void Awake()
+        public void LoadAllInPath(in string resourcesPath)
         {
-            _sprites = Resources.LoadAll<Sprite>("UI/ShopItems/Icons");
-            _spriteLibrary = new Dictionary<string, Sprite>();
-            foreach (var sprite in _sprites)
+            T[] _assets = Resources.LoadAll<T>(resourcesPath);
+            _assetsLibrary = new Dictionary<string, T>();
+            for (int i = 0; i < _assets.Length; ++i)
             {
-                _spriteLibrary.Add(sprite.name, sprite);
+                _assetsLibrary.Add(_assets[i].name, _assets[i]);
             }
         }
 
-        public static Sprite GetSprite(in string name)
+        public T GetAsset(in string assetName)
         {
-            if (_spriteLibrary.ContainsKey(name))
+            if (_assetsLibrary.ContainsKey(assetName))
             {
-                return _spriteLibrary[name];
+                return _assetsLibrary[assetName];
             }
             else
             {
+                Debug.LogWarning($"{assetName} was not found!");
                 return null;
             }
         }

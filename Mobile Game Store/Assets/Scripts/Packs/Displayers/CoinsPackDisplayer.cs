@@ -15,7 +15,7 @@ namespace JGM.GameStore.Packs.Displayers
         [SerializeField] private Image _icon;
         [SerializeField] private Transform _discountBanner;
 
-        public void SetPackData(StorePack storePack)
+        public void SetPackData(StorePack storePack, IStoreAssetsLibrary assetsLibrary)
         {
             if (storePack.PackData.Discount > 0)
             {
@@ -28,7 +28,7 @@ namespace JGM.GameStore.Packs.Displayers
             _priceBeforeDiscount.text = storePack.PackData.PriceBeforeDiscount.ToString();
             _price.text = storePack.PackData.Price.ToString();
             _amount.text = $"{storePack.PackData.Items[0].Amount} Coins";
-            _icon.sprite = AssetLoader.GetSprite(storePack.PackData.Items[0].IconName);
+            _icon.sprite = assetsLibrary.GetSprite(storePack.PackData.Items[0].IconName);
         }
     }
 }

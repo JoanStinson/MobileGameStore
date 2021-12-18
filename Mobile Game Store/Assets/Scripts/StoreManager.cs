@@ -1,9 +1,11 @@
-﻿using JGM.GameStore.Packs;
+﻿using JGM.GameStore.Loaders;
+using JGM.GameStore.Packs;
 using JGM.GameStore.Packs.Data;
 using JGM.GameStore.Packs.Displayers;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace JGM.GameStore
@@ -20,75 +22,92 @@ namespace JGM.GameStore
         [SerializeField] private Transform _coinsPacksParent;
         [SerializeField] private Transform _featuredPacksParent;
         [Space]
-        [SerializeField]
-        private StorePacksController _storeController;
+        [SerializeField] private uint _storeRefreshFrequencyInSeconds;
 
-        private List<StorePack> _packs;
+        private IStorePacksController _storePacksController;
+        private IStoreAssetsLibrary _storeAssetsLibrary;
+        private List<GameObject> _storePacksGUIObjects;
 
-        private IEnumerator Start()
+        private void Awake()
         {
-            yield return new WaitForSeconds(2);
+            _storePacksController = new StorePacksController();
+            _storePacksController.Initialize();
+            _storePacksController.Refresh();
+            _storeAssetsLibrary = new StoreAssetsLibrary();
+            _storeAssetsLibrary.Initialize();
+            _storePacksGUIObjects = new List<GameObject>();
+        }
 
-            _packs = new List<StorePack>();
+        private void Start()
+        {
+            RefreshStoreGUI();
+        }
 
-            foreach (StorePack pack in _storeController.ActivePacks)
+        private async void Update()
+        {
+            await Task.Delay(TimeSpan.FromSeconds(_storeRefreshFrequencyInSeconds));
+            _storePacksController.Refresh();
+            //foreach (var go in _storePacksGUIObjects)
+            //{
+            //    Destroy(go);
+            //}
+            //_storePacksGUIObjects.Clear();
+            //RefreshStoreGUI();
+        }
+
+        private void RefreshStoreGUI()
+        {
+            var sortedPacksList = _storePacksController.ActivePacks
+                                                       .OrderByDescending(p => p.PackData.PackType)
+                                                       .ThenBy(p => p.PackData.Order)
+                                                       .ThenBy(p => p.RemainingTime)
+                                                       .ThenBy(p => p.PackData.Price);
+
+            bool isFeaturedSlotOccupied = false;
+
+            foreach (var pack in sortedPacksList)
             {
-                _packs.Add(pack);
-            }
-
-            var sortedOfferList = _packs.OrderByDescending(o => o.PackData.PackType).ThenBy(o => o.PackData.Order).ThenBy(o => o.RemainingTime).ThenBy(o => o.PackData.Price);
-
-            bool featuredPackOccupied = false;
-            foreach (var pack in sortedOfferList)
-            {
-                if (!featuredPackOccupied)
+                if (!isFeaturedSlotOccupied)
                 {
-                    if (pack.PackData.PackType == StorePackData.Type.Offer && pack.PackData.Featured)
+                    bool canPackBeFeatured = (pack.PackData.PackType == StorePackData.Type.Offer && pack.PackData.Featured);
+                    if (canPackBeFeatured)
                     {
-                        featuredPackOccupied = true;
-                        var offerGO = Instantiate(_featuredPackPrefab);
-                        offerGO.transform.SetParent(_featuredPacksParent, false);
-                        if (offerGO.TryGetComponent<IStorePackDisplayer>(out var offerPack))
-                        {
-                            offerPack.SetPackData(pack);
-                        }
-                        else
-                        {
-                            throw new MissingComponentException("Missing Offer Pack Component");
-                        }
+                        isFeaturedSlotOccupied = true;
+                        InstantiateAndSetPackDataInGUI(pack, _featuredPackPrefab, _featuredPacksParent);
                     }
                 }
                 else
                 {
-                    GameObject prefab = null;
-                    Transform parent = null;
-                    if (pack.PackData.PackType == StorePackData.Type.Gems)
+                    switch (pack.PackData.PackType)
                     {
-                        prefab = _gemsPackPrefab;
-                        parent = _gemsPacksParent;
-                    }
-                    else if (pack.PackData.PackType == StorePackData.Type.Coins)
-                    {
-                        prefab = _coinsPackPrefab;
-                        parent = _coinsPacksParent;
-                    }
-                    else if (pack.PackData.PackType == StorePackData.Type.Offer)
-                    {
-                        prefab = _offerPackPrefab;
-                        parent = _offerPacksParent;
-                    }
+                        case StorePackData.Type.Offer:
+                            InstantiateAndSetPackDataInGUI(pack, _offerPackPrefab, _offerPacksParent);
+                            break;
 
-                    var offerGO = Instantiate(prefab);
-                    offerGO.transform.SetParent(parent, false);
-                    if (offerGO.TryGetComponent<IStorePackDisplayer>(out var offerPack))
-                    {
-                        offerPack.SetPackData(pack);
-                    }
-                    else
-                    {
-                        throw new MissingComponentException("Missing Offer Pack Component");
+                        case StorePackData.Type.Gems:
+                            InstantiateAndSetPackDataInGUI(pack, _gemsPackPrefab, _gemsPacksParent);
+                            break;
+
+                        case StorePackData.Type.Coins:
+                            InstantiateAndSetPackDataInGUI(pack, _coinsPackPrefab, _coinsPacksParent);
+                            break;
                     }
                 }
+            }
+        }
+
+        private void InstantiateAndSetPackDataInGUI(StorePack pack, GameObject prefab, Transform parent)
+        {
+            var spawnedGO = Instantiate(prefab);
+            spawnedGO.transform.SetParent(parent, false);
+            _storePacksGUIObjects.Add(spawnedGO);
+            if (spawnedGO.TryGetComponent<IStorePackDisplayer>(out var storePackDisplayer))
+            {
+                storePackDisplayer.SetPackData(pack, _storeAssetsLibrary);
+            }
+            else
+            {
+                throw new MissingComponentException($"Missing {nameof(storePackDisplayer)}");
             }
         }
     }

@@ -6,15 +6,13 @@ using UnityEngine.Events;
 
 namespace JGM.GameStore.Packs
 {
-    public sealed class StorePacksController : MonoBehaviour, IStorePacksController
+    public sealed class StorePacksController : IStorePacksController
     {
         public class ShopPackEvent : UnityEvent<StorePack> { }
         public ShopPackEvent OnPackActivated = new ShopPackEvent();
         public ShopPackEvent OnPackRemoved = new ShopPackEvent();
-
         public List<StorePack> ActivePacks { get; private set; }
 
-        private const float _refreshFrequency = 1f;
         private const int _numberOfActiveOfferPacks = 3;
         private const int _offersHistoryMaxSize = _numberOfActiveOfferPacks + 1;
 
@@ -22,22 +20,42 @@ namespace JGM.GameStore.Packs
         private List<StorePackData> _offerPacksDatabase;
         private Queue<string> _offerPacksHistory;
 
-        private void Awake()
+        public StorePacksController()
         {
-            Initialize();
+            ActivePacks = new List<StorePack>();
+            _activeOfferPacks = new List<StorePack>();
+            _offerPacksDatabase = new List<StorePackData>();
+            _offerPacksHistory = new Queue<string>();
         }
 
-        private void Start()
+        public void Initialize()
         {
-            InvokeRepeating("UpdatePeriodic", 0f, _refreshFrequency);
+            var storeText = Resources.Load<TextAsset>("Data/shop_manager");
+            var storeJson = JSONNode.Parse(storeText.text);
+
+            _offerPacksDatabase.Clear();
+            _activeOfferPacks.Clear();
+            ActivePacks.Clear();
+
+            if (storeJson.HasKey("packs"))
+            {
+                var packsData = storeJson["packs"].AsArray;
+                for (int i = 0; i < packsData.Count; ++i)
+                {
+                    var storePackData = StorePackData.CreateFromJson(packsData[i]);
+                    if (storePackData.PackType != StorePackData.Type.Offer)
+                    {
+                        CreateAndActivatePack(storePackData);
+                    }
+                    else
+                    {
+                        _offerPacksDatabase.Add(storePackData);
+                    }
+                }
+            }
         }
 
-        private void UpdatePeriodic()
-        {
-            Refresh();
-        }
-
-        private void Refresh()
+        public void Refresh()
         {
             var packsToRemove = new List<StorePack>();
 
@@ -111,38 +129,6 @@ namespace JGM.GameStore.Packs
             ActivePacks.Remove(storePack);
             _activeOfferPacks.Remove(storePack);
             OnPackRemoved?.Invoke(storePack);
-        }
-
-        private void Initialize()
-        {
-            ActivePacks = new List<StorePack>();
-            _activeOfferPacks = new List<StorePack>();
-            _offerPacksDatabase = new List<StorePackData>();
-            _offerPacksHistory = new Queue<string>();
-
-            var storeText = Resources.Load<TextAsset>("Data/shop_manager");
-            var storeJson = JSONNode.Parse(storeText.text);
-
-            _offerPacksDatabase.Clear();
-            _activeOfferPacks.Clear();
-            ActivePacks.Clear();
-
-            if (storeJson.HasKey("packs"))
-            {
-                var packsData = storeJson["packs"].AsArray;
-                for (int i = 0; i < packsData.Count; ++i)
-                {
-                    var storePackData = StorePackData.CreateFromJson(packsData[i]);
-                    if (storePackData.PackType != StorePackData.Type.Offer)
-                    {
-                        CreateAndActivatePack(storePackData);
-                    }
-                    else
-                    {
-                        _offerPacksDatabase.Add(storePackData);
-                    }
-                }
-            }
         }
     }
 }
