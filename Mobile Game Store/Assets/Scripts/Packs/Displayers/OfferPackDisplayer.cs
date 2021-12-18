@@ -2,7 +2,6 @@
 using JGM.GameStore.Packs.Data;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -37,7 +36,9 @@ namespace JGM.GameStore.Packs.Displayers
                     itemToPurchase.Icon.sprite = assetsLibrary.GetSprite(item.IconName);
                     if (item.ItemType == StoreItemData.Type.Character)
                     {
-                        itemToPurchase.Amount.text = $"{item.Amount} Dragons";
+                        var nameConverter = new CharacterNameConverter();
+                        nameConverter.GetCharacterNameFromId(item.ItemId, out var characterName);
+                        itemToPurchase.Amount.text = characterName;
                     }
                     else if (item.ItemType == StoreItemData.Type.Coins)
                     {
