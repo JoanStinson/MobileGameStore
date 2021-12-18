@@ -1,6 +1,7 @@
 ﻿using JGM.GameStore.Transaction;
 using JGM.GameStore.Utils;
 using System;
+using Zenject;
 using static JGM.GameStore.Transaction.UserWallet;
 
 namespace JGM.GameStore.Packs.Data
@@ -23,7 +24,9 @@ namespace JGM.GameStore.Packs.Data
         public string IconName { get; private set; }
         public string PrefabName { get; private set; }
 
+        [Inject]
         private IUserWallet _userWallet;
+
         private Type _itemType = Type.Coins;
 
         public void ApplyTransaction()

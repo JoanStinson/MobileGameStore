@@ -1,6 +1,7 @@
 ﻿using JGM.GameStore.Coroutines;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 using static JGM.GameStore.Transaction.UserWallet;
 
 namespace JGM.GameStore.Transaction
@@ -19,8 +20,8 @@ namespace JGM.GameStore.Transaction
         private const float _iapMinDurationInSeconds = 0.5f;
         private const float _iapMaxDurationInSeconds = 5f;
 
-        private ICoroutineService _coroutineService;
-        private IUserWallet _userWallet;
+        [Inject] private ICoroutineService _coroutineService;
+        [Inject] private IUserWallet _userWallet;
 
         public static Transaction Create(Currency currency, float amount, object data = null)
         {
