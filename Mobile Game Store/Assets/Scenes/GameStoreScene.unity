@@ -241,8 +241,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 21680039}
-  - component: {fileID: 21680040}
   - component: {fileID: 21680041}
+  - component: {fileID: 21680040}
+  - component: {fileID: 21680042}
   m_Layer: 0
   m_Name: StoreManager
   m_TagString: Untagged
@@ -284,7 +285,7 @@ MonoBehaviour:
   _gemsPacksParent: {fileID: 1325493261}
   _coinsPacksParent: {fileID: 1325493261}
   _featuredPacksParent: {fileID: 124187800}
-  _storeController: {fileID: 0}
+  _storeController: {fileID: 21680042}
 --- !u!114 &21680041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +296,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99ac7326b72af0047aff0eca7859f3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &21680042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21680038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fefbc0e68ca9594b9fe4469dffdf18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &23602510
@@ -4857,12 +4870,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d568ffab689fd48aebd11820b4b989c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_activePacksText: {fileID: 96765260}
-  m_coinsText: {fileID: 321572429}
-  m_gemsText: {fileID: 393438979}
-  m_lastTransactionResult: {fileID: 128046897}
-  m_busyText: {fileID: 323065338}
-  m_busyPanel: {fileID: 1810766706}
 --- !u!224 &2046447463
 RectTransform:
   m_ObjectHideFlags: 0
