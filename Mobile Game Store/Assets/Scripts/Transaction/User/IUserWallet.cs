@@ -1,6 +1,6 @@
-﻿using static JGM.GameStore.Transaction.UserWallet;
+﻿using static JGM.GameStore.Transaction.User.UserWallet;
 
-namespace JGM.GameStore.Transaction
+namespace JGM.GameStore.Transaction.User
 {
     public interface IUserWallet
     {

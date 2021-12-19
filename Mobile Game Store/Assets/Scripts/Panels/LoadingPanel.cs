@@ -1,6 +1,6 @@
-﻿using JGM.GameStore.Events;
+﻿using JGM.GameStore.Events.Data;
+using JGM.GameStore.Events.Services;
 using System;
-using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;

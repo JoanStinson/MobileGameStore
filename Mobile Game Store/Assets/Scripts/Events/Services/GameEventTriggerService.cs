@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using JGM.GameStore.Events.Data;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace JGM.GameStore.Events
+namespace JGM.GameStore.Events.Services
 {
     public class GameEventTriggerService : MonoBehaviour, IEventTriggerService
     {

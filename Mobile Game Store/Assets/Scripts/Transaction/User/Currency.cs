@@ -1,4 +1,4 @@
-﻿namespace JGM.GameStore.Transaction
+﻿namespace JGM.GameStore.Transaction.User
 {
     public partial class UserWallet
     {

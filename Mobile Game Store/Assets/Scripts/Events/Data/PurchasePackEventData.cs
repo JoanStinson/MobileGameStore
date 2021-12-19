@@ -1,15 +1,15 @@
 ﻿using JGM.GameStore.Packs.Data;
-using static JGM.GameStore.Transaction.UserWallet;
+using static JGM.GameStore.Transaction.User.UserWallet;
 
-namespace JGM.GameStore.Events
+namespace JGM.GameStore.Events.Data
 {
     public class PurchasePackEventData : IGameEventData
     {
-        public StoreItemData[] Items;
+        public PackItemData[] Items;
         public Currency PackCurrency;
         public float Price;
 
-        public PurchasePackEventData(in StoreItemData[] items, Currency currency, float price)
+        public PurchasePackEventData(in PackItemData[] items, Currency currency, float price)
         {
             Items = items;
             PackCurrency = currency;

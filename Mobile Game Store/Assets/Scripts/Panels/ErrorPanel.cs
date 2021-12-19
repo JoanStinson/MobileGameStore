@@ -1,4 +1,4 @@
-﻿using JGM.GameStore.Events;
+﻿using JGM.GameStore.Events.Data;
 using System;
 using System.Threading.Tasks;
 using UnityEngine;

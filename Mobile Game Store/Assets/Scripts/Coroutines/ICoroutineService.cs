@@ -6,8 +6,8 @@ namespace JGM.GameStore.Coroutines
 {
     public interface ICoroutineService
     {
-        Coroutine DelayedCall(Action action, float delay = 0f, bool ignoreTimescale = true);
-        Coroutine DelayedCallByFrames(Action action, int delayFrames);
+        Coroutine DelayedCall(Action onCoroutineFinished, float delayInSeconds = 0f, bool ignoreTimescale = true);
+        Coroutine DelayedCallByFrames(Action onCoroutineFinished, int delayInFrames);
         Coroutine StartExternalCoroutine(IEnumerator coroutine);
     }
 }

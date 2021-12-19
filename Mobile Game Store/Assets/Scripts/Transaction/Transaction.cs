@@ -1,8 +1,9 @@
 ﻿using JGM.GameStore.Coroutines;
+using JGM.GameStore.Transaction.User;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
-using static JGM.GameStore.Transaction.UserWallet;
+using static JGM.GameStore.Transaction.User.UserWallet;
 
 namespace JGM.GameStore.Transaction
 {

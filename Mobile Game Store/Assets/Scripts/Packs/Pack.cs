@@ -1,8 +1,9 @@
-﻿using System;
+﻿using JGM.GameStore.Packs.Data;
+using System;
 
-namespace JGM.GameStore.Packs.Data
+namespace JGM.GameStore.Packs
 {
-    public class StorePack
+    public class Pack
     {
         public enum State
         {
@@ -11,7 +12,7 @@ namespace JGM.GameStore.Packs.Data
             Expired
         }
 
-        public StorePackData PackData { get; private set; }
+        public PackData PackData { get; private set; }
         public State PackState { get; private set; } = State.PendingActivation;
         public DateTime EndTimestamp { get; private set; } = DateTime.MaxValue;
         public TimeSpan RemainingTime => EndTimestamp - DateTime.UtcNow;
@@ -48,16 +49,16 @@ namespace JGM.GameStore.Packs.Data
                 PackData.Items[i].ApplyTransaction();
             }
 
-            bool hasPackExpired = (PackData.PackType == StorePackData.Type.Offer);
+            bool hasPackExpired = (PackData.PackType == PackData.Type.Offer);
             if (hasPackExpired)
             {
                 PackState = State.Expired;
             }
         }
 
-        public static StorePack CreateFromData(StorePackData data)
+        public static Pack CreateFromData(PackData data)
         {
-            var newStorePack = new StorePack();
+            var newStorePack = new Pack();
             newStorePack.PackData = data;
             return newStorePack;
         }

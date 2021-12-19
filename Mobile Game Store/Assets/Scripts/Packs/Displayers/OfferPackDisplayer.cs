@@ -1,5 +1,6 @@
 ﻿using JGM.GameStore.Loaders;
 using JGM.GameStore.Packs.Data;
+using JGM.GameStore.Packs.Displayers.Utils;
 using System;
 using System.Linq;
 using TMPro;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace JGM.GameStore.Packs.Displayers
 {
-    public class OfferPackDisplayer : MonoBehaviour, IStorePackDisplayer
+    public class OfferPackDisplayer : MonoBehaviour, IPackDisplayer
     {
         [SerializeField] private TextMeshProUGUI _title;
         [SerializeField] private TextMeshProUGUI _remainingTime;
@@ -19,7 +20,7 @@ namespace JGM.GameStore.Packs.Displayers
 
         private TimeSpan _remainingTimeSpan = TimeSpan.Zero;
 
-        public void SetPackData(StorePack storePack, IStoreAssetsLibrary assetsLibrary)
+        public void SetPackData(Pack storePack, IAssetsLibrary assetsLibrary)
         {
             _remainingTimeSpan = storePack.RemainingTime;
             RefreshRemainingTime();
@@ -31,20 +32,20 @@ namespace JGM.GameStore.Packs.Displayers
             {
                 var packItemGO = Instantiate(_packItemPrefab);
                 packItemGO.transform.SetParent(_packItemsParent, false);
-                if (packItemGO.TryGetComponent<StoreItemDisplayerData>(out var itemToPurchase))
+                if (packItemGO.TryGetComponent<PackItemDisplayer>(out var itemToPurchase))
                 {
                     itemToPurchase.Icon.sprite = assetsLibrary.GetSprite(item.IconName);
-                    if (item.ItemType == StoreItemData.Type.Character)
+                    if (item.ItemType == PackItemData.Type.Character)
                     {
                         var nameConverter = new CharacterNameConverter();
                         nameConverter.GetCharacterNameFromId(item.ItemId, out var characterName);
                         itemToPurchase.Amount.text = characterName;
                     }
-                    else if (item.ItemType == StoreItemData.Type.Coins)
+                    else if (item.ItemType == PackItemData.Type.Coins)
                     {
                         itemToPurchase.Amount.text = $"{item.Amount} Coins";
                     }
-                    else if (item.ItemType == StoreItemData.Type.Gems)
+                    else if (item.ItemType == PackItemData.Type.Gems)
                     {
                         itemToPurchase.Amount.text = $"{item.Amount} Gems";
                     }

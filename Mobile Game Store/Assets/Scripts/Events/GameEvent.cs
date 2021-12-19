@@ -1,3 +1,4 @@
+using JGM.GameStore.Events.Data;
 using System.Collections.Generic;
 using UnityEngine;
 

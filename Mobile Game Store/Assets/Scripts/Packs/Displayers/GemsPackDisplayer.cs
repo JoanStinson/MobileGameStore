@@ -1,4 +1,5 @@
 ﻿using JGM.GameStore.Events;
+using JGM.GameStore.Events.Data;
 using JGM.GameStore.Loaders;
 using JGM.GameStore.Packs.Data;
 using TMPro;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 
 namespace JGM.GameStore.Packs.Displayers
 {
-    public class GemsPackDisplayer : MonoBehaviour, IStorePackDisplayer
+    public class GemsPackDisplayer : MonoBehaviour, IPackDisplayer
     {
         [SerializeField] private TextMeshProUGUI _discount;
         [SerializeField] private TextMeshProUGUI _priceBeforeDiscount;
@@ -17,9 +18,9 @@ namespace JGM.GameStore.Packs.Displayers
         [SerializeField] private Transform _discountBanner;
         [SerializeField] private GameEvent _gameEvent;
 
-        private StorePack _storePack;
+        private Pack _storePack;
 
-        public void SetPackData(StorePack storePack, IStoreAssetsLibrary assetsLibrary)
+        public void SetPackData(Pack storePack, IAssetsLibrary assetsLibrary)
         {
             if (storePack.PackData.Discount > 0)
             {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using JGM.GameStore.Events.Custom;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace JGM.GameStore.Events

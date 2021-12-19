@@ -11,9 +11,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace JGM.GameStore
+namespace JGM.GameStore.Panels
 {
-    public sealed class StoreManager : MonoBehaviour
+    public sealed class StorePanel : MonoBehaviour
     {
         [SerializeField] private GameObject _offerPackPrefab;
         [SerializeField] private GameObject _gemsPackPrefab;
@@ -28,14 +28,14 @@ namespace JGM.GameStore
         [SerializeField] private uint _storeRefreshFrequencyInSeconds;
         [SerializeField] private RewardsScreen3DPreviewer _rewardsPreviewer;
 
-        private IStorePacksController _storePacksController;
+        private IPacksController _storePacksController;
         [Inject]
-        private IStoreAssetsLibrary _storeAssetsLibrary;
+        private IAssetsLibrary _storeAssetsLibrary;
         private List<GameObject> _storePacksGUIObjects;
 
         private void Awake()
         {
-            _storePacksController = new StorePacksController();
+            _storePacksController = new PacksController();
             _storePacksController.Initialize();
             _storePacksController.Refresh();
             //_storeAssetsLibrary = new StoreAssetsLibrary();
@@ -75,7 +75,7 @@ namespace JGM.GameStore
             {
                 if (!isFeaturedSlotOccupied)
                 {
-                    bool canPackBeFeatured = (pack.PackData.PackType == StorePackData.Type.Offer && pack.PackData.Featured);
+                    bool canPackBeFeatured = (pack.PackData.PackType == PackData.Type.Offer && pack.PackData.Featured);
                     if (canPackBeFeatured)
                     {
                         isFeaturedSlotOccupied = true;
@@ -86,7 +86,7 @@ namespace JGM.GameStore
                 {
                     switch (pack.PackData.PackType)
                     {
-                        case StorePackData.Type.Offer:
+                        case PackData.Type.Offer:
                             {
                                 InstantiateAndSetPackDataInGUI(pack, _offerPackPrefab, _offerPacksParent);
                                 for (int i = 0; i < pack.PackData.Items.Length; ++i)
@@ -96,11 +96,11 @@ namespace JGM.GameStore
                             }
                             break;
 
-                        case StorePackData.Type.Gems:
+                        case PackData.Type.Gems:
                             InstantiateAndSetPackDataInGUI(pack, _gemsPackPrefab, _gemsPacksParent);
                             break;
 
-                        case StorePackData.Type.Coins:
+                        case PackData.Type.Coins:
                             InstantiateAndSetPackDataInGUI(pack, _coinsPackPrefab, _coinsPacksParent);
                             break;
                     }
@@ -108,12 +108,12 @@ namespace JGM.GameStore
             }
         }
 
-        private void InstantiateAndSetPackDataInGUI(StorePack pack, GameObject prefab, Transform parent)
+        private void InstantiateAndSetPackDataInGUI(Pack pack, GameObject prefab, Transform parent)
         {
             var spawnedGO = Instantiate(prefab);
             spawnedGO.transform.SetParent(parent, false);
             _storePacksGUIObjects.Add(spawnedGO);
-            if (spawnedGO.TryGetComponent<IStorePackDisplayer>(out var storePackDisplayer))
+            if (spawnedGO.TryGetComponent<IPackDisplayer>(out var storePackDisplayer))
             {
                 storePackDisplayer.SetPackData(pack, _storeAssetsLibrary);
             }

@@ -1,4 +1,5 @@
-using JGM.GameStore.Events;
+using JGM.GameStore.Events.Data;
+using JGM.GameStore.Events.Services;
 using JGM.GameStore.Loaders;
 using JGM.GameStore.Packs.Displayers;
 using TMPro;
@@ -13,7 +14,7 @@ namespace JGM.GameStore.Panels
         [SerializeField] private Transform _itemsParent;
         [SerializeField] private GameObject _itemPrefab;
         [Inject]
-        private IStoreAssetsLibrary _assetsLibrary;
+        private IAssetsLibrary _assetsLibrary;
         [Inject]
         private IEventTriggerService _eventTriggerService;
         private IGameEventData _eventData;
@@ -26,7 +27,7 @@ namespace JGM.GameStore.Panels
             {
                 var go = Instantiate(_itemPrefab);
                 go.transform.SetParent(_itemsParent, false);
-                var displayer = go.GetComponent<StoreItemDisplayerData>();
+                var displayer = go.GetComponent<PackItemDisplayer>();
                 displayer.Icon.sprite = _assetsLibrary.GetSprite(data.Items[i].IconName);
                 displayer.Amount.text = data.Items[i].Amount.ToString();
             }

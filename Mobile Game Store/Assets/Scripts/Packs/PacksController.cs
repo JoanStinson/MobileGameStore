@@ -6,25 +6,25 @@ using UnityEngine.Events;
 
 namespace JGM.GameStore.Packs
 {
-    public sealed class StorePacksController : IStorePacksController
+    public sealed class PacksController : IPacksController
     {
-        public class ShopPackEvent : UnityEvent<StorePack> { }
+        public class ShopPackEvent : UnityEvent<Pack> { }
         public ShopPackEvent OnPackActivated = new ShopPackEvent();
         public ShopPackEvent OnPackRemoved = new ShopPackEvent();
-        public List<StorePack> ActivePacks { get; private set; }
+        public List<Pack> ActivePacks { get; private set; }
 
         private const int _numberOfActiveOfferPacks = 3;
         private const int _offersHistoryMaxSize = _numberOfActiveOfferPacks + 1;
 
-        private List<StorePack> _activeOfferPacks;
-        private List<StorePackData> _offerPacksDatabase;
+        private List<Pack> _activeOfferPacks;
+        private List<PackData> _offerPacksDatabase;
         private Queue<string> _offerPacksHistory;
 
-        public StorePacksController()
+        public PacksController()
         {
-            ActivePacks = new List<StorePack>();
-            _activeOfferPacks = new List<StorePack>();
-            _offerPacksDatabase = new List<StorePackData>();
+            ActivePacks = new List<Pack>();
+            _activeOfferPacks = new List<Pack>();
+            _offerPacksDatabase = new List<PackData>();
             _offerPacksHistory = new Queue<string>();
         }
 
@@ -42,8 +42,8 @@ namespace JGM.GameStore.Packs
                 var packsData = storeJson["packs"].AsArray;
                 for (int i = 0; i < packsData.Count; ++i)
                 {
-                    var storePackData = StorePackData.CreateFromJson(packsData[i]);
-                    if (storePackData.PackType != StorePackData.Type.Offer)
+                    var storePackData = PackData.CreateFromJson(packsData[i]);
+                    if (storePackData.PackType != PackData.Type.Offer)
                     {
                         CreateAndActivatePack(storePackData);
                     }
@@ -57,12 +57,12 @@ namespace JGM.GameStore.Packs
 
         public void Refresh()
         {
-            var packsToRemove = new List<StorePack>();
+            var packsToRemove = new List<Pack>();
 
             for (int i = 0; i < ActivePacks.Count; ++i)
             {
                 ActivePacks[i].CheckExpiration();
-                bool needsToBeRemoved = (ActivePacks[i].PackState == StorePack.State.Expired);
+                bool needsToBeRemoved = (ActivePacks[i].PackState == Pack.State.Expired);
                 if (needsToBeRemoved)
                 {
                     packsToRemove.Add(ActivePacks[i]);
@@ -79,7 +79,7 @@ namespace JGM.GameStore.Packs
             {
                 loopCount--;
 
-                var poolOfSelectablePacks = new List<StorePackData>();
+                var poolOfSelectablePacks = new List<PackData>();
                 for (int i = 0; i < _offerPacksDatabase.Count; ++i)
                 {
                     if (_offerPacksHistory.Contains(_offerPacksDatabase[i].Id))
@@ -104,12 +104,12 @@ namespace JGM.GameStore.Packs
             }
         }
 
-        private void CreateAndActivatePack(StorePackData storePackData)
+        private void CreateAndActivatePack(PackData storePackData)
         {
-            var storePack = StorePack.CreateFromData(storePackData);
+            var storePack = Pack.CreateFromData(storePackData);
             ActivePacks.Add(storePack);
 
-            if (storePack.PackData.PackType == StorePackData.Type.Offer)
+            if (storePack.PackData.PackType == PackData.Type.Offer)
             {
                 _activeOfferPacks.Add(storePack);
                 _offerPacksHistory.Enqueue(storePackData.Id);
@@ -124,7 +124,7 @@ namespace JGM.GameStore.Packs
             OnPackActivated?.Invoke(storePack);
         }
 
-        private void RemovePack(StorePack storePack)
+        private void RemovePack(Pack storePack)
         {
             ActivePacks.Remove(storePack);
             _activeOfferPacks.Remove(storePack);

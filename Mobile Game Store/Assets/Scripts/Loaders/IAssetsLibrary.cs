@@ -2,13 +2,10 @@
 
 namespace JGM.GameStore.Loaders
 {
-    public interface IStoreAssetsLibrary
+    public interface IAssetsLibrary
     {
-        void Initialize();
         Sprite GetSprite(in string name);
-
         Font GetFont(in string name);
-
         GameObject GetPreview3D(in string name);
     }
 }

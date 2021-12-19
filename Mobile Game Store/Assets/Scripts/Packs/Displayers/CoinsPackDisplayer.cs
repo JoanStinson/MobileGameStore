@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace JGM.GameStore.Packs.Displayers
 {
-    public class CoinsPackDisplayer : MonoBehaviour, IStorePackDisplayer
+    public class CoinsPackDisplayer : MonoBehaviour, IPackDisplayer
     {
         [SerializeField] private TextMeshProUGUI _discount;
         [SerializeField] private TextMeshProUGUI _priceBeforeDiscount;
@@ -15,7 +15,7 @@ namespace JGM.GameStore.Packs.Displayers
         [SerializeField] private Image _icon;
         [SerializeField] private Transform _discountBanner;
 
-        public void SetPackData(StorePack storePack, IStoreAssetsLibrary assetsLibrary)
+        public void SetPackData(Pack storePack, IAssetsLibrary assetsLibrary)
         {
             if (storePack.PackData.Discount > 0)
             {

@@ -1,11 +1,11 @@
 ﻿using JGM.GameStore.Utils;
 using System;
-using static JGM.GameStore.Transaction.UserWallet;
+using static JGM.GameStore.Transaction.User.UserWallet;
 
 namespace JGM.GameStore.Packs.Data
 {
     [Serializable]
-    public class StorePackData
+    public class PackData
     {
         public enum Type
         {
@@ -25,14 +25,14 @@ namespace JGM.GameStore.Packs.Data
         public float PriceBeforeDiscount => Price / (1f - Discount);
         public Currency PackCurrency => _packCurrency;
         public float Discount { get; protected set; }
-        public StoreItemData[] Items { get; protected set; } = null;
+        public PackItemData[] Items { get; protected set; } = null;
 
         private Type _packType = Type.Gems;
         private Currency _packCurrency = Currency.Gems;
 
-        public static StorePackData CreateFromJson(JSONNode data)
+        public static PackData CreateFromJson(JSONNode data)
         {
-            var newStorePackData = new StorePackData();
+            var newStorePackData = new PackData();
 
             if (data.HasKey("id"))
             {
@@ -82,10 +82,10 @@ namespace JGM.GameStore.Packs.Data
             if (data.HasKey("items"))
             {
                 JSONNode itemsData = data["items"].AsArray;
-                newStorePackData.Items = new StoreItemData[itemsData.Count];
+                newStorePackData.Items = new PackItemData[itemsData.Count];
                 for (int i = 0; i < itemsData.Count; ++i)
                 {
-                    newStorePackData.Items[i] = StoreItemData.CreateFromJson(itemsData[i]);
+                    newStorePackData.Items[i] = PackItemData.CreateFromJson(itemsData[i]);
                 }
             }
 

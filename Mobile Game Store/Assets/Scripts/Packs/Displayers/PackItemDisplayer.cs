@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace JGM.GameStore.Packs.Displayers
 {
-    public class StoreItemDisplayerData : MonoBehaviour
+    public class PackItemDisplayer : MonoBehaviour
     {
         public Image Icon;
         public TextMeshProUGUI Amount;

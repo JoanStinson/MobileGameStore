@@ -6,14 +6,14 @@ namespace JGM.GameStore.Coroutines
 {
     public sealed class CoroutineService : MonoBehaviour, ICoroutineService
     {
-        public Coroutine DelayedCall(Action action, float delay = 0f, bool ignoreTimescale = true)
+        public Coroutine DelayedCall(Action onCoroutineFinished, float delayInSeconds = 0f, bool ignoreTimescale = true)
         {
-            return StartCoroutine(DelayedCoroutine(action, delay, ignoreTimescale));
+            return StartCoroutine(DelayedCoroutine(onCoroutineFinished, delayInSeconds, ignoreTimescale));
         }
 
-        public Coroutine DelayedCallByFrames(Action action, int delayFrames)
+        public Coroutine DelayedCallByFrames(Action onCoroutineFinished, int delayInFrames)
         {
-            return StartCoroutine(DelayedCoroutineByFrames(action, delayFrames));
+            return StartCoroutine(DelayedCoroutineByFrames(onCoroutineFinished, delayInFrames));
         }
 
         public Coroutine StartExternalCoroutine(IEnumerator coroutine)
@@ -21,32 +21,32 @@ namespace JGM.GameStore.Coroutines
             return StartCoroutine(coroutine);
         }
 
-        private IEnumerator DelayedCoroutine(Action action, float delay, bool ignoreTimescale)
+        private IEnumerator DelayedCoroutine(Action onCoroutineFinished, float delayInSeconds, bool ignoreTimescale)
         {
-            if (delay > 0)
+            if (delayInSeconds > 0)
             {
                 if (ignoreTimescale)
                 {
-                    yield return new WaitForSecondsRealtime(delay);
+                    yield return new WaitForSecondsRealtime(delayInSeconds);
                 }
                 else
                 {
-                    yield return new WaitForSeconds(delay);
+                    yield return new WaitForSeconds(delayInSeconds);
                 }
             }
 
-            action?.Invoke();
+            onCoroutineFinished?.Invoke();
         }
 
-        private IEnumerator DelayedCoroutineByFrames(Action action, int delayFrames)
+        private IEnumerator DelayedCoroutineByFrames(Action onCoroutineFinished, int delayInFrames)
         {
-            while (delayFrames > 0)
+            while (delayInFrames > 0)
             {
-                delayFrames--;
+                delayInFrames--;
                 yield return new WaitForEndOfFrame();
             }
 
-            action?.Invoke();
+            onCoroutineFinished?.Invoke();
         }
     }
 }

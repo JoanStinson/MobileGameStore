@@ -1,4 +1,4 @@
-﻿namespace JGM.GameStore.Packs.Displayers
+﻿namespace JGM.GameStore.Packs.Displayers.Utils
 {
     public class CharacterNameConverter
     {

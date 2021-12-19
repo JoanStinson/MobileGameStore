@@ -1,13 +1,13 @@
-﻿using JGM.GameStore.Transaction;
+﻿using JGM.GameStore.Transaction.User;
 using JGM.GameStore.Utils;
 using System;
 using Zenject;
-using static JGM.GameStore.Transaction.UserWallet;
+using static JGM.GameStore.Transaction.User.UserWallet;
 
 namespace JGM.GameStore.Packs.Data
 {
     [Serializable]
-    public class StoreItemData
+    public class PackItemData
     {
         public enum Type
         {
@@ -55,9 +55,9 @@ namespace JGM.GameStore.Packs.Data
             }
         }
 
-        public static StoreItemData CreateFromJson(JSONNode data)
+        public static PackItemData CreateFromJson(JSONNode data)
         {
-            var newStoreItemData = new StoreItemData();
+            var newStoreItemData = new PackItemData();
 
             if (data.HasKey("type"))
             {
@@ -101,6 +101,6 @@ namespace JGM.GameStore.Packs.Data
 
         public override string ToString() => $"{{ {ItemType} | {Amount} | {ItemId} }}";
 
-        private StoreItemData() { }
+        private PackItemData() { }
     }
 }

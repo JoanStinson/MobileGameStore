@@ -1,8 +1,8 @@
 using JGM.GameStore.Coroutines;
-using JGM.GameStore.Events;
+using JGM.GameStore.Events.Services;
 using JGM.GameStore.Loaders;
 using JGM.GameStore.Localization;
-using JGM.GameStore.Transaction;
+using JGM.GameStore.Transaction.User;
 using UnityEngine;
 using Zenject;
 
@@ -18,7 +18,7 @@ namespace JGM.GameStore.Installers
             Container.Bind<ICoroutineService>().FromInstance(_coroutineServiceInstance);
             Container.Bind<ILocalizationService>().To<LocalizationService>().AsSingle();
             Container.Bind<IUserWallet>().To<UserWallet>().AsSingle();
-            Container.Bind<IStoreAssetsLibrary>().To<StoreAssetsLibrary>().AsSingle();
+            Container.Bind<IAssetsLibrary>().To<AssetsLibrary>().AsSingle();
             Container.Bind<IEventTriggerService>().FromInstance(_gameEventTriggerServiceInstance);
         }
     }

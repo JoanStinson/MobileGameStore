@@ -1,4 +1,6 @@
-﻿namespace JGM.GameStore.Events
+﻿using JGM.GameStore.Events.Data;
+
+namespace JGM.GameStore.Events.Services
 {
     public interface IEventTriggerService
     {

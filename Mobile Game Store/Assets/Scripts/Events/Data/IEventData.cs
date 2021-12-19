@@ -1,4 +1,4 @@
-﻿namespace JGM.GameStore.Events
+﻿namespace JGM.GameStore.Events.Data
 {
     public interface IEventData { }
 }

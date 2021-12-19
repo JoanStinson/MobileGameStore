@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Events;
 
-namespace JGM.GameStore.Transaction
+namespace JGM.GameStore.Transaction.User
 {
     public sealed partial class UserWallet : IUserWallet
     {

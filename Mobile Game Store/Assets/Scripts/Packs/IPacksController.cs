@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace JGM.GameStore.Packs
 {
-    public interface IStorePacksController
+    public interface IPacksController
     {
-        List<StorePack> ActivePacks { get; }
+        List<Pack> ActivePacks { get; }
 
         void Initialize();
         void Refresh();
