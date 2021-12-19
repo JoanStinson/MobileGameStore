@@ -26,7 +26,7 @@ namespace JGM.GameStore.Panels
         [SerializeField] private Transform _featuredPacksParent;
         [Space]
         [SerializeField] private uint _storeRefreshFrequencyInSeconds;
-        [SerializeField] private RewardsScreen3DPreviewer _rewardsPreviewer;
+        [SerializeField] private PackItem3DVisualizer _rewardsPreviewer;
 
         private IPacksController _storePacksController;
         [Inject]

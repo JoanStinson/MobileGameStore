@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JGM.GameStore.Rewards
 {
-    public class RewardsScreen3DPreviewer : MonoBehaviour
+    public class PackItem3DVisualizer : MonoBehaviour
     {
         [SerializeField] private Camera _cameraPrefab;
 

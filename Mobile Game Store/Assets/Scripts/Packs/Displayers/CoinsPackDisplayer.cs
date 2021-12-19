@@ -1,3 +1,5 @@
+using JGM.GameStore.Events;
+using JGM.GameStore.Events.Data;
 using JGM.GameStore.Loaders;
 using TMPro;
 using UnityEngine;
@@ -13,6 +15,9 @@ namespace JGM.GameStore.Packs.Displayers
         [SerializeField] private TextMeshProUGUI _priceBeforeDiscountText;
         [SerializeField] private TextMeshProUGUI _priceText;
         [SerializeField] private Transform _discountParentTransform;
+        [SerializeField] private GameEvent _gameEvent;
+
+        private Pack _storePack;
 
         public void SetPackData(Pack pack, IAssetsLibrary assetsLibrary)
         {
@@ -28,6 +33,13 @@ namespace JGM.GameStore.Packs.Displayers
             _priceText.text = pack.Data.Price.ToString();
             _amountText.text = $"{pack.Data.Items[0].Amount} Coins";
             _iconImage.sprite = assetsLibrary.GetSprite(pack.Data.Items[0].IconName);
+            _storePack = pack;
+        }
+
+        public void PurchasePack()
+        {
+            var eventData = new PurchasePackEventData(_storePack.Data.Items, _storePack.Data.PackCurrency, _storePack.Data.Price);
+            _gameEvent.Trigger(eventData);
         }
     }
 }

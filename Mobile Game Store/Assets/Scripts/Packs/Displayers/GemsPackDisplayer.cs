@@ -36,9 +36,10 @@ namespace JGM.GameStore.Packs.Displayers
             _storePack = pack;
         }
 
-        public void DisableAndSendPurchasePackEvent()
+        public void PurchasePack()
         {
-            _gameEvent.Trigger(new PurchasePackEventData(_storePack.Data.Items, _storePack.Data.PackCurrency, _storePack.Data.Price));
+            var eventData = new PurchasePackEventData(_storePack.Data.Items, _storePack.Data.PackCurrency, _storePack.Data.Price);
+            _gameEvent.Trigger(eventData);
         }
     }
 }

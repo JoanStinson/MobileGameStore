@@ -1,4 +1,6 @@
-﻿using JGM.GameStore.Loaders;
+﻿using JGM.GameStore.Events;
+using JGM.GameStore.Events.Data;
+using JGM.GameStore.Loaders;
 using JGM.GameStore.Packs.Data;
 using JGM.GameStore.Packs.Displayers.Utils;
 using System;
@@ -17,8 +19,10 @@ namespace JGM.GameStore.Packs.Displayers
         [SerializeField] private TextMeshProUGUI _priceText;
         [SerializeField] private Transform _packItemsParent;
         [SerializeField] private GameObject _packItemPrefab;
+        [SerializeField] private GameEvent _gameEvent;
 
         private TimeSpan _remainingTimeSpan = TimeSpan.Zero;
+        private Pack _storePack;
 
         public void SetPackData(Pack pack, IAssetsLibrary assetsLibrary)
         {
@@ -27,30 +31,14 @@ namespace JGM.GameStore.Packs.Displayers
             _discountText.text = $"{pack.Data.Discount * 100}%";
             _priceBeforeDiscountText.text = pack.Data.PriceBeforeDiscount.ToString();
             _priceText.text = pack.Data.Price.ToString();
-            var sortedOfferList = pack.Data.Items.OrderByDescending(o => o.ItemType);
-            foreach (var item in sortedOfferList)
-            {
-                var packItemGO = Instantiate(_packItemPrefab);
-                packItemGO.transform.SetParent(_packItemsParent, false);
-                if (packItemGO.TryGetComponent<PackItemDisplayer>(out var itemToPurchase))
-                {
-                    itemToPurchase.IconImage.sprite = assetsLibrary.GetSprite(item.IconName);
-                    if (item.ItemType == PackItemData.Type.Character)
-                    {
-                        var nameConverter = new CharacterNameConverter();
-                        nameConverter.GetCharacterNameFromId(item.ItemId, out var characterName);
-                        itemToPurchase.AmountText.text = characterName;
-                    }
-                    else if (item.ItemType == PackItemData.Type.Coins)
-                    {
-                        itemToPurchase.AmountText.text = $"{item.Amount} Coins";
-                    }
-                    else if (item.ItemType == PackItemData.Type.Gems)
-                    {
-                        itemToPurchase.AmountText.text = $"{item.Amount} Gems";
-                    }
-                }
-            }
+            SetPackItems(pack, assetsLibrary);
+            _storePack = pack;
+        }
+
+        public void PurchasePack()
+        {
+            var eventData = new PurchasePackEventData(_storePack.Data.Items, _storePack.Data.PackCurrency, _storePack.Data.Price);
+            _gameEvent.Trigger(eventData);
         }
 
         private void Update()
@@ -60,6 +48,35 @@ namespace JGM.GameStore.Packs.Displayers
                 var deltaTimeSpan = TimeSpan.FromSeconds(Time.deltaTime);
                 _remainingTimeSpan = _remainingTimeSpan.Subtract(deltaTimeSpan);
                 RefreshRemainingTime();
+            }
+        }
+
+        private void SetPackItems(Pack pack, IAssetsLibrary assetsLibrary)
+        {
+            var sortedOfferList = pack.Data.Items.OrderByDescending(o => o.ItemType);
+
+            foreach (var item in sortedOfferList)
+            {
+                var spawnedPackItem = Instantiate(_packItemPrefab);
+                spawnedPackItem.transform.SetParent(_packItemsParent, false);
+                if (spawnedPackItem.TryGetComponent<PackItemDisplayer>(out var packItemDisplayer))
+                {
+                    packItemDisplayer.IconImage.sprite = assetsLibrary.GetSprite(item.IconName);
+                    if (item.ItemType == PackItemData.Type.Character)
+                    {
+                        var nameConverter = new CharacterNameConverter();
+                        nameConverter.GetCharacterNameFromId(item.ItemId, out var characterName);
+                        packItemDisplayer.AmountText.text = characterName;
+                    }
+                    else if (item.ItemType == PackItemData.Type.Coins)
+                    {
+                        packItemDisplayer.AmountText.text = $"{item.Amount} Coins";
+                    }
+                    else if (item.ItemType == PackItemData.Type.Gems)
+                    {
+                        packItemDisplayer.AmountText.text = $"{item.Amount} Gems";
+                    }
+                }
             }
         }
 

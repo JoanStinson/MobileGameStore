@@ -13,9 +13,8 @@ namespace JGM.GameStore.Panels
         [SerializeField] private bool _launchError;
         [Inject] private IEventTriggerService _trigg;
 
-        public async void Load(IGameEventData eventData)
+        public async void LoadPurchase(IGameEventData eventData)
         {
-            //process stuff
             await Task.Delay(TimeSpan.FromSeconds(2));
             if (_launchError)
             {

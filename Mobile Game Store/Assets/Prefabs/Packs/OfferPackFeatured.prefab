@@ -280,6 +280,7 @@ MonoBehaviour:
   _priceText: {fileID: 5951822129925978108}
   _packItemsParent: {fileID: 5951822129285110171}
   _packItemPrefab: {fileID: 2177650746560242010, guid: 23dfaa90de3bb3442838267f2eb21f96, type: 3}
+  _gameEvent: {fileID: 11400000, guid: 71adf898335b48c49b6bc0e7ceaab2e2, type: 2}
 --- !u!1 &5951822129231316095
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +537,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5951822129282252263}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3247104805722320083}
+        m_TargetAssemblyTypeName: JGM.GameStore.Packs.Displayers.OfferPackDisplayer,
+          JGM.GameStore
+        m_MethodName: PurchasePack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5951822129285110148
 GameObject:
   m_ObjectHideFlags: 0

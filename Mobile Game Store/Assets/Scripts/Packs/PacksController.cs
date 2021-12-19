@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace JGM.GameStore.Packs
 {
-    public sealed class PacksController : IPacksController
+    public class PacksController : IPacksController
     {
         public class ShopPackEvent : UnityEvent<Pack> { }
         public ShopPackEvent OnPackActivated = new ShopPackEvent();

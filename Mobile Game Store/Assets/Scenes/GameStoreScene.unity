@@ -241,6 +241,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 19641602}
+  - component: {fileID: 19641604}
+  - component: {fileID: 19641603}
   m_Layer: 5
   m_Name: RewardsPanel
   m_TagString: Untagged
@@ -268,6 +270,58 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &19641603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19641601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817ddd0468bdb45488ed6077328b7a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEvent: {fileID: 11400000, guid: a61a10d797528a544ba4ca41897a04b6, type: 2}
+  _onTriggerEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 19641604}
+        m_TargetAssemblyTypeName: JGM.GameStore.Panels.RewardsPanel, JGM.GameStore
+        m_MethodName: ShowRewards
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 817911543}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &19641604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19641601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e575ce7dca31b2244ae44844b3fa7d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &23602510
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +898,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 212374637}
         m_TargetAssemblyTypeName: JGM.GameStore.Panels.ConfirmationPanel, JGM.GameStore
-        m_MethodName: SetPanelData
+        m_MethodName: ShowConfirmationPopup
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -852,7 +906,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 86282042289500609}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -878,9 +932,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3297d6fd39742704fa6d915c14609eb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _price: {fileID: 86282042012020854}
-  _itemsParent: {fileID: 86282041639027698}
-  _itemPrefab: {fileID: 2177650746560242010, guid: 23dfaa90de3bb3442838267f2eb21f96, type: 3}
+  _priceText: {fileID: 86282042012020854}
+  _packItemsParentTransform: {fileID: 86282041639027698}
+  _packItemPrefab: {fileID: 2177650746560242010, guid: 23dfaa90de3bb3442838267f2eb21f96, type: 3}
 --- !u!1 &270704798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,7 +1958,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 846988284}
         m_TargetAssemblyTypeName: JGM.GameStore.Panels.ErrorPanel, JGM.GameStore
-        m_MethodName: Disable
+        m_MethodName: ShowErrorMessage
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2117,22 +2171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameEvents:
-  - gameEvent: {fileID: 11400000, guid: 71adf898335b48c49b6bc0e7ceaab2e2, type: 2}
-    onTriggerEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 326295697}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
   - gameEvent: {fileID: 11400000, guid: 1f2934eb4e5b8f540a2e62a5f7b6692b, type: 2}
     onTriggerEvent:
       m_PersistentCalls:
@@ -2150,6 +2188,54 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - gameEvent: {fileID: 11400000, guid: c0c0bb420975ec242a931d75718c04f2, type: 2}
+    onTriggerEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 326295697}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: 71adf898335b48c49b6bc0e7ceaab2e2, type: 2}
+    onTriggerEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 326295697}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: fb8fd31ea5db80949bdc7690c227f481, type: 2}
+    onTriggerEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 326295697}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - gameEvent: {fileID: 11400000, guid: b60011a06e2841345ba6cb17df8b7799, type: 2}
     onTriggerEvent:
       m_PersistentCalls:
         m_Calls:
@@ -3410,7 +3496,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1813720909}
         m_TargetAssemblyTypeName: JGM.GameStore.Panels.LoadingPanel, JGM.GameStore
-        m_MethodName: Load
+        m_MethodName: LoadPurchase
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3961,10 +4047,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 86282042289500609}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 212374637}
+        m_TargetAssemblyTypeName: JGM.GameStore.Panels.ConfirmationPanel, JGM.GameStore
+        m_MethodName: CancelPurchase
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3973,10 +4059,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 212374637}
-        m_TargetAssemblyTypeName: JGM.GameStore.Panels.ConfirmationPanel, JGM.GameStore
-        m_MethodName: CancelPurchase
-        m_Mode: 1
+      - m_Target: {fileID: 86282042289500609}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4724,7 +4810,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 212374637}
         m_TargetAssemblyTypeName: JGM.GameStore.Panels.ConfirmationPanel, JGM.GameStore
-        m_MethodName: DisableAndSendLoadingPurchaseEvent
+        m_MethodName: ConfirmPurchase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5265,3 +5351,4 @@ MonoBehaviour:
   _priceText: {fileID: 0}
   _packItemsParent: {fileID: 86282041639027698}
   _packItemPrefab: {fileID: 2177650746560242010, guid: 23dfaa90de3bb3442838267f2eb21f96, type: 3}
+  _gameEvent: {fileID: 0}

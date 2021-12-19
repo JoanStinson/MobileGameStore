@@ -9,7 +9,7 @@ namespace JGM.GameStore.Panels
     {
         [SerializeField] private Transform _transformWindow;
 
-        public async void Disable(IGameEventData data)
+        public async void ShowErrorMessage(IGameEventData data)
         {
             await Task.Delay(TimeSpan.FromSeconds(2));
             _transformWindow.gameObject.SetActive(false);
