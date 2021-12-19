@@ -6,7 +6,7 @@ namespace JGM.GameStore.Packs.Displayers
 {
     public class PackItemDisplayer : MonoBehaviour
     {
-        public Image Icon;
-        public TextMeshProUGUI Amount;
+        public Image IconImage;
+        public TextMeshProUGUI AmountText;
     }
 }

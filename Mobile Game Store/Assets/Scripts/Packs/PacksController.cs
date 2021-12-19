@@ -109,7 +109,7 @@ namespace JGM.GameStore.Packs
             var storePack = Pack.CreateFromData(storePackData);
             ActivePacks.Add(storePack);
 
-            if (storePack.PackData.PackType == PackData.Type.Offer)
+            if (storePack.Data.PackType == PackData.Type.Offer)
             {
                 _activeOfferPacks.Add(storePack);
                 _offerPacksHistory.Enqueue(storePackData.Id);

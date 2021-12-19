@@ -1,7 +1,6 @@
 ﻿using JGM.GameStore.Events;
 using JGM.GameStore.Events.Data;
 using JGM.GameStore.Loaders;
-using JGM.GameStore.Packs.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,36 +9,36 @@ namespace JGM.GameStore.Packs.Displayers
 {
     public class GemsPackDisplayer : MonoBehaviour, IPackDisplayer
     {
-        [SerializeField] private TextMeshProUGUI _discount;
-        [SerializeField] private TextMeshProUGUI _priceBeforeDiscount;
-        [SerializeField] private TextMeshProUGUI _price;
-        [SerializeField] private TextMeshProUGUI _amount;
-        [SerializeField] private Image _icon;
-        [SerializeField] private Transform _discountBanner;
+        [SerializeField] private Image _iconImage;
+        [SerializeField] private TextMeshProUGUI _amountText;
+        [SerializeField] private TextMeshProUGUI _discountText;
+        [SerializeField] private TextMeshProUGUI _priceBeforeDiscountText;
+        [SerializeField] private TextMeshProUGUI _priceText;
+        [SerializeField] private Transform _discountParentTransform;
         [SerializeField] private GameEvent _gameEvent;
 
         private Pack _storePack;
 
-        public void SetPackData(Pack storePack, IAssetsLibrary assetsLibrary)
+        public void SetPackData(Pack pack, IAssetsLibrary assetsLibrary)
         {
-            if (storePack.PackData.Discount > 0)
+            if (pack.Data.Discount > 0)
             {
-                _discount.text = $"{storePack.PackData.Discount * 100}%";
+                _discountText.text = $"{pack.Data.Discount * 100}%";
             }
             else
             {
-                _discountBanner.gameObject.SetActive(false);
+                _discountParentTransform.gameObject.SetActive(false);
             }
-            _priceBeforeDiscount.text = storePack.PackData.PriceBeforeDiscount.ToString();
-            _price.text = storePack.PackData.Price.ToString();
-            _amount.text = $"{storePack.PackData.Items[0].Amount} Gems";
-            _icon.sprite = assetsLibrary.GetSprite(storePack.PackData.Items[0].IconName);
-            _storePack = storePack;
+            _priceBeforeDiscountText.text = pack.Data.PriceBeforeDiscount.ToString();
+            _priceText.text = pack.Data.Price.ToString();
+            _amountText.text = $"{pack.Data.Items[0].Amount} Gems";
+            _iconImage.sprite = assetsLibrary.GetSprite(pack.Data.Items[0].IconName);
+            _storePack = pack;
         }
 
         public void DisableAndSendPurchasePackEvent()
         {
-            _gameEvent.Trigger(new PurchasePackEventData(_storePack.PackData.Items, _storePack.PackData.PackCurrency, _storePack.PackData.Price));
+            _gameEvent.Trigger(new PurchasePackEventData(_storePack.Data.Items, _storePack.Data.PackCurrency, _storePack.Data.Price));
         }
     }
 }

@@ -28,8 +28,8 @@ namespace JGM.GameStore.Panels
                 var go = Instantiate(_itemPrefab);
                 go.transform.SetParent(_itemsParent, false);
                 var displayer = go.GetComponent<PackItemDisplayer>();
-                displayer.Icon.sprite = _assetsLibrary.GetSprite(data.Items[i].IconName);
-                displayer.Amount.text = data.Items[i].Amount.ToString();
+                displayer.IconImage.sprite = _assetsLibrary.GetSprite(data.Items[i].IconName);
+                displayer.AmountText.text = data.Items[i].Amount.ToString();
             }
             _eventData = gameEventData;
         }

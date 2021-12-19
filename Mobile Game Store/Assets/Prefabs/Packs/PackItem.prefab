@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2177650746527575372}
   - component: {fileID: 2177650746527575375}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: AmountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,5 +223,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08521d39ec577aa4986080fc258847e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 2177650746560242008}
-  Amount: {fileID: 2177650746527575375}
+  IconImage: {fileID: 2177650746560242008}
+  AmountText: {fileID: 2177650746527575375}

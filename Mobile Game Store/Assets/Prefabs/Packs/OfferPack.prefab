@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6899449639915442801}
   - component: {fileID: 6899449639915442802}
   m_Layer: 5
-  m_Name: DiscountedPriceText
+  m_Name: PriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6899449641335224257}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.36272773, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 6899449639976518294}
   - component: {fileID: 6899449639976518295}
   m_Layer: 5
-  m_Name: CrossedPrice
+  m_Name: CrossImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ RectTransform:
   m_LocalScale: {x: 0.41809598, y: 1.4932, z: 1.4932}
   m_Children: []
   m_Father: {fileID: 6899449641335224257}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -55.292}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 6899449639993391202}
   - component: {fileID: 6899449639993391203}
   m_Layer: 5
-  m_Name: InitialPriceText
+  m_Name: PriceBeforeDiscountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -482,11 +482,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65064ecda65fc945b85d37d87745e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _title: {fileID: 6899449641897322282}
-  _remainingTime: {fileID: 6899449640681163288}
-  _discount: {fileID: 6899449640541148668}
-  _priceBeforeDiscount: {fileID: 6899449639993391203}
-  _price: {fileID: 6899449639915442802}
+  _titleText: {fileID: 6899449641897322282}
+  _remainingTimeText: {fileID: 6899449640681163288}
+  _discountText: {fileID: 6899449640541148668}
+  _priceBeforeDiscountText: {fileID: 6899449639993391203}
+  _priceText: {fileID: 6899449639915442802}
   _packItemsParent: {fileID: 6899449640608309750}
   _packItemPrefab: {fileID: 2177650746560242010, guid: 23dfaa90de3bb3442838267f2eb21f96, type: 3}
 --- !u!1 &6899449640541148670
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 6899449640608309750}
   - component: {fileID: 6899449640608309749}
   m_Layer: 5
-  m_Name: PackRewards
+  m_Name: PackItemsParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 6899449641334672870}
   - component: {fileID: 6899449641334672871}
   m_Layer: 5
-  m_Name: Banner
+  m_Name: DiscountImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -907,7 +907,7 @@ GameObject:
   - component: {fileID: 6899449641335224271}
   - component: {fileID: 6899449641335224256}
   m_Layer: 5
-  m_Name: Button
+  m_Name: PurchaseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -925,8 +925,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6899449639993391204}
-  - {fileID: 6899449639915442803}
   - {fileID: 6899449639976518280}
+  - {fileID: 6899449639915442803}
   m_Father: {fileID: 6899449640193446852}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1029,7 +1029,7 @@ GameObject:
   - component: {fileID: 6899449641897322281}
   - component: {fileID: 6899449641897322282}
   m_Layer: 5
-  m_Name: OfferTitleText
+  m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

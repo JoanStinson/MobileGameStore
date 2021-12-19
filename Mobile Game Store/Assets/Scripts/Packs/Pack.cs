@@ -12,7 +12,7 @@ namespace JGM.GameStore.Packs
             Expired
         }
 
-        public PackData PackData { get; private set; }
+        public PackData Data { get; private set; }
         public State PackState { get; private set; } = State.PendingActivation;
         public DateTime EndTimestamp { get; private set; } = DateTime.MaxValue;
         public TimeSpan RemainingTime => EndTimestamp - DateTime.UtcNow;
@@ -24,7 +24,7 @@ namespace JGM.GameStore.Packs
                 return;
             }
 
-            EndTimestamp = DateTime.UtcNow + TimeSpan.FromMinutes(PackData.Duration);
+            EndTimestamp = DateTime.UtcNow + TimeSpan.FromMinutes(Data.Duration);
             PackState = State.Active;
         }
 
@@ -35,7 +35,7 @@ namespace JGM.GameStore.Packs
                 return;
             }
 
-            bool hasPackExpired = (PackData.IsTimed && RemainingTime.TotalSeconds < 0);
+            bool hasPackExpired = (Data.IsTimed && RemainingTime.TotalSeconds < 0);
             if (hasPackExpired)
             {
                 PackState = State.Expired;
@@ -44,12 +44,12 @@ namespace JGM.GameStore.Packs
 
         public void ApplyTransaction()
         {
-            for (int i = 0; i < PackData.Items.Length; ++i)
+            for (int i = 0; i < Data.Items.Length; ++i)
             {
-                PackData.Items[i].ApplyTransaction();
+                Data.Items[i].ApplyTransaction();
             }
 
-            bool hasPackExpired = (PackData.PackType == PackData.Type.Offer);
+            bool hasPackExpired = (Data.PackType == PackData.Type.Offer);
             if (hasPackExpired)
             {
                 PackState = State.Expired;
@@ -59,23 +59,23 @@ namespace JGM.GameStore.Packs
         public static Pack CreateFromData(PackData data)
         {
             var newStorePack = new Pack();
-            newStorePack.PackData = data;
+            newStorePack.Data = data;
             return newStorePack;
         }
 
         public override string ToString()
         {
-            string str = PackData.PackType + " " + PackData.TextId;
-            str += " [" + PackData.Price + " " + PackData.PackCurrency + "]";
+            string str = Data.PackType + " " + Data.TextId;
+            str += " [" + Data.Price + " " + Data.PackCurrency + "]";
 
-            if (PackData.IsTimed && PackState == State.Active)
+            if (Data.IsTimed && PackState == State.Active)
             {
                 str += "\n" + RemainingTime.ToString();
             }
 
-            for (int i = 0; i < PackData.Items.Length; ++i)
+            for (int i = 0; i < Data.Items.Length; ++i)
             {
-                str += "\n\t" + PackData.Items[i].ToString();
+                str += "\n\t" + Data.Items[i].ToString();
             }
 
             return str;

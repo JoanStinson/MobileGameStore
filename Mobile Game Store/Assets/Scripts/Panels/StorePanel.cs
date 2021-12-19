@@ -64,10 +64,10 @@ namespace JGM.GameStore.Panels
         private void RefreshStoreGUI()
         {
             var sortedPacksList = _storePacksController.ActivePacks
-                                                       .OrderByDescending(p => p.PackData.PackType)
-                                                       .ThenBy(p => p.PackData.Order)
+                                                       .OrderByDescending(p => p.Data.PackType)
+                                                       .ThenBy(p => p.Data.Order)
                                                        .ThenBy(p => p.RemainingTime)
-                                                       .ThenBy(p => p.PackData.Price);
+                                                       .ThenBy(p => p.Data.Price);
 
             bool isFeaturedSlotOccupied = false;
 
@@ -75,7 +75,7 @@ namespace JGM.GameStore.Panels
             {
                 if (!isFeaturedSlotOccupied)
                 {
-                    bool canPackBeFeatured = (pack.PackData.PackType == PackData.Type.Offer && pack.PackData.Featured);
+                    bool canPackBeFeatured = (pack.Data.PackType == PackData.Type.Offer && pack.Data.Featured);
                     if (canPackBeFeatured)
                     {
                         isFeaturedSlotOccupied = true;
@@ -84,14 +84,14 @@ namespace JGM.GameStore.Panels
                 }
                 else
                 {
-                    switch (pack.PackData.PackType)
+                    switch (pack.Data.PackType)
                     {
                         case PackData.Type.Offer:
                             {
                                 InstantiateAndSetPackDataInGUI(pack, _offerPackPrefab, _offerPacksParent);
-                                for (int i = 0; i < pack.PackData.Items.Length; ++i)
+                                for (int i = 0; i < pack.Data.Items.Length; ++i)
                                 {
-                                    _rewardsPreviewer.Store3DPreview(pack.PackData.Items[0].PrefabName);
+                                    _rewardsPreviewer.Store3DPreview(pack.Data.Items[0].PrefabName);
                                 }
                             }
                             break;
