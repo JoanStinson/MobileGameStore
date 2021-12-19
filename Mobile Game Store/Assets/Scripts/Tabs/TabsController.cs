@@ -1,5 +1,4 @@
-﻿using JGM.GameStore.Packs.Displayers;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace JGM.GameStore.Tabs
@@ -7,30 +6,25 @@ namespace JGM.GameStore.Tabs
     public class TabsController : MonoBehaviour
     {
         [SerializeField] private ScrollRect _scrollRect;
-        [SerializeField] private RectTransform _content;
-        [SerializeField] [Range(0, 600f)] private float yOffset = 300f;
+        [SerializeField] [Range(-100f, 100f)] private float yOffset = 0f;
+        [Space]
+        [SerializeField] private RectTransform _offersPackParent;
+        [SerializeField] private RectTransform _gemsPackParent;
+        [SerializeField] private RectTransform _coinsPackParent;
 
-        //TODO refactor all of these methods xD
-        //getcomponent and duplicated code ewww
         public void CenterScrollViewToOffers()
         {
-            var firstOfferPack = FindObjectOfType<OfferPackDisplayer>().gameObject;
-            var target = firstOfferPack.GetComponent<RectTransform>();
-            _scrollRect.content.localPosition = CenterScrollViewToTarget(target);
+            _scrollRect.content.localPosition = CenterScrollViewToTarget(_offersPackParent);
         }
 
         public void CenterScrollViewToGems()
         {
-            var firstGemsPack = FindObjectOfType<GemsPackDisplayer>().gameObject;
-            var target = firstGemsPack.GetComponent<RectTransform>();
-            _scrollRect.content.localPosition = CenterScrollViewToTarget(target);
+            _scrollRect.content.localPosition = CenterScrollViewToTarget(_gemsPackParent);
         }
 
         public void CenterScrollViewToCoins()
         {
-            var firstCoinsPack = FindObjectOfType<CoinsPackDisplayer>().gameObject;
-            var target = firstCoinsPack.GetComponent<RectTransform>();
-            _scrollRect.content.localPosition = CenterScrollViewToTarget(target);
+            _scrollRect.content.localPosition = CenterScrollViewToTarget(_coinsPackParent);
         }
 
         public Vector2 CenterScrollViewToTarget(RectTransform target)
