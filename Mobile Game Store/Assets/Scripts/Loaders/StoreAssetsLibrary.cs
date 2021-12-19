@@ -17,6 +17,7 @@ namespace JGM.GameStore.Loaders
             _icons = new AssetLoader<Sprite>();
             //_fonts = new AssetLoader<Font>();
             _previews3D = new AssetLoader<GameObject>();
+            Initialize();
         }
 
         public void Initialize()

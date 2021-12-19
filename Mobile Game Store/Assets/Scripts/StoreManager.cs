@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace JGM.GameStore
 {
@@ -28,6 +29,7 @@ namespace JGM.GameStore
         [SerializeField] private RewardsScreen3DPreviewer _rewardsPreviewer;
 
         private IStorePacksController _storePacksController;
+        [Inject]
         private IStoreAssetsLibrary _storeAssetsLibrary;
         private List<GameObject> _storePacksGUIObjects;
 
@@ -36,15 +38,15 @@ namespace JGM.GameStore
             _storePacksController = new StorePacksController();
             _storePacksController.Initialize();
             _storePacksController.Refresh();
-            _storeAssetsLibrary = new StoreAssetsLibrary();
-            _storeAssetsLibrary.Initialize();
+            //_storeAssetsLibrary = new StoreAssetsLibrary();
+            //_storeAssetsLibrary.Initialize();
             _storePacksGUIObjects = new List<GameObject>();
         }
 
         private void Start()
         {
             RefreshStoreGUI();
-            GameObject.FindGameObjectWithTag("Respawn").GetComponent<RawImage>().texture = _rewardsPreviewer.GetRenderTexture("PF_Character1");
+            //GameObject.FindGameObjectWithTag("Respawn").GetComponent<RawImage>().texture = _rewardsPreviewer.GetRenderTexture("PF_Character1");
         }
 
         private async void Update()

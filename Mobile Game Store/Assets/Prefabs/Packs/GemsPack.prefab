@@ -293,7 +293,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2203395328540200527}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -2904597065325180100}
+        m_TargetAssemblyTypeName: JGM.GameStore.Packs.Displayers.GemsPackDisplayer,
+          JGM.GameStore
+        m_MethodName: DisableAndSendPurchasePackEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2203395328785472029
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +451,7 @@ MonoBehaviour:
   _amount: {fileID: 2203395330063801754}
   _icon: {fileID: 2203395329548831470}
   _discountBanner: {fileID: 6694072587975304269}
+  _gameEvent: {fileID: 11400000, guid: 71adf898335b48c49b6bc0e7ceaab2e2, type: 2}
 --- !u!1 &2203395329163726174
 GameObject:
   m_ObjectHideFlags: 0

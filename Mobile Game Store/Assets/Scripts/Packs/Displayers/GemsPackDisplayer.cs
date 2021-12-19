@@ -1,4 +1,5 @@
-﻿using JGM.GameStore.Loaders;
+﻿using JGM.GameStore.Events;
+using JGM.GameStore.Loaders;
 using JGM.GameStore.Packs.Data;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,9 @@ namespace JGM.GameStore.Packs.Displayers
         [SerializeField] private TextMeshProUGUI _amount;
         [SerializeField] private Image _icon;
         [SerializeField] private Transform _discountBanner;
+        [SerializeField] private GameEvent _gameEvent;
+
+        private StorePack _storePack;
 
         public void SetPackData(StorePack storePack, IStoreAssetsLibrary assetsLibrary)
         {
@@ -29,6 +33,12 @@ namespace JGM.GameStore.Packs.Displayers
             _price.text = storePack.PackData.Price.ToString();
             _amount.text = $"{storePack.PackData.Items[0].Amount} Gems";
             _icon.sprite = assetsLibrary.GetSprite(storePack.PackData.Items[0].IconName);
+            _storePack = storePack;
+        }
+
+        public void DisableAndSendPurchasePackEvent()
+        {
+            _gameEvent.Trigger(new PurchasePackEventData(_storePack.PackData.Items, _storePack.PackData.PackCurrency, _storePack.PackData.Price));
         }
     }
 }
