@@ -9,13 +9,13 @@ namespace JGM.GameStore.Loaders
         private AssetLoader<GameObject> _previews3D;
 
         private const string _iconsPath = "UI/ShopItems/Icons";
-        private const string _fontsPath = "UI/Fonts";
+        //private const string _fontsPath = "UI/Fonts";
         private const string _previews3DPath = "UI/ShopItems/Previews3D";
 
         public StoreAssetsLibrary()
         {
             _icons = new AssetLoader<Sprite>();
-            _fonts = new AssetLoader<Font>();
+            //_fonts = new AssetLoader<Font>();
             _previews3D = new AssetLoader<GameObject>();
         }
 
@@ -23,7 +23,7 @@ namespace JGM.GameStore.Loaders
         {
             _icons.LoadAllInPath(_iconsPath);
             //_fonts.LoadAllInPath(_fontsPath);
-            //_previews3D.LoadAllInPath(_previews3DPath);
+            _previews3D.LoadAllInPath(_previews3DPath);
         }
 
         public Sprite GetSprite(in string name) => _icons.GetAsset(name);

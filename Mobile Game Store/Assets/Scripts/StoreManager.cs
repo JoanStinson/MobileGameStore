@@ -2,11 +2,13 @@
 using JGM.GameStore.Packs;
 using JGM.GameStore.Packs.Data;
 using JGM.GameStore.Packs.Displayers;
+using JGM.GameStore.Rewards;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace JGM.GameStore
 {
@@ -23,6 +25,7 @@ namespace JGM.GameStore
         [SerializeField] private Transform _featuredPacksParent;
         [Space]
         [SerializeField] private uint _storeRefreshFrequencyInSeconds;
+        [SerializeField] private RewardsScreen3DPreviewer _rewardsPreviewer;
 
         private IStorePacksController _storePacksController;
         private IStoreAssetsLibrary _storeAssetsLibrary;
@@ -41,6 +44,7 @@ namespace JGM.GameStore
         private void Start()
         {
             RefreshStoreGUI();
+            GameObject.FindGameObjectWithTag("Respawn").GetComponent<RawImage>().texture = _rewardsPreviewer.GetRenderTexture("PF_Character1");
         }
 
         private async void Update()
@@ -81,7 +85,13 @@ namespace JGM.GameStore
                     switch (pack.PackData.PackType)
                     {
                         case StorePackData.Type.Offer:
-                            InstantiateAndSetPackDataInGUI(pack, _offerPackPrefab, _offerPacksParent);
+                            {
+                                InstantiateAndSetPackDataInGUI(pack, _offerPackPrefab, _offerPacksParent);
+                                for (int i = 0; i < pack.PackData.Items.Length; ++i)
+                                {
+                                    _rewardsPreviewer.Store3DPreview(pack.PackData.Items[0].PrefabName);
+                                }
+                            }
                             break;
 
                         case StorePackData.Type.Gems:
