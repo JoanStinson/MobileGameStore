@@ -2,7 +2,7 @@
 using JGM.GameStore.Packs;
 using JGM.GameStore.Packs.Data;
 using JGM.GameStore.Packs.Displayers;
-using JGM.GameStore.Rewards;
+using JGM.GameStore.Panels.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +28,10 @@ namespace JGM.GameStore.Panels
         [SerializeField] private uint _storeRefreshFrequencyInSeconds;
         [SerializeField] private PackItem3DVisualizer _rewardsPreviewer;
 
-        private IPacksController _storePacksController;
         [Inject]
         private IAssetsLibrary _storeAssetsLibrary;
+
+        private IPacksController _storePacksController;
         private List<GameObject> _storePacksGUIObjects;
 
         private void Awake()
@@ -41,11 +42,13 @@ namespace JGM.GameStore.Panels
             //_storeAssetsLibrary = new StoreAssetsLibrary();
             //_storeAssetsLibrary.Initialize();
             _storePacksGUIObjects = new List<GameObject>();
+            _rewardsPreviewer.Initialize();
+            RefreshStoreGUI();
         }
 
         private void Start()
         {
-            RefreshStoreGUI();
+            
             //GameObject.FindGameObjectWithTag("Respawn").GetComponent<RawImage>().texture = _rewardsPreviewer.GetRenderTexture("PF_Character1");
         }
 
@@ -89,10 +92,10 @@ namespace JGM.GameStore.Panels
                         case PackData.Type.Offer:
                             {
                                 InstantiateAndSetPackDataInGUI(pack, _offerPackPrefab, _offerPacksParent);
-                                for (int i = 0; i < pack.Data.Items.Length; ++i)
-                                {
-                                    _rewardsPreviewer.Store3DPreview(pack.Data.Items[0].PrefabName);
-                                }
+                                //for (int i = 0; i < pack.Data.Items.Length; ++i)
+                                //{
+                                //    _rewardsPreviewer.Store3DPreview(pack.Data.Items[0].PrefabName);
+                                //}
                             }
                             break;
 

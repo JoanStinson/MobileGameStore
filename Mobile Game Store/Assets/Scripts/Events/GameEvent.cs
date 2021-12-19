@@ -15,7 +15,7 @@ namespace JGM.GameStore.Events
 
         public void Trigger(in IGameEventData eventData = null)
         {
-            Debug.Log($"'<color=green>{name}</color>' game event was triggered!");
+            Debug.Log($"'<color=cyan>{name}</color>' game event was triggered!");
             foreach (var listener in _listeners)
             {
                 listener?.TriggerEvent(eventData);

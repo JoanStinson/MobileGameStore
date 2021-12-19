@@ -37,7 +37,7 @@ namespace JGM.GameStore.Packs.Displayers
 
         public void PurchasePack()
         {
-            var eventData = new PurchasePackEventData(_storePack.Data.Items, _storePack.Data.PackCurrency, _storePack.Data.Price);
+            var eventData = new PurchasePackEventData(_storePack.Data.Items, _storePack.Data.PackCurrency, _storePack.Data.Price, _storePack.Data.PackType);
             _gameEvent.Trigger(eventData);
         }
 
