@@ -4,7 +4,7 @@ namespace JGM.GameStore.Packs.Displayers
 {
     public interface IPackDisplayer
     {
-        void SetPackData(Pack pack, IAssetsLibrary assetsLibrary);
+        void SetPackData(in Pack pack, IAssetsLibrary assetsLibrary);
         void PurchasePack();
     }
 }

@@ -2,7 +2,6 @@
 using JGM.GameStore.Transaction.User;
 using UnityEngine;
 using UnityEngine.Events;
-using Zenject;
 using static JGM.GameStore.Transaction.User.UserWallet;
 
 namespace JGM.GameStore.Transaction
@@ -13,7 +12,9 @@ namespace JGM.GameStore.Transaction
         public TransactionFinishedEvent OnFinished = new TransactionFinishedEvent();
         public Currency TransactionCurrency { get; private set; } = Currency.Coins;
         public float Amount { get; private set; }
-        public object Data { get; set; }
+        public object Data { get; private set; }
+        public ICoroutineService CoroutineService { get; private set; }
+        public IUserWallet UserWallet { get; private set; }
         public State TransactionState { get; private set; } = State.Init;
         public Error TransactionError { get; private set; } = Error.None;
 
@@ -21,15 +22,14 @@ namespace JGM.GameStore.Transaction
         private const float _iapMinDurationInSeconds = 0.5f;
         private const float _iapMaxDurationInSeconds = 5f;
 
-        [Inject] private ICoroutineService _coroutineService;
-        [Inject] private IUserWallet _userWallet;
-
-        public static Transaction Create(Currency currency, float amount, object data = null)
+        public static Transaction Create(Currency currency, float amount, object data, ICoroutineService coroutineService, IUserWallet userWallet)
         {
             var newTransaction = new Transaction();
             newTransaction.TransactionCurrency = currency;
             newTransaction.Amount = amount;
             newTransaction.Data = data;
+            newTransaction.CoroutineService = coroutineService;
+            newTransaction.UserWallet = userWallet;
             return newTransaction;
         }
 
@@ -57,13 +57,13 @@ namespace JGM.GameStore.Transaction
                             FinishTransaction(success);
                         };
                         float randomDelay = Random.Range(_iapMinDurationInSeconds, _iapMaxDurationInSeconds);
-                        _coroutineService.DelayedCall(finishTransaction, randomDelay);
+                        CoroutineService.DelayedCall(finishTransaction, randomDelay);
                     }
                     break;
 
                 default:
                     {
-                        float newBalance = _userWallet.GetCurrency(TransactionCurrency) + Amount;
+                        float newBalance = UserWallet.GetCurrency(TransactionCurrency) + Amount;
                         bool enoughCurrency = (newBalance > 0);
                         if (enoughCurrency)
                         {
@@ -97,7 +97,7 @@ namespace JGM.GameStore.Transaction
 
             if (success)
             {
-                _userWallet.ApplyTransaction(this);
+                UserWallet.ApplyTransaction(this);
             }
 
             OnFinished?.Invoke(this, success);

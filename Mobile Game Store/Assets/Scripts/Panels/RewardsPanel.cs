@@ -24,9 +24,9 @@ namespace JGM.GameStore.Panels
         private Queue<PackItemData> _rewards = new Queue<PackItemData>();
         private string _previousPrefabName = null;
 
-        public void ShowRewards(IGameEventData eventData)
+        public void ShowRewards(IGameEventData gameEventData)
         {
-            var data = eventData as PurchasePackEventData;
+            var data = (gameEventData as PurchasePackEventData).StorePack.Data;
             for (int i = data.Items.Length - 1; i >= 0; --i)
             {
                 _rewards.Enqueue(data.Items[i]);

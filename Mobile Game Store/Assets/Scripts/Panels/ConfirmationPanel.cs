@@ -18,11 +18,12 @@ namespace JGM.GameStore.Panels
         [Inject] private IAssetsLibrary _assetsLibrary;
         [Inject] private IEventTriggerService _eventTriggerService;
 
-        private IGameEventData _eventData;
+        private IGameEventData _gameEventData;
 
         public void ShowConfirmationPopup(IGameEventData gameEventData)
         {
-            var data = gameEventData as PurchasePackEventData;
+            _gameEventData = gameEventData;
+            var data = (gameEventData as PurchasePackEventData).StorePack.Data;
             _priceText.text = data.Price.ToString();
 
             for (int i = 0; i < data.Items.Length; ++i)
@@ -48,12 +49,11 @@ namespace JGM.GameStore.Panels
                     }
                 }
             }
-            _eventData = gameEventData;
         }
 
         public void ConfirmPurchase()
         {
-            _eventTriggerService.Trigger("Loading Purchase", _eventData);
+            _eventTriggerService.Trigger("Loading Purchase", _gameEventData);
             DestroyPackItems();
         }
 

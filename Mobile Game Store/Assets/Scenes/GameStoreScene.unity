@@ -2108,6 +2108,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1f2934eb4e5b8f540a2e62a5f7b6692b, type: 2}
   - {fileID: 11400000, guid: 0dce629229075a24ab4810b81af276ca, type: 2}
   - {fileID: 11400000, guid: da2a90dcb2204e5429a2311dc8fdb416, type: 2}
+  - {fileID: 11400000, guid: 67cc63cbebf348d41b1b588f64651ed9, type: 2}
   - {fileID: 11400000, guid: a61a10d797528a544ba4ca41897a04b6, type: 2}
   - {fileID: 11400000, guid: c0c0bb420975ec242a931d75718c04f2, type: 2}
   - {fileID: 11400000, guid: 71adf898335b48c49b6bc0e7ceaab2e2, type: 2}
@@ -3390,7 +3391,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 197915881}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5290446
+  m_Size: 0.5676202
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3501,7 +3502,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1813720909}
         m_TargetAssemblyTypeName: JGM.GameStore.Panels.LoadingPanel, JGM.GameStore
-        m_MethodName: LoadPurchase
+        m_MethodName: HandlePurchase
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3524,7 +3525,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _loadingWindow: {fileID: 1659597574}
-  _launchError: 0
 --- !u!1 &1816979248
 GameObject:
   m_ObjectHideFlags: 0

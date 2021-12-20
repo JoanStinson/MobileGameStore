@@ -44,10 +44,10 @@ namespace JGM.GameStore.Packs
 
         public void ApplyTransaction()
         {
-            for (int i = 0; i < Data.Items.Length; ++i)
-            {
-                Data.Items[i].ApplyTransaction();
-            }
+            //for (int i = 0; i < Data.Items.Length; ++i)
+            //{
+            //    Data.Items[i].ApplyTransaction();
+            //}
 
             bool hasPackExpired = (Data.PackType == PackData.Type.Offer);
             if (hasPackExpired)

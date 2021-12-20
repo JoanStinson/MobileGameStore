@@ -1,4 +1,5 @@
-﻿using UnityEngine.Events;
+﻿using JGM.GameStore.Coroutines;
+using UnityEngine.Events;
 
 namespace JGM.GameStore.Transaction.User
 {
@@ -14,9 +15,9 @@ namespace JGM.GameStore.Transaction.User
             return _currencies[(int)currency];
         }
 
-        public Transaction CreateTransaction(Currency currency, float amount)
+        public Transaction CreateTransaction(Currency currency, float amount, object data, ICoroutineService coroutineService, IUserWallet userWallet)
         {
-            var newTransaction = Transaction.Create(currency, amount);
+            var newTransaction = Transaction.Create(currency, amount, data, coroutineService, userWallet);
             return newTransaction;
         }
 
@@ -28,7 +29,7 @@ namespace JGM.GameStore.Transaction.User
             }
 
             _currencies[(int)transaction.TransactionCurrency] = GetCurrency(transaction.TransactionCurrency) + transaction.Amount;
-            OnCurrencyChanged?.Invoke(transaction.TransactionCurrency, transaction.Amount);
+            OnCurrencyChanged?.Invoke(transaction.TransactionCurrency, transaction.Amount);//TODO link this event with the HUD
         }
     }
 }

@@ -29,31 +29,31 @@ namespace JGM.GameStore.Packs.Data
 
         private Type _itemType = Type.Coins;
 
-        public void ApplyTransaction()
-        {
-            switch (ItemType)
-            {
-                case Type.Coins:
-                    {
-                        Transaction.Transaction trans = _userWallet.CreateTransaction(Currency.Coins, Amount);
-                        trans.StartTransaction();
-                    }
-                    break;
+        //public void ApplyTransaction()
+        //{
+        //    switch (ItemType)
+        //    {
+        //        case Type.Coins:
+        //            {
+        //                Transaction.Transaction trans = _userWallet.CreateTransaction(Currency.Coins, Amount);
+        //                trans.StartTransaction();
+        //            }
+        //            break;
 
-                case Type.Gems:
-                    {
-                        Transaction.Transaction trans = _userWallet.CreateTransaction(Currency.Gems, Amount);
-                        trans.StartTransaction();
-                    }
-                    break;
+        //        case Type.Gems:
+        //            {
+        //                Transaction.Transaction trans = _userWallet.CreateTransaction(Currency.Gems, Amount);
+        //                trans.StartTransaction();
+        //            }
+        //            break;
 
-                case Type.Character:
-                    {
-                        // Nothing to do actually
-                    }
-                    break;
-            }
-        }
+        //        case Type.Character:
+        //            {
+        //                // Nothing to do actually
+        //            }
+        //            break;
+        //    }
+        //}
 
         public static PackItemData CreateFromJson(JSONNode data)
         {

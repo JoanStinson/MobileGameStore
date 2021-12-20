@@ -22,9 +22,9 @@ namespace JGM.GameStore.Packs.Displayers
         [SerializeField] private GameEvent _gameEvent;
 
         private TimeSpan _remainingTimeSpan = TimeSpan.Zero;
-        private Pack _storePack;
+        private Pack _pack;
 
-        public void SetPackData(Pack pack, IAssetsLibrary assetsLibrary)
+        public void SetPackData(in Pack pack, IAssetsLibrary assetsLibrary)
         {
             _remainingTimeSpan = pack.RemainingTime;
             RefreshRemainingTime();
@@ -32,12 +32,12 @@ namespace JGM.GameStore.Packs.Displayers
             _priceBeforeDiscountText.text = pack.Data.PriceBeforeDiscount.ToString();
             _priceText.text = pack.Data.Price.ToString();
             SetPackItems(pack, assetsLibrary);
-            _storePack = pack;
+            _pack = pack;
         }
 
         public void PurchasePack()
         {
-            var eventData = new PurchasePackEventData(_storePack.Data.Items, _storePack.Data.PackCurrency, _storePack.Data.Price, _storePack.Data.PackType);
+            var eventData = new PurchasePackEventData(_pack);
             _gameEvent.Trigger(eventData);
         }
 
