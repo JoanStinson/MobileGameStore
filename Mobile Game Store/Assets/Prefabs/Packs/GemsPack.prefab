@@ -444,12 +444,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iconImage: {fileID: 2203395329548831470}
-  _amountText: {fileID: 2203395330063801754}
+  _amountText: {fileID: 3207576365513974092}
   _discountText: {fileID: 2203395329250913740}
   _priceBeforeDiscountText: {fileID: 2203395328426875373}
   _priceText: {fileID: 2203395330378093720}
   _discountParentTransform: {fileID: 6694072587975304269}
-  _gameEvent: {fileID: 11400000, guid: 71adf898335b48c49b6bc0e7ceaab2e2, type: 2}
 --- !u!1 &2203395329250913730
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,6 +820,7 @@ GameObject:
   - component: {fileID: 2203395330063801753}
   - component: {fileID: 2203395330063801755}
   - component: {fileID: 2203395330063801754}
+  - component: {fileID: 3207576365513974092}
   m_Layer: 5
   m_Name: AmountText
   m_TagString: Untagged
@@ -944,6 +944,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3207576365513974092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203395330063801752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8708feafc49c94b90459a6a1eaf038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _localizedKey: INSERT_KEY_HERE
 --- !u!1 &2203395330378093726
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,23 +14,19 @@ namespace JGM.GameStore.Panels
     [RequireComponent(typeof(IPacksController))]
     public sealed class StorePanel : MonoBehaviour
     {
-        [Header("Settings")]
         [SerializeField] private uint _storeRefreshFrequencyInSeconds;
-
-        [Header("Prefabs")]
-        [SerializeField] private GameObject _offerPackPrefab;
-        [SerializeField] private GameObject _gemsPackPrefab;
-        [SerializeField] private GameObject _coinsPackPrefab;
-        [SerializeField] private GameObject _featuredPackPrefab;
-
-        [Header("Parents")]
+        [Space]
+        [SerializeField] private Transform _featuredPacksParent;
         [SerializeField] private Transform _offerPacksParent;
         [SerializeField] private Transform _gemsPacksParent;
         [SerializeField] private Transform _coinsPacksParent;
-        [SerializeField] private Transform _featuredPacksParent;
 
-        [Inject]
-        private IAssetsLibrary _storeAssetsLibrary;
+        [Inject] private OfferPackDisplayer.FeaturedFactory _featuredOffersPackFactory;
+        [Inject] private OfferPackDisplayer.Factory _offersPackFactory;
+        [Inject] private GemsPackDisplayer.Factory _gemsPackFactory;
+        [Inject] private CoinsPackDisplayer.Factory _coinsPackFactory;
+        [Inject] private IAssetsLibrary _storeAssetsLibrary;
+
         private IPacksController _storePacksController;
         private List<GameObject> _storePacksGUIObjects;
 
@@ -71,7 +67,10 @@ namespace JGM.GameStore.Panels
                     if (canPackBeFeatured)
                     {
                         isFeaturedSlotOccupied = true;
-                        InstantiateAndSetPackDataInGUI(pack, _featuredPackPrefab, _featuredPacksParent);
+                        var spawnedPack = _featuredOffersPackFactory.Create();
+                        spawnedPack.transform.SetParent(_featuredPacksParent, false);
+                        _storePacksGUIObjects.Add(spawnedPack.gameObject);
+                        spawnedPack.SetPackData(pack, _storeAssetsLibrary);
                     }
                 }
                 else
@@ -79,33 +78,33 @@ namespace JGM.GameStore.Panels
                     switch (pack.Data.PackType)
                     {
                         case PackData.Type.Offer:
-                            InstantiateAndSetPackDataInGUI(pack, _offerPackPrefab, _offerPacksParent);
+                            {
+                                var spawnedPack = _offersPackFactory.Create();
+                                spawnedPack.transform.SetParent(_offerPacksParent, false);
+                                _storePacksGUIObjects.Add(spawnedPack.gameObject);
+                                spawnedPack.SetPackData(pack, _storeAssetsLibrary);
+                            }
                             break;
 
                         case PackData.Type.Gems:
-                            InstantiateAndSetPackDataInGUI(pack, _gemsPackPrefab, _gemsPacksParent);
+                            {
+                                var spawnedPack = _gemsPackFactory.Create();
+                                spawnedPack.transform.SetParent(_gemsPacksParent, false);
+                                _storePacksGUIObjects.Add(spawnedPack.gameObject);
+                                spawnedPack.SetPackData(pack, _storeAssetsLibrary);
+                            }
                             break;
 
                         case PackData.Type.Coins:
-                            InstantiateAndSetPackDataInGUI(pack, _coinsPackPrefab, _coinsPacksParent);
+                            {
+                                var spawnedPack = _coinsPackFactory.Create();
+                                spawnedPack.transform.SetParent(_coinsPacksParent, false);
+                                _storePacksGUIObjects.Add(spawnedPack.gameObject);
+                                spawnedPack.SetPackData(pack, _storeAssetsLibrary);
+                            }
                             break;
                     }
                 }
-            }
-        }
-
-        private void InstantiateAndSetPackDataInGUI(Pack pack, GameObject prefab, Transform parent)
-        {
-            var spawnedGO = Instantiate(prefab);
-            spawnedGO.transform.SetParent(parent, false);
-            _storePacksGUIObjects.Add(spawnedGO);
-            if (spawnedGO.TryGetComponent<IPackDisplayer>(out var storePackDisplayer))
-            {
-                storePackDisplayer.SetPackData(pack, _storeAssetsLibrary);
-            }
-            else
-            {
-                throw new MissingComponentException($"Missing {nameof(storePackDisplayer)}");
             }
         }
     }

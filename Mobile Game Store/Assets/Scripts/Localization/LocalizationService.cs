@@ -8,7 +8,7 @@ namespace JGM.GameStore.Localization
     public sealed partial class LocalizationService : ILocalizationService
     {
         public class LanguageChangedEvent : UnityEvent<Language, Language> { }
-        public LanguageChangedEvent OnLanguageChanged = new LanguageChangedEvent();
+        public LanguageChangedEvent OnLanguageChanged { get; set; } = new LanguageChangedEvent();
 
         public Language CurrentLanguage { get; private set; } = Language.Count;
 

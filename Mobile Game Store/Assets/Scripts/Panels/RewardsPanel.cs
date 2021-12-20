@@ -1,10 +1,10 @@
 ﻿using JGM.GameStore.Events.Data;
 using JGM.GameStore.Events.Services;
+using JGM.GameStore.Localization;
 using JGM.GameStore.Packs.Data;
-using JGM.GameStore.Packs.Displayers.Utils;
 using JGM.GameStore.Panels.Helpers;
 using System.Collections.Generic;
-using TMPro;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -14,7 +14,7 @@ namespace JGM.GameStore.Panels
     public class RewardsPanel : MonoBehaviour
     {
         [SerializeField] private RawImage _rewardImage;
-        [SerializeField] private TextMeshProUGUI _amountText;
+        [SerializeField] private LocalizedText _amountText;
         [SerializeField] private Transform _rewardsPopupTransform;
         [SerializeField] private Camera _prefabCamera;
 
@@ -41,7 +41,7 @@ namespace JGM.GameStore.Panels
             ShowNextReward();
         }
 
-        public void ShowNextReward()
+        public async void ShowNextReward()
         {
             if (_previousPrefabName != null)
             {
@@ -55,21 +55,18 @@ namespace JGM.GameStore.Panels
                 return;
             }
 
+            _rewardsPopupTransform.gameObject.SetActive(true);
+            await Task.Yield();
+
             var item = _rewards.Peek();
 
             if (item.ItemType == PackItemData.Type.Character)
             {
-                var nameConverter = new CharacterNameConverter();
-                nameConverter.GetCharacterNameFromId(item.ItemId, out var characterName);
-                _amountText.text = characterName;
+                _amountText.RefreshText(item.TextId, string.Empty);
             }
-            else if (item.ItemType == PackItemData.Type.Gems)
+            else 
             {
-                _amountText.text = $"{item.Amount} Gems";
-            }
-            else if (item.ItemType == PackItemData.Type.Coins)
-            {
-                _amountText.text = $"{item.Amount} Coins";
+                _amountText.RefreshText(item.TextId, $"{item.Amount} ");
             }
 
             _rewardImage.texture = _packItem3DVisualizer.GetRenderTexture(item.PrefabName);

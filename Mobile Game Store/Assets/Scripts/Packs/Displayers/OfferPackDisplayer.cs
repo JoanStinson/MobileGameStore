@@ -1,44 +1,49 @@
-﻿using JGM.GameStore.Events;
-using JGM.GameStore.Events.Data;
+﻿using JGM.GameStore.Events.Data;
+using JGM.GameStore.Events.Services;
 using JGM.GameStore.Loaders;
+using JGM.GameStore.Localization;
 using JGM.GameStore.Packs.Data;
-using JGM.GameStore.Packs.Displayers.Utils;
 using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace JGM.GameStore.Packs.Displayers
 {
     public class OfferPackDisplayer : MonoBehaviour, IPackDisplayer
     {
-        [SerializeField] private TextMeshProUGUI _titleText;
+        public class Factory : PlaceholderFactory<OfferPackDisplayer> { }
+        public class FeaturedFactory : PlaceholderFactory<OfferPackDisplayer> { }
+
+        [SerializeField] private LocalizedText _titleText;
         [SerializeField] private TextMeshProUGUI _remainingTimeText;
         [SerializeField] private TextMeshProUGUI _discountText;
         [SerializeField] private TextMeshProUGUI _priceBeforeDiscountText;
         [SerializeField] private TextMeshProUGUI _priceText;
         [SerializeField] private Transform _packItemsParent;
-        [SerializeField] private GameObject _packItemPrefab;
-        [SerializeField] private GameEvent _gameEvent;
 
+        [Inject] private IEventTriggerService _eventTriggerService;
+        [Inject] private PackItemDisplayer.Factory _packItemDisplayerFactory;
         private TimeSpan _remainingTimeSpan = TimeSpan.Zero;
         private Pack _pack;
 
         public void SetPackData(in Pack pack, IAssetsLibrary assetsLibrary)
         {
+            _pack = pack;
             _remainingTimeSpan = pack.RemainingTime;
             RefreshRemainingTime();
             _discountText.text = $"{pack.Data.Discount * 100}%";
             _priceBeforeDiscountText.text = pack.Data.PriceBeforeDiscount.ToString();
             _priceText.text = pack.Data.Price.ToString();
             SetPackItems(pack, assetsLibrary);
-            _pack = pack;
+            _titleText.RefreshText(pack.Data.TextId);
         }
 
         public void PurchasePack()
         {
             var eventData = new PurchasePackEventData(_pack);
-            _gameEvent.Trigger(eventData);
+            _eventTriggerService.Trigger("Purchase Pack", eventData);
         }
 
         private void Update()
@@ -54,27 +59,20 @@ namespace JGM.GameStore.Packs.Displayers
         private void SetPackItems(Pack pack, IAssetsLibrary assetsLibrary)
         {
             var sortedOfferList = pack.Data.Items.OrderByDescending(o => o.ItemType);
-
             foreach (var item in sortedOfferList)
             {
-                var spawnedPackItem = Instantiate(_packItemPrefab);
+                var spawnedPackItem = _packItemDisplayerFactory.Create();
                 spawnedPackItem.transform.SetParent(_packItemsParent, false);
                 if (spawnedPackItem.TryGetComponent<PackItemDisplayer>(out var packItemDisplayer))
                 {
                     packItemDisplayer.IconImage.sprite = assetsLibrary.GetSprite(item.IconName);
                     if (item.ItemType == PackItemData.Type.Character)
                     {
-                        var nameConverter = new CharacterNameConverter();
-                        nameConverter.GetCharacterNameFromId(item.ItemId, out var characterName);
-                        packItemDisplayer.AmountText.text = characterName;
+                        packItemDisplayer.AmountText.RefreshText(item.TextId);
                     }
-                    else if (item.ItemType == PackItemData.Type.Coins)
+                    else
                     {
-                        packItemDisplayer.AmountText.text = $"{item.Amount} Coins";
-                    }
-                    else if (item.ItemType == PackItemData.Type.Gems)
-                    {
-                        packItemDisplayer.AmountText.text = $"{item.Amount} Gems";
+                        packItemDisplayer.AmountText.RefreshText(item.TextId, $"{item.Amount} ");
                     }
                 }
             }

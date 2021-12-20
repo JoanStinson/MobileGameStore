@@ -2,7 +2,6 @@ using JGM.GameStore.Events.Data;
 using JGM.GameStore.Events.Services;
 using JGM.GameStore.Loaders;
 using JGM.GameStore.Packs.Displayers;
-using JGM.GameStore.Packs.Displayers.Utils;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -22,6 +21,7 @@ namespace JGM.GameStore.Panels
 
         [Inject] private IAssetsLibrary _assetsLibrary;
         [Inject] private IEventTriggerService _eventTriggerService;
+        [Inject] private PackItemDisplayer.Factory _packItemDisplayerFactory;
 
         private IGameEventData _gameEventData;
         private bool _shouldPlayParticles;
@@ -35,24 +35,18 @@ namespace JGM.GameStore.Panels
 
             for (int i = 0; i < data.Items.Length; ++i)
             {
-                var spawnedPackItem = Instantiate(_packItemPrefab);
+                var spawnedPackItem = _packItemDisplayerFactory.Create();
                 spawnedPackItem.transform.SetParent(_packItemsParentTransform, false);
                 if (spawnedPackItem.TryGetComponent<PackItemDisplayer>(out var packItemDisplayer))
                 {
                     packItemDisplayer.IconImage.sprite = _assetsLibrary.GetSprite(data.Items[i].IconName);
                     if (data.Items[i].ItemType == Packs.Data.PackItemData.Type.Character)
                     {
-                        var nameConverter = new CharacterNameConverter();
-                        nameConverter.GetCharacterNameFromId(data.Items[i].ItemId, out var characterName);
-                        packItemDisplayer.AmountText.text = characterName;
+                        packItemDisplayer.AmountText.RefreshText(data.Items[i].TextId);
                     }
-                    else if (data.Items[i].ItemType == Packs.Data.PackItemData.Type.Gems)
+                    else
                     {
-                        packItemDisplayer.AmountText.text = $"{data.Items[i].Amount} Coins";
-                    }
-                    else if (data.Items[i].ItemType == Packs.Data.PackItemData.Type.Coins)
-                    {
-                        packItemDisplayer.AmountText.text = $"{data.Items[i].Amount} Gems";
+                        packItemDisplayer.AmountText.RefreshText(data.Items[i].TextId, $"{data.Items[i].Amount} ");
                     }
                 }
             }

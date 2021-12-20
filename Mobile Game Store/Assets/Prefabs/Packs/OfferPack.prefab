@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65064ecda65fc945b85d37d87745e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _titleText: {fileID: 6899449641897322282}
+  _titleText: {fileID: 8463648156484019936}
   _remainingTimeText: {fileID: 6899449640681163288}
   _discountText: {fileID: 6899449640541148668}
   _priceBeforeDiscountText: {fileID: 6899449639993391203}
@@ -1042,6 +1042,7 @@ GameObject:
   - component: {fileID: 6899449641897322283}
   - component: {fileID: 6899449641897322281}
   - component: {fileID: 6899449641897322282}
+  - component: {fileID: 8463648156484019936}
   m_Layer: 5
   m_Name: TitleText
   m_TagString: Untagged
@@ -1165,3 +1166,16 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8463648156484019936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899449641897322284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8708feafc49c94b90459a6a1eaf038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _localizedKey: INSERT_KEY_HERE
