@@ -1,6 +1,6 @@
 ﻿using JGM.GameStore.Utils;
 using System;
-using static JGM.GameStore.Transaction.User.UserWallet;
+using static JGM.GameStore.Transaction.User.UserProfileService;
 
 namespace JGM.GameStore.Packs.Data
 {
@@ -30,66 +30,63 @@ namespace JGM.GameStore.Packs.Data
         private Type _packType = Type.Gems;
         private Currency _packCurrency = Currency.Gems;
 
-        public static PackData CreateFromJson(JSONNode data)
+        public void PopulateDataFromJson(JSONNode json)
         {
-            var newStorePackData = new PackData();
-
-            if (data.HasKey("id"))
+            if (json.HasKey("id"))
             {
-                newStorePackData.Id = data["id"];
+                Id = json["id"];
             }
 
-            if (data.HasKey("type"))
+            if (json.HasKey("type"))
             {
-                DataParser.EnumTryParse(data["type"], true, out newStorePackData._packType);
+                DataParser.EnumTryParse(json["type"], true, out _packType);
             }
 
-            if (data.HasKey("order"))
+            if (json.HasKey("order"))
             {
-                newStorePackData.Order = data["order"].AsInt;
+                Order = json["order"].AsInt;
             }
 
-            if (data.HasKey("duration"))
+            if (json.HasKey("duration"))
             {
-                newStorePackData.Duration = data["duration"].AsFloat;
+                Duration = json["duration"].AsFloat;
             }
 
-            if (data.HasKey("tidName"))
+            if (json.HasKey("tidName"))
             {
-                newStorePackData.TextId = data["tidName"];
+                TextId = json["tidName"];
             }
 
-            if (data.HasKey("featured"))
+            if (json.HasKey("featured"))
             {
-                newStorePackData.Featured = data["featured"].AsBool;
+                Featured = json["featured"].AsBool;
             }
 
-            if (data.HasKey("price"))
+            if (json.HasKey("price"))
             {
-                newStorePackData.Price = data["price"].AsFloat;
+                Price = json["price"].AsFloat;
             }
 
-            if (data.HasKey("currency"))
+            if (json.HasKey("currency"))
             {
-                DataParser.EnumTryParse(data["currency"], true, out newStorePackData._packCurrency);
+                DataParser.EnumTryParse(json["currency"], true, out _packCurrency);
             }
 
-            if (data.HasKey("discount"))
+            if (json.HasKey("discount"))
             {
-                newStorePackData.Discount = data["discount"].AsFloat;
+                Discount = json["discount"].AsFloat;
             }
 
-            if (data.HasKey("items"))
+            if (json.HasKey("items"))
             {
-                JSONNode itemsData = data["items"].AsArray;
-                newStorePackData.Items = new PackItemData[itemsData.Count];
+                JSONNode itemsData = json["items"].AsArray;
+                Items = new PackItemData[itemsData.Count];
                 for (int i = 0; i < itemsData.Count; ++i)
                 {
-                    newStorePackData.Items[i] = PackItemData.CreateFromJson(itemsData[i]);
+                    Items[i] = new PackItemData();
+                    Items[i].PopulateDataFromJson(itemsData[i]);
                 }
             }
-
-            return newStorePackData;
         }
     }
 }

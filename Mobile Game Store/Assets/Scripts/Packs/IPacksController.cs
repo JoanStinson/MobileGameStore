@@ -1,5 +1,4 @@
-﻿using JGM.GameStore.Packs.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace JGM.GameStore.Packs
 {

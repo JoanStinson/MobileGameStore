@@ -1,8 +1,5 @@
-﻿using JGM.GameStore.Transaction.User;
-using JGM.GameStore.Utils;
+﻿using JGM.GameStore.Utils;
 using System;
-using Zenject;
-using static JGM.GameStore.Transaction.User.UserWallet;
 
 namespace JGM.GameStore.Packs.Data
 {
@@ -24,83 +21,50 @@ namespace JGM.GameStore.Packs.Data
         public string IconName { get; private set; }
         public string PrefabName { get; private set; }
 
-        [Inject]
-        private IUserWallet _userWallet;
-
         private Type _itemType = Type.Coins;
 
-        //public void ApplyTransaction()
-        //{
-        //    switch (ItemType)
-        //    {
-        //        case Type.Coins:
-        //            {
-        //                Transaction.Transaction trans = _userWallet.CreateTransaction(Currency.Coins, Amount);
-        //                trans.StartTransaction();
-        //            }
-        //            break;
-
-        //        case Type.Gems:
-        //            {
-        //                Transaction.Transaction trans = _userWallet.CreateTransaction(Currency.Gems, Amount);
-        //                trans.StartTransaction();
-        //            }
-        //            break;
-
-        //        case Type.Character:
-        //            {
-        //                // Nothing to do actually
-        //            }
-        //            break;
-        //    }
-        //}
-
-        public static PackItemData CreateFromJson(JSONNode data)
+        public void PopulateDataFromJson(JSONNode json)
         {
-            var newStoreItemData = new PackItemData();
-
-            if (data.HasKey("type"))
+            if (json.HasKey("type"))
             {
-                DataParser.EnumTryParse(data["type"], true, out newStoreItemData._itemType);
+                DataParser.EnumTryParse(json["type"], true, out _itemType);
             }
 
-            if (newStoreItemData.IsCharacter)
+            if (IsCharacter)
             {
-                if (data.HasKey("itemId"))
+                if (json.HasKey("itemId"))
                 {
-                    newStoreItemData.ItemId = data["itemId"];
+                    ItemId = json["itemId"];
                 }
-                newStoreItemData.Amount = 1;
+
+                Amount = 1;
             }
             else
             {
-                if (data.HasKey("amount"))
+                if (json.HasKey("amount"))
                 {
-                    newStoreItemData.Amount = data["amount"].AsInt;
+                    Amount = json["amount"].AsInt;
                 }
-                newStoreItemData.ItemId = string.Empty;
+
+                ItemId = string.Empty;
             }
 
-            if (data.HasKey("tidName"))
+            if (json.HasKey("tidName"))
             {
-                newStoreItemData.TextId = data["tidName"];
+                TextId = json["tidName"];
             }
 
-            if (data.HasKey("icon"))
+            if (json.HasKey("icon"))
             {
-                newStoreItemData.IconName = data["icon"];
+                IconName = json["icon"];
             }
 
-            if (data.HasKey("prefab"))
+            if (json.HasKey("prefab"))
             {
-                newStoreItemData.PrefabName = data["prefab"];
+                PrefabName = json["prefab"];
             }
-
-            return newStoreItemData;
         }
 
         public override string ToString() => $"{{ {ItemType} | {Amount} | {ItemId} }}";
-
-        private PackItemData() { }
     }
 }

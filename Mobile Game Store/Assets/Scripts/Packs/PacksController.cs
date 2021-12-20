@@ -3,10 +3,11 @@ using JGM.GameStore.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Zenject;
 
 namespace JGM.GameStore.Packs
 {
-    public class PacksController : IPacksController
+    public class PacksController : MonoBehaviour, IPacksController
     {
         public class ShopPackEvent : UnityEvent<Pack> { }
         public ShopPackEvent OnPackActivated = new ShopPackEvent();
@@ -16,20 +17,19 @@ namespace JGM.GameStore.Packs
         private const int _numberOfActiveOfferPacks = 3;
         private const int _offersHistoryMaxSize = _numberOfActiveOfferPacks + 1;
 
+        [Inject]
+        private Pack.Factory _packFactory;
         private List<Pack> _activeOfferPacks;
         private List<PackData> _offerPacksDatabase;
         private Queue<string> _offerPacksHistory;
 
-        public PacksController()
+        public void Initialize()
         {
             ActivePacks = new List<Pack>();
             _activeOfferPacks = new List<Pack>();
             _offerPacksDatabase = new List<PackData>();
             _offerPacksHistory = new Queue<string>();
-        }
 
-        public void Initialize()
-        {
             var storeText = Resources.Load<TextAsset>("Data/shop_manager");
             var storeJson = JSONNode.Parse(storeText.text);
 
@@ -42,7 +42,8 @@ namespace JGM.GameStore.Packs
                 var packsData = storeJson["packs"].AsArray;
                 for (int i = 0; i < packsData.Count; ++i)
                 {
-                    var storePackData = PackData.CreateFromJson(packsData[i]);
+                    var storePackData = new PackData();
+                    storePackData.PopulateDataFromJson(packsData[i]);
                     if (storePackData.PackType != PackData.Type.Offer)
                     {
                         CreateAndActivatePack(storePackData);
@@ -106,7 +107,8 @@ namespace JGM.GameStore.Packs
 
         private void CreateAndActivatePack(PackData storePackData)
         {
-            var storePack = Pack.CreateFromData(storePackData);
+            var storePack = _packFactory.Create();
+            storePack.SetData(storePackData);
             ActivePacks.Add(storePack);
 
             if (storePack.Data.PackType == PackData.Type.Offer)

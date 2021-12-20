@@ -2,35 +2,36 @@
 using JGM.GameStore.Transaction.User;
 using UnityEngine;
 using UnityEngine.Events;
-using static JGM.GameStore.Transaction.User.UserWallet;
+using Zenject;
+using static JGM.GameStore.Transaction.User.UserProfileService;
 
 namespace JGM.GameStore.Transaction
 {
     public partial class Transaction
     {
+        public class Factory : PlaceholderFactory<Transaction> { }
+
         public class TransactionFinishedEvent : UnityEvent<Transaction, bool> { }
         public TransactionFinishedEvent OnFinished = new TransactionFinishedEvent();
-        public Currency TransactionCurrency { get; private set; } = Currency.Coins;
-        public float Amount { get; private set; }
-        public object Data { get; private set; }
-        public ICoroutineService CoroutineService { get; private set; }
-        public IUserWallet UserWallet { get; private set; }
         public State TransactionState { get; private set; } = State.Init;
         public Error TransactionError { get; private set; } = Error.None;
+
+        public Currency TransactionCurrency { get; private set; }
+        public float Amount { get; private set; }
+        public object Data { get; private set; }
 
         private const float _iapFailChancePercentage = 0.25f;
         private const float _iapMinDurationInSeconds = 0.5f;
         private const float _iapMaxDurationInSeconds = 5f;
 
-        public static Transaction Create(Currency currency, float amount, object data, ICoroutineService coroutineService, IUserWallet userWallet)
+        [Inject] private ICoroutineService _coroutineService;
+        [Inject] private IUserProfileService _userWallet;
+
+        public void SetData(Currency currency, float amount, object data)
         {
-            var newTransaction = new Transaction();
-            newTransaction.TransactionCurrency = currency;
-            newTransaction.Amount = amount;
-            newTransaction.Data = data;
-            newTransaction.CoroutineService = coroutineService;
-            newTransaction.UserWallet = userWallet;
-            return newTransaction;
+            TransactionCurrency = currency;
+            Amount = amount;
+            Data = data;
         }
 
         public void StartTransaction()
@@ -57,13 +58,13 @@ namespace JGM.GameStore.Transaction
                             FinishTransaction(success);
                         };
                         float randomDelay = Random.Range(_iapMinDurationInSeconds, _iapMaxDurationInSeconds);
-                        CoroutineService.DelayedCall(finishTransaction, randomDelay);
+                        _coroutineService.DelayedCall(finishTransaction, randomDelay);
                     }
                     break;
 
                 default:
                     {
-                        float newBalance = UserWallet.GetCurrency(TransactionCurrency) + Amount;
+                        float newBalance = _userWallet.GetCurrency(TransactionCurrency) + Amount;
                         bool enoughCurrency = (newBalance > 0);
                         if (enoughCurrency)
                         {
@@ -97,15 +98,10 @@ namespace JGM.GameStore.Transaction
 
             if (success)
             {
-                UserWallet.ApplyTransaction(this);
+                _userWallet.ApplyTransaction(this);
             }
 
             OnFinished?.Invoke(this, success);
-        }
-
-        private Transaction()
-        {
-
         }
     }
 }

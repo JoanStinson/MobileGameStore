@@ -1,6 +1,6 @@
 ﻿namespace JGM.GameStore.HUD
 {
-    public interface ICurrencyHUD
+    public interface IHUDElement
     {
     }
 }

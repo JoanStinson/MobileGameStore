@@ -1,6 +1,6 @@
 ﻿namespace JGM.GameStore.Transaction.User
 {
-    public partial class UserWallet
+    public partial class UserProfileService
     {
         public enum Currency
         {
