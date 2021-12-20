@@ -1,5 +1,5 @@
 ﻿{
-	"packs" :  [
+	"packs": [
 		{
 			"id": "shop_pack_offer_1",
 			"type": "offer",
@@ -217,12 +217,6 @@
 				}
 			]
 		},
-
-
-
-
-
-
 		{
 			"id": "shop_pack_gems_1",
 			"type": "gems",
@@ -280,13 +274,6 @@
 				}
 			]
 		},
-
-
-
-
-
-
-
 		{
 			"id": "shop_pack_coins_1",
 			"type": "coins",

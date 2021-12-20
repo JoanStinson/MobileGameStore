@@ -1,5 +1,4 @@
-﻿using JGM.GameStore.Coroutines;
-using JGM.GameStore.Events.Data;
+﻿using JGM.GameStore.Events.Data;
 using JGM.GameStore.Events.Services;
 using JGM.GameStore.Packs.Data;
 using JGM.GameStore.Transaction.User;

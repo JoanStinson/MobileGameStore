@@ -62,7 +62,28 @@ namespace JGM.GameStore.Transaction
                     }
                     break;
 
-                default:
+                case Currency.Gems:
+                    {
+                        System.Action finishTransaction = () =>
+                        {
+                            float newBalance = _userWallet.GetCurrency(TransactionCurrency) + Amount;
+                            bool enoughCurrency = (newBalance > 0);
+                            if (enoughCurrency)
+                            {
+                                FinishTransaction(true);
+                            }
+                            else
+                            {
+                                TransactionError = Error.NotEnoughCurrency;
+                                FinishTransaction(false);
+                            }
+                        };
+                        float randomDelay = Random.Range(_iapMinDurationInSeconds, _iapMaxDurationInSeconds);
+                        _coroutineService.DelayedCall(finishTransaction, randomDelay);
+                    }
+                    break;
+
+                case Currency.Coins:
                     {
                         float newBalance = _userWallet.GetCurrency(TransactionCurrency) + Amount;
                         bool enoughCurrency = (newBalance > 0);

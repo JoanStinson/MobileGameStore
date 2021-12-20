@@ -1,5 +1,4 @@
-﻿using JGM.GameStore.Coroutines;
-using JGM.GameStore.Events.Data;
+﻿using JGM.GameStore.Events.Data;
 using JGM.GameStore.Events.Services;
 using JGM.GameStore.Packs;
 using JGM.GameStore.Packs.Data;
@@ -15,7 +14,6 @@ namespace JGM.GameStore.Panels
 
         [Inject] private IEventTriggerService _eventTriggerService;
         [Inject] private IUserProfileService _userWallet;
-        [Inject] private ICoroutineService _coroutineService;
 
         private Transaction.Transaction _transaction = null;
         private IGameEventData _gameEventData;
@@ -31,32 +29,37 @@ namespace JGM.GameStore.Panels
 
         private void OnTransactionFinished(Transaction.Transaction transaction, bool success)
         {
-            if (_transaction == transaction)
+            if (_transaction != transaction)
+            {
+                return;
+            }
+
+            if (success)
             {
                 var pack = transaction.Data as Pack;
+                pack.ApplyTransaction();
 
-                if (success)
+                if (pack.Data.PackType == PackData.Type.Offer)
                 {
-                    pack.ApplyTransaction();
-
-                    if (pack.Data.PackType == PackData.Type.Offer)
-                    {
-                        _eventTriggerService.Trigger("Purchase Display Offer Rewards", _gameEventData);
-                    }
-                    else
-                    {
-                        //TODO THIS
-                        _eventTriggerService.Trigger("Purchase Display Currency Rewards", _gameEventData);
-                    }
+                    _eventTriggerService.Trigger("Purchase Display Offer Rewards", _gameEventData);
                 }
                 else
                 {
-                    _eventTriggerService.Trigger("Purchase Error");
+                    if (pack.Data.PackType == PackData.Type.Coins)
+                    {
+                        var eventData = new RefreshCurrencyAmountEventData(transaction.Amount);
+                        _eventTriggerService.Trigger("Refresh Gems Amount", eventData);
+                    }
+                    _eventTriggerService.Trigger("Purchase Display Currency Rewards", _gameEventData);
                 }
-
-                _loadingWindow.gameObject.SetActive(false);
-                _transaction = null;
             }
+            else
+            {
+                _eventTriggerService.Trigger("Purchase Error");
+            }
+
+            _loadingWindow.gameObject.SetActive(false);
+            _transaction = null;
         }
     }
 }
