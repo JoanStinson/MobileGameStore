@@ -34,8 +34,8 @@ namespace JGM.GameStore.Packs.Displayers
             _remainingTimeSpan = pack.RemainingTime;
             RefreshRemainingTime();
             _discountText.text = $"{pack.Data.Discount * 100}%";
-            _priceBeforeDiscountText.text = pack.Data.PriceBeforeDiscount.ToString();
-            _priceText.text = pack.Data.Price.ToString();
+            _priceBeforeDiscountText.text = $"{pack.Data.PriceBeforeDiscount}$";
+            _priceText.text = $"{pack.Data.Price}$";
             SetPackItems(pack, assetsLibrary);
             _titleText.RefreshText(pack.Data.TextId);
         }
@@ -72,7 +72,7 @@ namespace JGM.GameStore.Packs.Displayers
                     }
                     else
                     {
-                        packItemDisplayer.AmountText.RefreshText(item.TextId, $"{item.Amount} ");
+                        packItemDisplayer.AmountText.RefreshText(item.TextId, $"{string.Format("{0:n0}", item.Amount)} ");
                     }
                 }
             }

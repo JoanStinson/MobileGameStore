@@ -31,7 +31,7 @@ namespace JGM.GameStore.Panels.Helpers
                 spawnedPreview.transform.SetParent(previewsParent, false);
                 spawnedPreview.transform.localPosition += Vector3.right * i * _spacingBetweenObjects;
 
-                var renderTexture = new RenderTexture(256, 256, 0);
+                var renderTexture = new RenderTexture(512, 512, 0);
                 var spawnedCamera = GameObject.Instantiate(cameraPrefab);
                 spawnedCamera.transform.SetParent(spawnedPreview.transform, false);
                 spawnedCamera.GetComponent<Camera>().targetTexture = renderTexture;

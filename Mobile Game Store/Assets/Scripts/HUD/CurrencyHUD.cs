@@ -12,14 +12,14 @@ namespace JGM.GameStore.HUD
 
         private void Awake()
         {
-            _amountText.text = _amount.ToString();
+            _amountText.text = string.Format("{0:n0}", _amount);
         }
 
         public void RefreshCurrencyAmount(IGameEventData gameEventData)
         {
             var data = gameEventData as RefreshCurrencyAmountEventData;
             _amount += data.Amount;
-            _amountText.text = _amount.ToString();
+            _amountText.text = string.Format("{0:n0}", _amount);
         }
     }
 }

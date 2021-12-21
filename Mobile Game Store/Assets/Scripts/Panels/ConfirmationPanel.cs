@@ -22,6 +22,8 @@ namespace JGM.GameStore.Panels
         [Inject] private IEventTriggerService _eventTriggerService;
         [Inject] private PackItemDisplayer.Factory _packItemDisplayerFactory;
 
+        private const float _packItemsScale = 1.2f;
+
         private IGameEventData _gameEventData;
         private bool _shouldPlayParticles;
 
@@ -37,11 +39,12 @@ namespace JGM.GameStore.Panels
 
             _gameEventData = gameEventData;
             var data = (gameEventData as PurchasePackEventData).StorePack.Data;
-            _priceText.text = data.Price.ToString();
+            _priceText.text = (data.PackCurrency == Transaction.UserProfileService.Currency.Gems) ? $"{data.Price}" : $"{data.Price}$";
 
             for (int i = 0; i < data.Items.Length; ++i)
             {
                 var spawnedPackItem = _packItemDisplayerFactory.Create();
+                spawnedPackItem.transform.localScale = Vector3.one * _packItemsScale;
                 spawnedPackItem.transform.SetParent(_packItemsParentTransform, false);
                 if (spawnedPackItem.TryGetComponent<PackItemDisplayer>(out var packItemDisplayer))
                 {
@@ -52,7 +55,7 @@ namespace JGM.GameStore.Panels
                     }
                     else
                     {
-                        packItemDisplayer.AmountText.RefreshText(data.Items[i].TextId, $"{data.Items[i].Amount} ");
+                        packItemDisplayer.AmountText.RefreshText(data.Items[i].TextId, $"{string.Format("{0:n0}", data.Items[i].Amount)} ");
                     }
                 }
             }

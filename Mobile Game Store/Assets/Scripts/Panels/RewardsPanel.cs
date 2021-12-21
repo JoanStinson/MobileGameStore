@@ -68,7 +68,7 @@ namespace JGM.GameStore.Panels
             }
             else
             {
-                _amountText.RefreshText(item.TextId, $"{item.Amount} ");
+                _amountText.RefreshText(item.TextId, $"{string.Format("{0:n0}", item.Amount)} ");
             }
 
             _rewardImage.texture = _packItem3DVisualizer.GetRenderTexture(item.PrefabName);

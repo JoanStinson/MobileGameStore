@@ -30,7 +30,7 @@ namespace JGM.GameStore.Packs.Displayers
             _priceBeforeDiscountText.text = pack.Data.PriceBeforeDiscount.ToString();
             _priceText.text = pack.Data.Price.ToString();
             _iconImage.sprite = assetsLibrary.GetSprite(pack.Data.Items[0].IconName);
-            _amountText.RefreshText(pack.Data.Items[0].TextId, $"{pack.Data.Items[0].Amount} ");
+            _amountText.RefreshText(pack.Data.Items[0].TextId, $"{string.Format("{0:n0}", pack.Data.Items[0].Amount)} ");
 
             if (pack.Data.Discount > 0)
             {
