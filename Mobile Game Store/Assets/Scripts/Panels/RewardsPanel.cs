@@ -16,6 +16,7 @@ namespace JGM.GameStore.Panels
         [SerializeField] private Transform _panelWindow;
         [SerializeField] private RawImage _rewardImage;
         [SerializeField] private LocalizedText _amountText;
+        [SerializeField] private CurvedText _curvedText;
         [SerializeField] private Camera _prefabCamera;
 
         [Inject] private PackItem3DVisualizer.Factory _packItem3DVisualizerFactory;
@@ -58,6 +59,7 @@ namespace JGM.GameStore.Panels
             }
 
             _panelWindow.gameObject.SetActive(true);
+            _curvedText.enabled = false;
             await Task.Yield();
 
             var item = _rewards.Peek();
@@ -71,6 +73,7 @@ namespace JGM.GameStore.Panels
                 _amountText.RefreshText(item.TextId, $"{string.Format("{0:n0}", item.Amount)} ");
             }
 
+            _curvedText.enabled = true;
             _rewardImage.texture = _packItem3DVisualizer.GetRenderTexture(item.PrefabName);
             _previousPrefabName = item.PrefabName;
 

@@ -313,6 +313,7 @@ MonoBehaviour:
   _panelWindow: {fileID: 817911544}
   _rewardImage: {fileID: 1058379712}
   _amountText: {fileID: 187491843}
+  _curvedText: {fileID: 187491844}
   _prefabCamera: {fileID: 5088512061291723494, guid: c0a824384a4039e43b6219f3238699dd, type: 3}
 --- !u!1 &23602510
 GameObject:
@@ -771,6 +772,7 @@ GameObject:
   - component: {fileID: 187491842}
   - component: {fileID: 187491841}
   - component: {fileID: 187491843}
+  - component: {fileID: 187491844}
   m_Layer: 5
   m_Name: AmountText
   m_TagString: Untagged
@@ -852,7 +854,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -860,7 +862,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -872,8 +874,8 @@ MonoBehaviour:
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
+  m_horizontalMapping: 1
+  m_verticalMapping: 1
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_IsTextObjectScaleStatic: 0
@@ -907,6 +909,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _localizedKey: INSERT_KEY_HERE
+--- !u!114 &187491844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187491839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ad598f3db8d45429873eb25a64b3f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VertexCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 10.12177
+      outSlope: 10.12177
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -10.837328
+      outSlope: -10.837328
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AngleMultiplier: 1
+  SpeedMultiplier: 1
+  CurveScale: 4
 --- !u!1 &197915880
 GameObject:
   m_ObjectHideFlags: 0
@@ -6943,7 +6993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &817911544
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8443,7 +8493,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1868520339}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8569,7 +8619,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 197915881}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.53768355
+  m_Size: 0.49921256
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
