@@ -1,3 +1,4 @@
+using JGM.GameStore.Loaders;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -11,8 +12,9 @@ namespace JGM.GameStore.Localization
         [SerializeField]
         private string _localizedKey = "INSERT_KEY_HERE";
 
-        [Inject]
-        private ILocalizationService _localizationService;
+        [Inject] private ILocalizationService _localizationService;
+        [Inject] private IAssetsLibrary _assetsLibrary;
+
         private TextMeshProUGUI _text;
         private string _stringBeforeKey = string.Empty;
 
@@ -20,11 +22,20 @@ namespace JGM.GameStore.Localization
         {
             _text = GetComponent<TextMeshProUGUI>();
             _localizationService.OnLanguageChanged.AddListener(OnLanguageChanged);
+            string newLanguageFontName = _localizationService.GetFontNameForLanguage(_localizationService.CurrentLanguage);
+            _text.font = _assetsLibrary.GetFontAsset(newLanguageFontName);
             RefreshText();
         }
 
-        private void OnLanguageChanged(Language languageKey, Language languageValue)
+        private void OnLanguageChanged(Language previousLanguage, Language newLanguage)
         {
+            if (newLanguage == previousLanguage)
+            {
+                return;
+            }
+
+            string newLanguageFontName = _localizationService.GetFontNameForLanguage(newLanguage);
+            _text.font = _assetsLibrary.GetFontAsset(newLanguageFontName);
             RefreshText();
         }
 
@@ -35,8 +46,7 @@ namespace JGM.GameStore.Localization
 
         public void RefreshText(in string localizedKey)
         {
-            _localizedKey = localizedKey;
-            RefreshText();
+            RefreshText(localizedKey, string.Empty);
         }
 
         public void RefreshText(in string localizedKey, in string stringBeforeKey)

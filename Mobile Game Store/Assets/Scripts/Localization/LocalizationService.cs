@@ -14,13 +14,14 @@ namespace JGM.GameStore.Localization
 
         private const Language _defaultLanguage = Language.English;
         private const string _dataFolder = "Localization/";
+        private const string _configFilePath = "Data/localization_data";
 
         private LanguageData _currentLanguageData => _languages[CurrentLanguage];
         private Dictionary<Language, LanguageData> _languages = null;
 
         public LocalizationService()
         {
-            var localizationText = Resources.Load<TextAsset>("Data/localization_manager");
+            var localizationText = Resources.Load<TextAsset>(_configFilePath);
             var localizationJson = JSONNode.Parse(localizationText.text);
 
             _languages = new Dictionary<Language, LanguageData>();
@@ -60,6 +61,16 @@ namespace JGM.GameStore.Localization
             }
 
             return textId;
+        }
+
+        public string GetFontNameForLanguage(Language language)
+        {
+            if (!_languages.ContainsKey(language))
+            {
+                return null;
+            }
+
+            return _languages[language].FontName;
         }
 
         private void ParseLanguageData(ref LanguageData languageData, JSONNode jsonData)

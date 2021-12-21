@@ -14,6 +14,7 @@ namespace JGM.GameStore.Packs
         public ShopPackEvent OnPackRemoved = new ShopPackEvent();
         public List<Pack> ActivePacks { get; private set; }
 
+        private const string _configFilePath = "Data/store_data";
         private const int _numberOfActiveOfferPacks = 3;
         private const int _offersHistoryMaxSize = _numberOfActiveOfferPacks + 1;
 
@@ -30,7 +31,7 @@ namespace JGM.GameStore.Packs
             _offerPacksDatabase = new List<PackData>();
             _offerPacksHistory = new Queue<string>();
 
-            var storeText = Resources.Load<TextAsset>("Data/shop_manager");
+            var storeText = Resources.Load<TextAsset>(_configFilePath);
             var storeJson = JSONNode.Parse(storeText.text);
 
             _offerPacksDatabase.Clear();

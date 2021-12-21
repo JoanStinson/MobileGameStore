@@ -29,5 +29,10 @@ namespace JGM.GameStore.Loaders
                 return null;
             }
         }
+
+        public ref readonly Dictionary<string, T> GetAllAssets()
+        {
+            return ref _assetsLibrary;
+        }
     }
 }
