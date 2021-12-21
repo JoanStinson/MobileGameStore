@@ -19,6 +19,7 @@ namespace JGM.GameStore.Panels
         [SerializeField] private LocalizedText _amountText;
         [SerializeField] private CurvedText _curvedText;
         [SerializeField] private Camera _prefabCamera;
+        [SerializeField] private AudioSource _audioSource;
 
         [Inject] private PackItem3DVisualizer.Factory _packItem3DVisualizerFactory;
         [Inject] private IEventTriggerService _eventTriggerService;
@@ -59,6 +60,7 @@ namespace JGM.GameStore.Panels
                 return;
             }
 
+            _audioSource.Play();
             _panelWindow.gameObject.SetActive(true);
             _curvedText.enabled = false;
             await Task.Yield();
