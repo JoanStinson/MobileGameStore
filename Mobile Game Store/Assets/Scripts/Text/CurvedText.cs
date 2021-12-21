@@ -2,7 +2,7 @@
 using System.Collections;
 using TMPro;
 
-namespace JGM.GameStore.Panels.Helpers
+namespace JGM.GameStore.Text
 {
     [RequireComponent(typeof(TMP_Text))]
     public class CurvedText : MonoBehaviour

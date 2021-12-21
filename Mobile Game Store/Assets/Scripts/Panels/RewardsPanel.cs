@@ -3,6 +3,7 @@ using JGM.GameStore.Events.Services;
 using JGM.GameStore.Localization;
 using JGM.GameStore.Packs.Data;
 using JGM.GameStore.Panels.Helpers;
+using JGM.GameStore.Text;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;

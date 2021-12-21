@@ -499,6 +499,7 @@ GameObject:
   - component: {fileID: 6899449640541148669}
   - component: {fileID: 6899449640541148667}
   - component: {fileID: 6899449640541148668}
+  - component: {fileID: 6602812080623391486}
   m_Layer: 5
   m_Name: DiscountText
   m_TagString: Untagged
@@ -622,6 +623,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6602812080623391486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899449640541148670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29691913e9f10cc4ca71b525b6b26336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AngleMultiplier: 1
+  SpeedMultiplier: 1
+  CurveScale: 2
 --- !u!1 &6899449640608309751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,6 +1057,7 @@ GameObject:
   - component: {fileID: 6899449641897322281}
   - component: {fileID: 6899449641897322282}
   - component: {fileID: 8463648156484019936}
+  - component: {fileID: 5200357832857546754}
   m_Layer: 5
   m_Name: TitleText
   m_TagString: Untagged
@@ -1177,3 +1194,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _localizedKey: INSERT_KEY_HERE
+--- !u!95 &5200357832857546754
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899449641897322284}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0644d546c8ba0a446a54ce7d4c4fe257, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
