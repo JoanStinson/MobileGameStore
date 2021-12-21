@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace JGM.GameStore.Utils
 {
-    public class FontAssetCreator : MonoBehaviour
+    public class FontAssetCreator
     {
         public void CreateFromFont(in Font font, out TMP_FontAsset fontAsset)
         {

@@ -1,4 +1,5 @@
-﻿using JGM.GameStore.Packs.Data;
+﻿using JGM.GameStore.Loaders;
+using JGM.GameStore.Packs.Data;
 using JGM.GameStore.Utils;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,12 +15,13 @@ namespace JGM.GameStore.Packs
         public ShopPackEvent OnPackRemoved = new ShopPackEvent();
         public List<Pack> ActivePacks { get; private set; }
 
-        private const string _configFilePath = "Data/store_data";
+        private const string _storeDataFileName = "store_data";
         private const int _numberOfActiveOfferPacks = 3;
         private const int _offersHistoryMaxSize = _numberOfActiveOfferPacks + 1;
 
-        [Inject]
-        private Pack.Factory _packFactory;
+        [Inject] private IAssetsLibrary _assetsLibrary;
+        [Inject] private Pack.Factory _packFactory;
+
         private List<Pack> _activeOfferPacks;
         private List<PackData> _offerPacksDatabase;
         private Queue<string> _offerPacksHistory;
@@ -31,7 +33,7 @@ namespace JGM.GameStore.Packs
             _offerPacksDatabase = new List<PackData>();
             _offerPacksHistory = new Queue<string>();
 
-            var storeText = Resources.Load<TextAsset>(_configFilePath);
+            var storeText = _assetsLibrary.GetText(_storeDataFileName);
             var storeJson = JSONNode.Parse(storeText.text);
 
             _offerPacksDatabase.Clear();

@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using JGM.GameStore.Loaders;
+using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace JGM.GameStore.Panels.Helpers
 {
     public class PackItem3DVisualizer : IPackItem3DVisualizer
     {
-        private const string _previews3DPath = "UI/ShopItems/Previews3D";
+        public class Factory : PlaceholderFactory<PackItem3DVisualizer> { }
+
         private const float _spacingBetweenObjects = 100f;
 
+        [Inject]
+        private IAssetsLibrary _assetsLibrary;
         private Dictionary<string, GameObject> _renderObjects;
 
         public PackItem3DVisualizer()
@@ -18,7 +23,7 @@ namespace JGM.GameStore.Panels.Helpers
         public void Initialize(Camera cameraPrefab)
         {
             var previewsParent = new GameObject("3DPreviews").transform;
-            var previewPrefabs = Resources.LoadAll<GameObject>(_previews3DPath);
+            var previewPrefabs = _assetsLibrary.Get3DPreviews();
 
             for (int i = 0; i < previewPrefabs.Length; ++i)
             {

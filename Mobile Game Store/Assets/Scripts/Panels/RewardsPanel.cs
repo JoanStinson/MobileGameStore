@@ -18,16 +18,17 @@ namespace JGM.GameStore.Panels
         [SerializeField] private Transform _rewardsPopupTransform;
         [SerializeField] private Camera _prefabCamera;
 
-        [Inject]
-        private IEventTriggerService _eventTriggerService;
-        private IPackItem3DVisualizer _packItem3DVisualizer;
+        [Inject] private PackItem3DVisualizer.Factory _packItem3DVisualizerFactory;
+        [Inject] private IEventTriggerService _eventTriggerService;
+
+        private PackItem3DVisualizer _packItem3DVisualizer;
         private Queue<PackItemData> _rewards;
         private string _previousPrefabName = null;
 
         private void Awake()
         {
             _rewards = new Queue<PackItemData>();
-            _packItem3DVisualizer = new PackItem3DVisualizer();
+            _packItem3DVisualizer = _packItem3DVisualizerFactory.Create();
             _packItem3DVisualizer.Initialize(_prefabCamera);
         }
 
