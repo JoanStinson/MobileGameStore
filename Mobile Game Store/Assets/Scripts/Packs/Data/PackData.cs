@@ -1,6 +1,6 @@
 ﻿using JGM.GameStore.Utils;
 using System;
-using static JGM.GameStore.Transaction.User.UserProfileService;
+using static JGM.GameStore.Transaction.UserProfileService;
 
 namespace JGM.GameStore.Packs.Data
 {

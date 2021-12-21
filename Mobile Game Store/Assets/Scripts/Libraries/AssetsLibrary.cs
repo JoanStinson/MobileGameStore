@@ -1,10 +1,11 @@
+using JGM.GameStore.Loaders;
 using JGM.GameStore.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 
-namespace JGM.GameStore.Loaders
+namespace JGM.GameStore.Libraries
 {
     public class AssetsLibrary : IAssetsLibrary
     {

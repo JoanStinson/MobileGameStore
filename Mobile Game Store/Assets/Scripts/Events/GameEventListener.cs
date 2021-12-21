@@ -1,21 +1,17 @@
-﻿using JGM.GameStore.Events.Custom;
-using JGM.GameStore.Events.Data;
+﻿using JGM.GameStore.Events.Data;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace JGM.GameStore.Events
 {
-    [Serializable]
     public class GameEventListener : MonoBehaviour
     {
+        [Serializable]
+        public class UnityCustomGameDataEvent : UnityEvent<IGameEventData> { }
+
         [SerializeField] private GameEvent _gameEvent;
         [SerializeField] private UnityCustomGameDataEvent _onTriggerEvent;
-
-        public GameEventListener(GameEvent unityGameEvent, UnityCustomGameDataEvent unityCustomGameDataEvent)
-        {
-            _gameEvent = unityGameEvent;
-            _onTriggerEvent = unityCustomGameDataEvent;
-        }
 
         public void Awake() => _gameEvent?.Register(this);
 

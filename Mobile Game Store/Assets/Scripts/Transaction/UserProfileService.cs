@@ -2,11 +2,20 @@
 using UnityEngine.Events;
 using Zenject;
 
-namespace JGM.GameStore.Transaction.User
+namespace JGM.GameStore.Transaction
 {
     public sealed partial class UserProfileService : MonoBehaviour, IUserProfileService
     {
+        public enum Currency
+        {
+            Coins,
+            Gems,
+            Dollars,
+            Count
+        }
+
         public class CurrencyEvent : UnityEvent<Currency, float> { }
+
         [HideInInspector]
         public CurrencyEvent OnCurrencyChanged = new CurrencyEvent();
 

@@ -1,6 +1,6 @@
 using JGM.GameStore.Events.Data;
 using JGM.GameStore.Events.Services;
-using JGM.GameStore.Loaders;
+using JGM.GameStore.Libraries;
 using JGM.GameStore.Packs.Displayers;
 using System.Collections;
 using TMPro;
@@ -12,11 +12,10 @@ namespace JGM.GameStore.Panels
 {
     public class ConfirmationPanel : MonoBehaviour
     {
+        [SerializeField] private Transform _panelWindow;
         [SerializeField] private TextMeshProUGUI _priceText;
-        [SerializeField] private Transform _popup;
         [SerializeField] private Transform _packItemsParentTransform;
         [SerializeField] private Button _confirmPurchaseButton;
-        [SerializeField] private GameObject _packItemPrefab;
         [SerializeField] private ParticleSystem _particleSystem;
 
         [Inject] private IAssetsLibrary _assetsLibrary;
@@ -26,10 +25,17 @@ namespace JGM.GameStore.Panels
         private IGameEventData _gameEventData;
         private bool _shouldPlayParticles;
 
+        private void Awake()
+        {
+            _panelWindow.gameObject.SetActive(false);
+        }
+
         public void ShowConfirmationPopup(IGameEventData gameEventData)
         {
-            _gameEventData = gameEventData;
+            _panelWindow.gameObject.SetActive(true);
             _confirmPurchaseButton.interactable = true;
+
+            _gameEventData = gameEventData;
             var data = (gameEventData as PurchasePackEventData).StorePack.Data;
             _priceText.text = data.Price.ToString();
 
@@ -60,7 +66,7 @@ namespace JGM.GameStore.Panels
 
         public void ConfirmPurchase()
         {
-            _eventTriggerService.Trigger("Loading Purchase", _gameEventData);
+            _eventTriggerService.Trigger("Processing Purchase", _gameEventData);
             DestroyPackItems();
         }
 
@@ -85,8 +91,8 @@ namespace JGM.GameStore.Panels
             yield return new WaitForSeconds(_particleSystem.main.duration);
             _shouldPlayParticles = false;
             _particleSystem.Stop();
-            _eventTriggerService.Trigger("Purchase Success Currency");
-            _popup.gameObject.SetActive(false);
+            _eventTriggerService.Trigger("Currency Pack Purchase Success");
+            _panelWindow.gameObject.SetActive(false);
             DestroyPackItems();
         }
 

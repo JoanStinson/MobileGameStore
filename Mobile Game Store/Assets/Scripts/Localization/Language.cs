@@ -1,6 +1,6 @@
 ﻿namespace JGM.GameStore.Localization
 {
-    public partial class LocalizationService
+    public sealed partial class LocalizationService
     {
         public enum Language
         {

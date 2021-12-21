@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace JGM.GameStore.Loaders
+namespace JGM.GameStore.Libraries
 {
     public interface IAssetsLibrary
     {

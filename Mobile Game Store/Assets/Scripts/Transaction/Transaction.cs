@@ -1,15 +1,30 @@
 ﻿using JGM.GameStore.Coroutines;
-using JGM.GameStore.Transaction.User;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
-using static JGM.GameStore.Transaction.User.UserProfileService;
+using static JGM.GameStore.Transaction.UserProfileService;
 
 namespace JGM.GameStore.Transaction
 {
     public partial class Transaction
     {
         public class Factory : PlaceholderFactory<Transaction> { }
+
+        public enum State
+        {
+            Init,
+            InProgress,
+            FinishedSuccess,
+            FinishedFailed
+        }
+
+        public enum Error
+        {
+            None,
+            NotEnoughCurrency,
+            StoreFailed,
+            Unknown
+        }
 
         public class TransactionFinishedEvent : UnityEvent<Transaction, bool> { }
         public TransactionFinishedEvent OnFinished = new TransactionFinishedEvent();
@@ -25,7 +40,7 @@ namespace JGM.GameStore.Transaction
         private const float _iapMaxDurationInSeconds = 5f;
 
         [Inject] private ICoroutineService _coroutineService;
-        [Inject] private IUserProfileService _userWallet;
+        [Inject] private IUserProfileService _userProfileService;
 
         public void SetData(Currency currency, float amount, object data)
         {
@@ -66,7 +81,7 @@ namespace JGM.GameStore.Transaction
                     {
                         System.Action finishTransaction = () =>
                         {
-                            float newBalance = _userWallet.GetCurrency(TransactionCurrency) + Amount;
+                            float newBalance = _userProfileService.GetCurrency(TransactionCurrency) + Amount;
                             bool enoughCurrency = (newBalance > 0);
                             if (enoughCurrency)
                             {
@@ -85,7 +100,7 @@ namespace JGM.GameStore.Transaction
 
                 case Currency.Coins:
                     {
-                        float newBalance = _userWallet.GetCurrency(TransactionCurrency) + Amount;
+                        float newBalance = _userProfileService.GetCurrency(TransactionCurrency) + Amount;
                         bool enoughCurrency = (newBalance > 0);
                         if (enoughCurrency)
                         {
@@ -119,7 +134,7 @@ namespace JGM.GameStore.Transaction
 
             if (success)
             {
-                _userWallet.ApplyTransaction(this);
+                _userProfileService.ApplyTransaction(this);
             }
 
             OnFinished?.Invoke(this, success);

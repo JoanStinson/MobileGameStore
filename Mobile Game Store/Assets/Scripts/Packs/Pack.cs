@@ -1,10 +1,10 @@
 ﻿using JGM.GameStore.Events.Data;
 using JGM.GameStore.Events.Services;
 using JGM.GameStore.Packs.Data;
-using JGM.GameStore.Transaction.User;
+using JGM.GameStore.Transaction;
 using System;
 using Zenject;
-using static JGM.GameStore.Transaction.User.UserProfileService;
+using static JGM.GameStore.Transaction.UserProfileService;
 
 namespace JGM.GameStore.Packs
 {
@@ -24,7 +24,7 @@ namespace JGM.GameStore.Packs
         public DateTime EndTimestamp { get; private set; } = DateTime.MaxValue;
         public TimeSpan RemainingTime => EndTimestamp - DateTime.UtcNow;
 
-        [Inject] private IUserProfileService _userWallet;
+        [Inject] private IUserProfileService _userProfileService;
         [Inject] private IEventTriggerService _eventTriggerService;
 
         public void SetData(PackData data)
@@ -65,16 +65,16 @@ namespace JGM.GameStore.Packs
                 {
                     case PackItemData.Type.Coins:
                         {
-                            var coinsTransaction = _userWallet.CreateTransaction(Currency.Coins, Data.Items[i].Amount);
-                            coinsTransaction.OnFinished.AddListener((transaction, success) => SendRefreshCurrencyEvent(transaction, success, "Refresh Coins Amount"));
+                            var coinsTransaction = _userProfileService.CreateTransaction(Currency.Coins, Data.Items[i].Amount);
+                            coinsTransaction.OnFinished.AddListener((transaction, success) => SendRefreshCurrencyEvent(transaction, success, "Refresh Coins HUD"));
                             coinsTransaction.StartTransaction();
                         }
                         break;
 
                     case PackItemData.Type.Gems:
                         {
-                            var gemsTransaction = _userWallet.CreateTransaction(Currency.Gems, Data.Items[i].Amount);
-                            gemsTransaction.OnFinished.AddListener((transaction, success) => SendRefreshCurrencyEvent(transaction, success, "Refresh Gems Amount"));
+                            var gemsTransaction = _userProfileService.CreateTransaction(Currency.Gems, Data.Items[i].Amount);
+                            gemsTransaction.OnFinished.AddListener((transaction, success) => SendRefreshCurrencyEvent(transaction, success, "Refresh Gems HUD"));
                             gemsTransaction.StartTransaction();
                         }
                         break;

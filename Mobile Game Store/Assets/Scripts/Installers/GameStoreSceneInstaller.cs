@@ -1,11 +1,11 @@
 using JGM.GameStore.Coroutines;
 using JGM.GameStore.Events.Services;
-using JGM.GameStore.Loaders;
+using JGM.GameStore.Libraries;
 using JGM.GameStore.Localization;
 using JGM.GameStore.Packs;
 using JGM.GameStore.Packs.Displayers;
 using JGM.GameStore.Panels.Helpers;
-using JGM.GameStore.Transaction.User;
+using JGM.GameStore.Transaction;
 using UnityEngine;
 using Zenject;
 
@@ -16,7 +16,7 @@ namespace JGM.GameStore.Installers
         [Header("Services Instances")]
         [SerializeField] private CoroutineService _coroutineServiceInstance;
         [SerializeField] private GameEventTriggerService _gameEventTriggerServiceInstance;
-        [SerializeField] private UserProfileService _userWalletInstance;
+        [SerializeField] private UserProfileService _userProfileServiceInstance;
 
         [Header("Prefabs")]
         [SerializeField] private OfferPackDisplayer _featuredOfferPackDisplayerPrefab;
@@ -29,13 +29,6 @@ namespace JGM.GameStore.Installers
         {
             BindInterfaces();
             BindFactories();
-#if UNITY_EDITOR
-            //editor instance
-#endif
-
-#if UNITY_ANDROID
-            //android
-#endif
         }
 
         private void BindInterfaces()
@@ -44,7 +37,7 @@ namespace JGM.GameStore.Installers
             Container.Bind<ICoroutineService>().FromInstance(_coroutineServiceInstance);
             Container.Bind<IEventTriggerService>().FromInstance(_gameEventTriggerServiceInstance);
             Container.Bind<ILocalizationService>().To<LocalizationService>().AsSingle();
-            Container.Bind<IUserProfileService>().FromInstance(_userWalletInstance);
+            Container.Bind<IUserProfileService>().FromInstance(_userProfileServiceInstance);
         }
 
         private void BindFactories()

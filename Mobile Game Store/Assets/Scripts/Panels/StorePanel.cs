@@ -1,4 +1,4 @@
-﻿using JGM.GameStore.Loaders;
+﻿using JGM.GameStore.Libraries;
 using JGM.GameStore.Packs;
 using JGM.GameStore.Packs.Data;
 using JGM.GameStore.Packs.Displayers;

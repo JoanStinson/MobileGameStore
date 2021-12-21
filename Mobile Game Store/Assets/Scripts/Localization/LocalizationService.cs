@@ -9,7 +9,6 @@ namespace JGM.GameStore.Localization
     {
         public class LanguageChangedEvent : UnityEvent<Language, Language> { }
         public LanguageChangedEvent OnLanguageChanged { get; set; } = new LanguageChangedEvent();
-
         public Language CurrentLanguage { get; private set; } = Language.Count;
 
         private const Language _defaultLanguage = Language.English;

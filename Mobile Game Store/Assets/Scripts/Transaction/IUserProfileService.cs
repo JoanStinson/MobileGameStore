@@ -1,7 +1,7 @@
 ﻿using JGM.GameStore.Coroutines;
-using static JGM.GameStore.Transaction.User.UserProfileService;
+using static JGM.GameStore.Transaction.UserProfileService;
 
-namespace JGM.GameStore.Transaction.User
+namespace JGM.GameStore.Transaction
 {
     public interface IUserProfileService
     {

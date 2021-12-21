@@ -7,12 +7,19 @@ namespace JGM.GameStore.Panels
 {
     public class ErrorPanel : MonoBehaviour
     {
-        [SerializeField] private Transform _transformWindow;
+        [SerializeField] 
+        private Transform _panelWindow;
+
+        private void Awake()
+        {
+            _panelWindow.gameObject.SetActive(false);
+        }
 
         public async void ShowErrorMessage(IGameEventData gameEventData)
         {
+            _panelWindow.gameObject.SetActive(true);
             await Task.Delay(TimeSpan.FromSeconds(2));
-            _transformWindow.gameObject.SetActive(false);
+            _panelWindow.gameObject.SetActive(false);
         }
     }
 }

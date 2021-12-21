@@ -13,9 +13,9 @@ namespace JGM.GameStore.Panels
 {
     public class RewardsPanel : MonoBehaviour
     {
+        [SerializeField] private Transform _panelWindow;
         [SerializeField] private RawImage _rewardImage;
         [SerializeField] private LocalizedText _amountText;
-        [SerializeField] private Transform _rewardsPopupTransform;
         [SerializeField] private Camera _prefabCamera;
 
         [Inject] private PackItem3DVisualizer.Factory _packItem3DVisualizerFactory;
@@ -27,6 +27,7 @@ namespace JGM.GameStore.Panels
 
         private void Awake()
         {
+            _panelWindow.gameObject.SetActive(false);
             _rewards = new Queue<PackItemData>();
             _packItem3DVisualizer = _packItem3DVisualizerFactory.Create();
             _packItem3DVisualizer.Initialize(_prefabCamera);
@@ -51,12 +52,12 @@ namespace JGM.GameStore.Panels
 
             if (_rewards.Count < 1)
             {
-                _eventTriggerService.Trigger("Purchase Success Rewards");
-                _rewardsPopupTransform.gameObject.SetActive(false);
+                _eventTriggerService.Trigger("Offer Pack Purchase Success");
+                _panelWindow.gameObject.SetActive(false);
                 return;
             }
 
-            _rewardsPopupTransform.gameObject.SetActive(true);
+            _panelWindow.gameObject.SetActive(true);
             await Task.Yield();
 
             var item = _rewards.Peek();
@@ -65,7 +66,7 @@ namespace JGM.GameStore.Panels
             {
                 _amountText.RefreshText(item.TextId, string.Empty);
             }
-            else 
+            else
             {
                 _amountText.RefreshText(item.TextId, $"{item.Amount} ");
             }

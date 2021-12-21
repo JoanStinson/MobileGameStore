@@ -7,27 +7,26 @@ namespace JGM.GameStore.Events.Services
     public class GameEventTriggerService : MonoBehaviour, IEventTriggerService
     {
         [SerializeField]
-        private GameEvent[] _gameEventAssets;
-
-        private Dictionary<string, GameEvent> _eventsLibrary;
+        private GameEvent[] _gameEvents;
+        private Dictionary<string, GameEvent> _gameEventsLibrary;
 
         private void Awake()
         {
-            _eventsLibrary = new Dictionary<string, GameEvent>();
-            for (int i = 0; i < _gameEventAssets.Length; ++i)
+            _gameEventsLibrary = new Dictionary<string, GameEvent>();
+            for (int i = 0; i < _gameEvents.Length; ++i)
             {
-                _eventsLibrary.Add(_gameEventAssets[i].name, _gameEventAssets[i]);
+                _gameEventsLibrary.Add(_gameEvents[i].name, _gameEvents[i]);
             }
         }
 
         public void Trigger(in string eventName, IEventData eventData = null)
         {
-            if (!_eventsLibrary.ContainsKey(eventName))
+            if (!_gameEventsLibrary.ContainsKey(eventName))
             {
                 Debug.LogWarning("Trying to trigger an event that doesn't exist!");
                 return;
             }
-            var gameEvent = _eventsLibrary[eventName];
+            var gameEvent = _gameEventsLibrary[eventName];
             gameEvent.Trigger(eventData as IGameEventData);
         }
     }

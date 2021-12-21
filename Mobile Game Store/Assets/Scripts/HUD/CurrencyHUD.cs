@@ -8,7 +8,6 @@ namespace JGM.GameStore.HUD
     {
         [SerializeField]
         private TextMeshProUGUI _amountText;
-
         private float _amount = 0;
 
         private void Awake()

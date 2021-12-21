@@ -1,4 +1,4 @@
-﻿using JGM.GameStore.Loaders;
+﻿using JGM.GameStore.Libraries;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;

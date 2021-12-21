@@ -1,4 +1,4 @@
-using JGM.GameStore.Loaders;
+using JGM.GameStore.Libraries;
 using TMPro;
 using UnityEngine;
 using Zenject;
