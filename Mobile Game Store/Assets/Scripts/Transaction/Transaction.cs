@@ -82,7 +82,7 @@ namespace JGM.GameStore.Transaction
                         System.Action finishTransaction = () =>
                         {
                             float newBalance = _userProfileService.GetCurrency(TransactionCurrency) + Amount;
-                            bool enoughCurrency = (newBalance > 0);
+                            bool enoughCurrency = (newBalance >= 0);
                             if (enoughCurrency)
                             {
                                 FinishTransaction(true);
@@ -101,7 +101,7 @@ namespace JGM.GameStore.Transaction
                 case Currency.Coins:
                     {
                         float newBalance = _userProfileService.GetCurrency(TransactionCurrency) + Amount;
-                        bool enoughCurrency = (newBalance > 0);
+                        bool enoughCurrency = (newBalance >= 0);
                         if (enoughCurrency)
                         {
                             FinishTransaction(true);

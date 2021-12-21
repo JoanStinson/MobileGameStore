@@ -103,7 +103,6 @@ namespace JGM.GameStore.Panels
             if (_particlesTypeToPlay == Packs.Data.PackItemData.Type.Coins)
             {
                 _shouldPlayCoinsParticles = true;
-                //yield return new WaitForSeconds(_coinsBurstFx.main.duration);
                 await Task.Delay(TimeSpan.FromSeconds(_coinsBurstFx.main.duration));
                 _shouldPlayCoinsParticles = false;
                 _coinsBurstFx.Stop();
@@ -111,7 +110,6 @@ namespace JGM.GameStore.Panels
             else if (_particlesTypeToPlay == Packs.Data.PackItemData.Type.Gems)
             {
                 _shouldPlayGemsParticles = true;
-                //yield return new WaitForSeconds(_gemsBurstFx.main.duration);
                 await Task.Delay(TimeSpan.FromSeconds(_gemsBurstFx.main.duration));
                 _shouldPlayGemsParticles = false;
                 _gemsBurstFx.Stop();
