@@ -2,7 +2,8 @@ using JGM.GameStore.Events.Data;
 using JGM.GameStore.Events.Services;
 using JGM.GameStore.Libraries;
 using JGM.GameStore.Packs.Displayers;
-using System.Collections;
+using System;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,7 +17,8 @@ namespace JGM.GameStore.Panels
         [SerializeField] private TextMeshProUGUI _priceText;
         [SerializeField] private Transform _packItemsParentTransform;
         [SerializeField] private Button _confirmPurchaseButton;
-        [SerializeField] private ParticleSystem _particleSystem;
+        [SerializeField] private ParticleSystem _coinsBurstFx;
+        [SerializeField] private ParticleSystem _gemsBurstFx;
 
         [Inject] private IAssetsLibrary _assetsLibrary;
         [Inject] private IEventTriggerService _eventTriggerService;
@@ -25,7 +27,9 @@ namespace JGM.GameStore.Panels
         private const float _packItemsScale = 1.2f;
 
         private IGameEventData _gameEventData;
-        private bool _shouldPlayParticles;
+        private Packs.Data.PackItemData.Type _particlesTypeToPlay;
+        private bool _shouldPlayCoinsParticles;
+        private bool _shouldPlayGemsParticles;
 
         private void Awake()
         {
@@ -56,6 +60,7 @@ namespace JGM.GameStore.Panels
                     else
                     {
                         packItemDisplayer.AmountText.RefreshText(data.Items[i].TextId, $"{string.Format("{0:n0}", data.Items[i].Amount)} ");
+                        _particlesTypeToPlay = data.Items[i].ItemType;
                     }
                 }
             }
@@ -64,7 +69,7 @@ namespace JGM.GameStore.Panels
         public void ShowConfirmationPopupAnimation(IGameEventData gameEventData)
         {
             ShowConfirmationPopup(gameEventData);
-            StartCoroutine(PlayAnimation());
+            PlayAnimation();
         }
 
         public void ConfirmPurchase()
@@ -81,19 +86,37 @@ namespace JGM.GameStore.Panels
 
         private void Update()
         {
-            if (_shouldPlayParticles && !_particleSystem.isPlaying)
+            if (_shouldPlayCoinsParticles && !_coinsBurstFx.isPlaying)
             {
-                _particleSystem.Play();
+                _coinsBurstFx.Play();
+            }
+            else if (_shouldPlayGemsParticles && !_gemsBurstFx.isPlaying)
+            {
+                _gemsBurstFx.Play();
             }
         }
 
-        private IEnumerator PlayAnimation()
+        private async void PlayAnimation()
         {
             _confirmPurchaseButton.interactable = false;
-            _shouldPlayParticles = true;
-            yield return new WaitForSeconds(_particleSystem.main.duration);
-            _shouldPlayParticles = false;
-            _particleSystem.Stop();
+
+            if (_particlesTypeToPlay == Packs.Data.PackItemData.Type.Coins)
+            {
+                _shouldPlayCoinsParticles = true;
+                //yield return new WaitForSeconds(_coinsBurstFx.main.duration);
+                await Task.Delay(TimeSpan.FromSeconds(_coinsBurstFx.main.duration));
+                _shouldPlayCoinsParticles = false;
+                _coinsBurstFx.Stop();
+            }
+            else if (_particlesTypeToPlay == Packs.Data.PackItemData.Type.Gems)
+            {
+                _shouldPlayGemsParticles = true;
+                //yield return new WaitForSeconds(_gemsBurstFx.main.duration);
+                await Task.Delay(TimeSpan.FromSeconds(_gemsBurstFx.main.duration));
+                _shouldPlayGemsParticles = false;
+                _gemsBurstFx.Stop();
+            }
+
             _eventTriggerService.Trigger("Currency Pack Purchase Success");
             _panelWindow.gameObject.SetActive(false);
             DestroyPackItems();
