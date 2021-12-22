@@ -15,9 +15,14 @@ namespace JGM.GameStore.Panels
     public class ConfirmationPanel : MonoBehaviour
     {
         [SerializeField] private Transform _panelWindow;
-        [SerializeField] private TextMeshProUGUI _priceText;
         [SerializeField] private Transform _packItemsParentTransform;
-        [SerializeField] private Button _confirmPurchaseButton;
+        [Space]
+        [SerializeField] private TextMeshProUGUI _dollarsPriceText;
+        [SerializeField] private TextMeshProUGUI _gemsPriceText;
+        [Space]
+        [SerializeField] private Button _dollarsConfirmationButton;
+        [SerializeField] private Button _gemsConfirmationButton;
+        [Space]
         [SerializeField] private ParticleSystem _coinsBurstFx;
         [SerializeField] private ParticleSystem _gemsBurstFx;
 
@@ -35,18 +40,30 @@ namespace JGM.GameStore.Panels
         private void Awake()
         {
             _panelWindow.gameObject.SetActive(false);
+            _dollarsConfirmationButton.gameObject.SetActive(false);
+            _gemsConfirmationButton.gameObject.SetActive(false);
         }
 
         public void ShowConfirmationPopup(IGameEventData gameEventData)
         {
             _panelWindow.gameObject.SetActive(true);
-            _confirmPurchaseButton.interactable = true;
 
             _gameEventData = gameEventData;
-            var data = (gameEventData as PurchasePackEventData).StorePack.Data;
-            _priceText.text = (data.PackCurrency == Transaction.UserProfileService.Currency.Gems) ? $"{data.Price}" : $"{data.Price}$";
+            var pack = (gameEventData as PurchasePackEventData).StorePack;
+            if (pack.Data.PackCurrency == Transaction.UserProfileService.Currency.Dollars)
+            {
+                _dollarsPriceText.text = $"{pack.Data.Price}$";
+                _dollarsConfirmationButton.gameObject.SetActive(true);
+                _gemsConfirmationButton.gameObject.SetActive(false);
+            }
+            else if (pack.Data.PackCurrency == Transaction.UserProfileService.Currency.Gems)
+            {
+                _gemsPriceText.text = $"{pack.Data.Price}";
+                _gemsConfirmationButton.gameObject.SetActive(true);
+                _dollarsConfirmationButton.gameObject.SetActive(false);
+            }
 
-            var sortedItems = data.Items.OrderByDescending(i => i.ItemType).ToArray();
+            var sortedItems = pack.Data.Items.OrderByDescending(i => i.ItemType).ToArray();
             for (int i = 0; i < sortedItems.Length; ++i)
             {
                 var spawnedPackItem = _packItemDisplayerFactory.Create();
@@ -100,7 +117,8 @@ namespace JGM.GameStore.Panels
 
         private async void PlayAnimation()
         {
-            _confirmPurchaseButton.interactable = false;
+            _dollarsConfirmationButton.interactable = false;
+            _gemsConfirmationButton.interactable = false;
 
             if (_particlesTypeToPlay == Packs.Data.PackItemData.Type.Coins)
             {
@@ -120,6 +138,9 @@ namespace JGM.GameStore.Panels
             _eventTriggerService.Trigger("Currency Pack Purchase Success");
             _panelWindow.gameObject.SetActive(false);
             DestroyPackItems();
+
+            _dollarsConfirmationButton.interactable = true;
+            _gemsConfirmationButton.interactable = true;
         }
 
         private void DestroyPackItems()

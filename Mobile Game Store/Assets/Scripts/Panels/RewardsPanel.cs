@@ -16,9 +16,11 @@ namespace JGM.GameStore.Panels
     public class RewardsPanel : MonoBehaviour
     {
         [SerializeField] private Transform _panelWindow;
+        [Space]
         [SerializeField] private RawImage _rewardImage;
         [SerializeField] private LocalizedText _amountText;
         [SerializeField] private CurvedText _curvedText;
+        [Space]
         [SerializeField] private Camera _prefabCamera;
         [SerializeField] private AudioSource _audioSource;
 
