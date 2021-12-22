@@ -162,7 +162,7 @@
 					"type": "character",
 					"amount": 1,
 					"itemId": "character_2",
-					"tidName": "TID_CHARACTER_1_NAME",
+					"tidName": "TID_CHARACTER_2_NAME",
 					"icon": "icon_character_2",
 					"prefab": "PF_Character2"
 				},

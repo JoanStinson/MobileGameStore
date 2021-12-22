@@ -34,6 +34,8 @@ namespace JGM.GameStore.Panels.Helpers
                 var renderTexture = new RenderTexture(512, 512, 0);
                 var spawnedCamera = GameObject.Instantiate(cameraPrefab);
                 spawnedCamera.transform.SetParent(spawnedPreview.transform, false);
+                var cameraPositioner = new PackItem3DCameraPositioner();
+                spawnedCamera.transform.localPosition = cameraPositioner.GetCameraPositionFromPreviewName(previewPrefabs[i].name);
                 spawnedCamera.GetComponent<Camera>().targetTexture = renderTexture;
 
                 string spawnedPreviewName = spawnedPreview.name.Substring(0, spawnedPreview.name.Length - 7);
