@@ -34,16 +34,10 @@ namespace JGM.GameStore.Panels
             _packsController.OnPackActivated.AddListener(OnPackActivated);
             _packsController.OnPackRemoved.AddListener(OnPackRemoved);
 
-            var activePacks = _packsController.ActivePacks.OrderByDescending(p => p.Data.PackType)
-                                                          .OrderBy(p => p.Data.Order)
-                                                          .ThenBy(p => p.RemainingTime)
-                                                          .ThenBy(p => p.Data.Price)
-                                                          .ToArray();
-
-            for (int i = 0; i < activePacks.Length; ++i)
+            GetOrderedPacksList(_packsController.ActivePacks, out var activePacks);
+            for (int i = 0; i < activePacks.Count; ++i)
             {
                 var packDisplayer = _packsFactory.CreatePackDisplayer(activePacks[i]);
-                _packsFactory.SetPackDisplayerParent(packDisplayer, i);
                 _packDisplayers.Add(packDisplayer);
             }
 
@@ -61,24 +55,11 @@ namespace JGM.GameStore.Panels
             if (_featuredPackSlot != null)
             {
                 var packsToOrder = new List<Pack>() { _featuredPackSlot.Pack, pack };
-                var orderedPacks = packsToOrder.OrderByDescending(p => p.Data.PackType)
-                                               .ThenBy(p => p.Data.Order)
-                                               .ThenBy(p => p.RemainingTime)
-                                               .ThenBy(p => p.Data.Price)
-                                               .ToArray();
+                GetOrderedPacksList(packsToOrder, out var orderedPacks);
 
                 if (orderedPacks[0] == pack)
                 {
-                    var previousFeaturedPack = _featuredPackSlot.Pack;
-                    RemovePackDisplayer(previousFeaturedPack);
-
-                    var newFeaturedPack = _packsFactory.CreateFeaturedOfferPack(pack);
-                    _packDisplayers.Add(newFeaturedPack);
-                    _featuredPackSlot = newFeaturedPack;
-
-                    var newPack = _packsFactory.CreatePackDisplayer(previousFeaturedPack);
-                    _packDisplayers.Add(newPack);
-
+                    SwapFeaturedPack(pack);
                     RefrehStoreGUI();
                     return;
                 }
@@ -103,7 +84,7 @@ namespace JGM.GameStore.Panels
 
         private void RefrehStoreGUI()
         {
-            OrderPacksList();
+            OrderPackDisplayersList();
 
             Pack packToRemove = null;
 
@@ -111,9 +92,7 @@ namespace JGM.GameStore.Panels
             {
                 if (_featuredPackSlot == null && _packDisplayers[i].Pack.Data.Featured)
                 {
-                    var featuredOfferPack = _packsFactory.CreateFeaturedOfferPack(_packDisplayers[i].Pack);
-                    _featuredPackSlot = featuredOfferPack;
-                    _packDisplayers.Add(featuredOfferPack);
+                    CreateNewFeaturedPack(_packDisplayers[i].Pack);
                     packToRemove = _packDisplayers[i].Pack;
                 }
                 else if (_featuredPackSlot != _packDisplayers[i])
@@ -130,13 +109,22 @@ namespace JGM.GameStore.Panels
             _packsFactory.ResetSiblingIndexes();
         }
 
-        private void OrderPacksList()
+        private void OrderPackDisplayersList()
         {
             _packDisplayers = _packDisplayers.OrderByDescending(d => d.Pack.Data.PackType)
                                              .ThenBy(d => d.Pack.Data.Order)
                                              .ThenBy(d => d.Pack.RemainingTime)
                                              .ThenBy(d => d.Pack.Data.Price)
                                              .ToList();
+        }
+
+        private void GetOrderedPacksList(in List<Pack> unorderedList, out List<Pack> orderedList)
+        {
+            orderedList = unorderedList.OrderByDescending(p => p.Data.PackType)
+                                       .ThenBy(p => p.Data.Order)
+                                       .ThenBy(p => p.RemainingTime)
+                                       .ThenBy(p => p.Data.Price)
+                                       .ToList();
         }
 
         private void RemovePackDisplayer(Pack pack)
@@ -157,6 +145,24 @@ namespace JGM.GameStore.Panels
                 _packDisplayers.Remove(packDisplayerToRemove);
                 Destroy(packDisplayerToRemove.gameObject);
             }
+        }
+
+        private void SwapFeaturedPack(Pack pack)
+        {
+            var previousFeaturedPack = _featuredPackSlot.Pack;
+            RemovePackDisplayer(previousFeaturedPack);
+
+            CreateNewFeaturedPack(pack);
+
+            var newPack = _packsFactory.CreatePackDisplayer(previousFeaturedPack);
+            _packDisplayers.Add(newPack);
+        }
+
+        private void CreateNewFeaturedPack(Pack pack)
+        {
+            var newFeaturedPack = _packsFactory.CreateFeaturedOfferPack(pack);
+            _packDisplayers.Add(newFeaturedPack);
+            _featuredPackSlot = newFeaturedPack;
         }
     }
 }
