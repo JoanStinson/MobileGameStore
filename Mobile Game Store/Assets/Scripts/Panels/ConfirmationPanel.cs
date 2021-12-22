@@ -3,6 +3,7 @@ using JGM.GameStore.Events.Services;
 using JGM.GameStore.Libraries;
 using JGM.GameStore.Packs.Displayers;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -45,22 +46,23 @@ namespace JGM.GameStore.Panels
             var data = (gameEventData as PurchasePackEventData).StorePack.Data;
             _priceText.text = (data.PackCurrency == Transaction.UserProfileService.Currency.Gems) ? $"{data.Price}" : $"{data.Price}$";
 
-            for (int i = 0; i < data.Items.Length; ++i)
+            var sortedItems = data.Items.OrderByDescending(i => i.ItemType).ToArray();
+            for (int i = 0; i < sortedItems.Length; ++i)
             {
                 var spawnedPackItem = _packItemDisplayerFactory.Create();
                 spawnedPackItem.transform.localScale = Vector3.one * _packItemsScale;
                 spawnedPackItem.transform.SetParent(_packItemsParentTransform, false);
                 if (spawnedPackItem.TryGetComponent<PackItemDisplayer>(out var packItemDisplayer))
                 {
-                    packItemDisplayer.IconImage.sprite = _assetsLibrary.GetSprite(data.Items[i].IconName);
-                    if (data.Items[i].ItemType == Packs.Data.PackItemData.Type.Character)
+                    packItemDisplayer.IconImage.sprite = _assetsLibrary.GetSprite(sortedItems[i].IconName);
+                    if (sortedItems[i].ItemType == Packs.Data.PackItemData.Type.Character)
                     {
-                        packItemDisplayer.AmountText.RefreshText(data.Items[i].TextId);
+                        packItemDisplayer.AmountText.RefreshText(sortedItems[i].TextId);
                     }
                     else
                     {
-                        packItemDisplayer.AmountText.RefreshText(data.Items[i].TextId, $"{string.Format("{0:n0}", data.Items[i].Amount)} ");
-                        _particlesTypeToPlay = data.Items[i].ItemType;
+                        packItemDisplayer.AmountText.RefreshText(sortedItems[i].TextId, $"{string.Format("{0:n0}", sortedItems[i].Amount)} ");
+                        _particlesTypeToPlay = sortedItems[i].ItemType;
                     }
                 }
             }

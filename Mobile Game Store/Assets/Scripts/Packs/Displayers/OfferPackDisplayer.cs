@@ -58,21 +58,21 @@ namespace JGM.GameStore.Packs.Displayers
 
         private void SetPackItems(Pack pack, IAssetsLibrary assetsLibrary)
         {
-            var sortedOfferList = pack.Data.Items.OrderByDescending(o => o.ItemType);
-            foreach (var item in sortedOfferList)
+            var sortedItems = pack.Data.Items.OrderByDescending(i => i.ItemType).ToArray();
+            for (int i = 0; i < sortedItems.Length; ++i)
             {
                 var spawnedPackItem = _packItemDisplayerFactory.Create();
                 spawnedPackItem.transform.SetParent(_packItemsParent, false);
                 if (spawnedPackItem.TryGetComponent<PackItemDisplayer>(out var packItemDisplayer))
                 {
-                    packItemDisplayer.IconImage.sprite = assetsLibrary.GetSprite(item.IconName);
-                    if (item.ItemType == PackItemData.Type.Character)
+                    packItemDisplayer.IconImage.sprite = assetsLibrary.GetSprite(sortedItems[i].IconName);
+                    if (sortedItems[i].ItemType == PackItemData.Type.Character)
                     {
-                        packItemDisplayer.AmountText.RefreshText(item.TextId);
+                        packItemDisplayer.AmountText.RefreshText(sortedItems[i].TextId);
                     }
                     else
                     {
-                        packItemDisplayer.AmountText.RefreshText(item.TextId, $"{string.Format("{0:n0}", item.Amount)} ");
+                        packItemDisplayer.AmountText.RefreshText(sortedItems[i].TextId, $"{string.Format("{0:n0}", sortedItems[i].Amount)} ");
                     }
                 }
             }

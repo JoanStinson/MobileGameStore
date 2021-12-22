@@ -5,6 +5,7 @@ using JGM.GameStore.Packs.Data;
 using JGM.GameStore.Panels.Helpers;
 using JGM.GameStore.Text;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,9 +40,10 @@ namespace JGM.GameStore.Panels
         public void ShowRewards(IGameEventData gameEventData)
         {
             var data = (gameEventData as PurchasePackEventData).StorePack.Data;
-            for (int i = data.Items.Length - 1; i >= 0; --i)
+            var sortedItems = data.Items.OrderBy(i => i.ItemType).ToArray();
+            for (int i = 0; i < sortedItems.Length; ++i)
             {
-                _rewards.Enqueue(data.Items[i]);
+                _rewards.Enqueue(sortedItems[i]);
             }
             ShowNextReward();
         }
