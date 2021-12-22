@@ -41,11 +41,6 @@ namespace JGM.GameStore.Text
             return newCurve;
         }
 
-        /// <summary>
-        ///  Method to curve text along a Unity animation curve.
-        /// </summary>
-        /// <param name="textComponent"></param>
-        /// <returns></returns>
         private IEnumerator WarpText()
         {
             VertexCurve.preWrapMode = WrapMode.Clamp;

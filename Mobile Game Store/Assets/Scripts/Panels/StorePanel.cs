@@ -1,110 +1,161 @@
-﻿using JGM.GameStore.Libraries;
-using JGM.GameStore.Packs;
-using JGM.GameStore.Packs.Data;
+﻿using JGM.GameStore.Packs;
 using JGM.GameStore.Packs.Displayers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
-using Zenject;
 
 namespace JGM.GameStore.Panels
 {
     [RequireComponent(typeof(IPacksController))]
+    [RequireComponent(typeof(IPacksFactory))]
     public sealed class StorePanel : MonoBehaviour
     {
-        [SerializeField] private uint _storeRefreshFrequencyInSeconds;
-        [Space]
-        [SerializeField] private Transform _featuredPacksParent;
-        [SerializeField] private Transform _offerPacksParent;
-        [SerializeField] private Transform _gemsPacksParent;
-        [SerializeField] private Transform _coinsPacksParent;
+        [SerializeField]
+        private uint _storeRefreshFrequencyInSeconds;
 
-        [Inject] private OfferPackDisplayer.FeaturedFactory _featuredOffersPackFactory;
-        [Inject] private OfferPackDisplayer.Factory _offersPackFactory;
-        [Inject] private GemsPackDisplayer.Factory _gemsPackFactory;
-        [Inject] private CoinsPackDisplayer.Factory _coinsPackFactory;
-        [Inject] private IAssetsLibrary _storeAssetsLibrary;
-
-        private IPacksController _storePacksController;
-        private List<GameObject> _storePacksGUIObjects;
+        private IPacksController _packsController;
+        private IPacksFactory _packsFactory;
+        private List<PackDisplayer> _packDisplayers;
+        private OfferPackDisplayer _featuredPackSlot = null;
 
         private void Awake()
         {
-            _storePacksGUIObjects = new List<GameObject>();
-            _storePacksController = GetComponent<IPacksController>();
-            _storePacksController.Initialize();
-            _storePacksController.Refresh();
+            _packDisplayers = new List<PackDisplayer>();
+            _packsController = GetComponent<IPacksController>();
+            _packsFactory = GetComponent<IPacksFactory>();
         }
 
         private void Start()
         {
-            RefreshStoreGUI();
+            _packsController.Initialize();
+            _packsController.Refresh();
+            _packsController.OnPackActivated.AddListener(OnPackActivated);
+            _packsController.OnPackRemoved.AddListener(OnPackRemoved);
+
+            var activePacks = _packsController.ActivePacks.OrderByDescending(p => p.Data.PackType)
+                                                          .OrderBy(p => p.Data.Order)
+                                                          .ThenBy(p => p.RemainingTime)
+                                                          .ThenBy(p => p.Data.Price)
+                                                          .ToArray();
+
+            for (int i = 0; i < activePacks.Length; ++i)
+            {
+                var packDisplayer = _packsFactory.CreatePackDisplayer(activePacks[i]);
+                _packsFactory.SetPackDisplayerParent(packDisplayer, i);
+                _packDisplayers.Add(packDisplayer);
+            }
+
+            RefrehStoreGUI();
         }
 
         private async void Update()
         {
             await Task.Delay(TimeSpan.FromSeconds(_storeRefreshFrequencyInSeconds));
-            _storePacksController.Refresh();
+            _packsController.Refresh();
         }
 
-        private void RefreshStoreGUI()
+        private void OnPackActivated(Pack pack)
         {
-            var sortedPacksList = _storePacksController.ActivePacks
-                                                       .OrderByDescending(p => p.Data.PackType)
-                                                       .ThenBy(p => p.Data.Order)
-                                                       .ThenBy(p => p.RemainingTime)
-                                                       .ThenBy(p => p.Data.Price);
-
-            bool isFeaturedSlotOccupied = false;
-
-            foreach (var pack in sortedPacksList)
+            if (_featuredPackSlot != null)
             {
-                if (!isFeaturedSlotOccupied)
-                {
-                    bool canPackBeFeatured = (pack.Data.PackType == PackData.Type.Offer && pack.Data.Featured);
-                    if (canPackBeFeatured)
-                    {
-                        isFeaturedSlotOccupied = true;
-                        var spawnedPack = _featuredOffersPackFactory.Create();
-                        spawnedPack.transform.SetParent(_featuredPacksParent, false);
-                        _storePacksGUIObjects.Add(spawnedPack.gameObject);
-                        spawnedPack.SetPackData(pack, _storeAssetsLibrary);
-                    }
-                }
-                else
-                {
-                    switch (pack.Data.PackType)
-                    {
-                        case PackData.Type.Offer:
-                            {
-                                var spawnedPack = _offersPackFactory.Create();
-                                spawnedPack.transform.SetParent(_offerPacksParent, false);
-                                _storePacksGUIObjects.Add(spawnedPack.gameObject);
-                                spawnedPack.SetPackData(pack, _storeAssetsLibrary);
-                            }
-                            break;
+                var packsToOrder = new List<Pack>() { _featuredPackSlot.Pack, pack };
+                var orderedPacks = packsToOrder.OrderByDescending(p => p.Data.PackType)
+                                               .ThenBy(p => p.Data.Order)
+                                               .ThenBy(p => p.RemainingTime)
+                                               .ThenBy(p => p.Data.Price)
+                                               .ToArray();
 
-                        case PackData.Type.Gems:
-                            {
-                                var spawnedPack = _gemsPackFactory.Create();
-                                spawnedPack.transform.SetParent(_gemsPacksParent, false);
-                                _storePacksGUIObjects.Add(spawnedPack.gameObject);
-                                spawnedPack.SetPackData(pack, _storeAssetsLibrary);
-                            }
-                            break;
+                if (orderedPacks[0] == pack)
+                {
+                    var previousFeaturedPack = _featuredPackSlot.Pack;
+                    RemovePackDisplayer(previousFeaturedPack);
 
-                        case PackData.Type.Coins:
-                            {
-                                var spawnedPack = _coinsPackFactory.Create();
-                                spawnedPack.transform.SetParent(_coinsPacksParent, false);
-                                _storePacksGUIObjects.Add(spawnedPack.gameObject);
-                                spawnedPack.SetPackData(pack, _storeAssetsLibrary);
-                            }
-                            break;
-                    }
+                    var newFeaturedPack = _packsFactory.CreateFeaturedOfferPack(pack);
+                    _packDisplayers.Add(newFeaturedPack);
+                    _featuredPackSlot = newFeaturedPack;
+
+                    var newPack = _packsFactory.CreatePackDisplayer(previousFeaturedPack);
+                    _packDisplayers.Add(newPack);
+
+                    RefrehStoreGUI();
+                    return;
                 }
+            }
+
+            var newPackDisplayer = _packsFactory.CreatePackDisplayer(pack);
+            _packDisplayers.Add(newPackDisplayer);
+            RefrehStoreGUI();
+        }
+
+        private void OnPackRemoved(Pack pack)
+        {
+            RemovePackDisplayer(pack);
+
+            if (_featuredPackSlot.Pack == pack)
+            {
+                _featuredPackSlot = null;
+            }
+
+            RefrehStoreGUI();
+        }
+
+        private void RefrehStoreGUI()
+        {
+            OrderPacksList();
+
+            Pack packToRemove = null;
+
+            for (int i = 0; i < _packDisplayers.Count; ++i)
+            {
+                if (_featuredPackSlot == null && _packDisplayers[i].Pack.Data.Featured)
+                {
+                    var featuredOfferPack = _packsFactory.CreateFeaturedOfferPack(_packDisplayers[i].Pack);
+                    _featuredPackSlot = featuredOfferPack;
+                    _packDisplayers.Add(featuredOfferPack);
+                    packToRemove = _packDisplayers[i].Pack;
+                }
+                else if (_featuredPackSlot != _packDisplayers[i])
+                {
+                    _packsFactory.SetPackDisplayerParent(_packDisplayers[i], i);
+                }
+            }
+
+            if (packToRemove != null)
+            {
+                RemovePackDisplayer(packToRemove);
+            }
+
+            _packsFactory.ResetSiblingIndexes();
+        }
+
+        private void OrderPacksList()
+        {
+            _packDisplayers = _packDisplayers.OrderByDescending(d => d.Pack.Data.PackType)
+                                             .ThenBy(d => d.Pack.Data.Order)
+                                             .ThenBy(d => d.Pack.RemainingTime)
+                                             .ThenBy(d => d.Pack.Data.Price)
+                                             .ToList();
+        }
+
+        private void RemovePackDisplayer(Pack pack)
+        {
+            PackDisplayer packDisplayerToRemove = null;
+
+            foreach (var packDisplayer in _packDisplayers)
+            {
+                if (packDisplayer.Pack == pack)
+                {
+                    packDisplayerToRemove = packDisplayer;
+                    break;
+                }
+            }
+
+            if (packDisplayerToRemove != null)
+            {
+                _packDisplayers.Remove(packDisplayerToRemove);
+                Destroy(packDisplayerToRemove.gameObject);
             }
         }
     }

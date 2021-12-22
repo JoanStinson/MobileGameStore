@@ -1,7 +1,4 @@
-﻿using JGM.GameStore.Events.Data;
-using JGM.GameStore.Events.Services;
-using JGM.GameStore.Libraries;
-using JGM.GameStore.Localization;
+﻿using JGM.GameStore.Localization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +6,7 @@ using Zenject;
 
 namespace JGM.GameStore.Packs.Displayers
 {
-    public class GemsPackDisplayer : MonoBehaviour, IPackDisplayer
+    public class GemsPackDisplayer : PackDisplayer
     {
         public class Factory : PlaceholderFactory<GemsPackDisplayer> { }
 
@@ -20,16 +17,13 @@ namespace JGM.GameStore.Packs.Displayers
         [SerializeField] private TextMeshProUGUI _priceText;
         [SerializeField] private Transform _discountParentTransform;
 
-        [Inject]
-        private IEventTriggerService _eventTriggerService;
-        private Pack _pack;
-
-        public void SetPackData(in Pack pack, IAssetsLibrary assetsLibrary)
+        public override void SetPackData(in Pack pack)
         {
-            _pack = pack;
+            base.SetPackData(pack);
+
             _priceBeforeDiscountText.text = $"{pack.Data.PriceBeforeDiscount}$";
             _priceText.text = $"{pack.Data.Price}$";
-            _iconImage.sprite = assetsLibrary.GetSprite(pack.Data.Items[0].IconName);
+            _iconImage.sprite = _assetsLibrary.GetSprite(pack.Data.Items[0].IconName);
             _amountText.RefreshText(pack.Data.Items[0].TextId, $"{string.Format("{0:n0}", pack.Data.Items[0].Amount)} ");
 
             if (pack.Data.Discount > 0)
@@ -40,12 +34,6 @@ namespace JGM.GameStore.Packs.Displayers
             {
                 _discountParentTransform.gameObject.SetActive(false);
             }
-        }
-
-        public void PurchasePack()
-        {
-            var eventData = new PurchasePackEventData(_pack);
-            _eventTriggerService.Trigger("Purchase Pack", eventData);
         }
     }
 }

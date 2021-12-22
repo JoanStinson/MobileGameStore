@@ -3,16 +3,14 @@ using JGM.GameStore.Packs.Data;
 using JGM.GameStore.Utils;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using Zenject;
 
 namespace JGM.GameStore.Packs
 {
     public class PacksController : MonoBehaviour, IPacksController
     {
-        public class ShopPackEvent : UnityEvent<Pack> { }
-        public ShopPackEvent OnPackActivated = new ShopPackEvent();
-        public ShopPackEvent OnPackRemoved = new ShopPackEvent();
+        public IPacksController.ShopPackEvent OnPackActivated { get; set; } = new IPacksController.ShopPackEvent();
+        public IPacksController.ShopPackEvent OnPackRemoved { get; set; } = new IPacksController.ShopPackEvent();
         public List<Pack> ActivePacks { get; private set; }
 
         private const string _storeDataFileName = "store_data";

@@ -14,9 +14,6 @@ namespace JGM.GameStore.Text
         private TMP_Text _textComponent;
         private bool _hasTextChanged;
 
-        /// <summary>
-        /// Structure to hold pre-computed animation data.
-        /// </summary>
         private struct VertexAnim
         {
             public float angleRange;
@@ -51,10 +48,6 @@ namespace JGM.GameStore.Text
                 _hasTextChanged = true;
         }
 
-        /// <summary>
-        /// Method to animate vertex colors of a TMP Text object.
-        /// </summary>
-        /// <returns></returns>
         private IEnumerator AnimateVertexColors()
         {
             // We force an update of the text object since it would only be updated at the end of the frame. Ie. before this code is executed on the first frame.
@@ -100,7 +93,7 @@ namespace JGM.GameStore.Text
                 }
 
 
-                for (int i = 0; i < characterCount; i++)
+                for (int i = 0; i < characterCount; ++i)
                 {
                     TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
 

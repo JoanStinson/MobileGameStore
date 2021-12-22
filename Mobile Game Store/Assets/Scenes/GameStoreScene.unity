@@ -766,7 +766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 124187800}
   m_Layer: 5
-  m_Name: FeaturedOfferSlot
+  m_Name: FeaturedOfferPackParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6828,7 +6828,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9143597709797811632, guid: 223cf4cb820748547916e2420ca7e447, type: 3}
       propertyPath: m_Name
-      value: GemsPackParent
+      value: GemsPacksParent
       objectReference: {fileID: 0}
     - target: {fileID: 9143597709797811633, guid: 223cf4cb820748547916e2420ca7e447, type: 3}
       propertyPath: m_Pivot.x
@@ -7710,6 +7710,7 @@ GameObject:
   - component: {fileID: 909394310}
   - component: {fileID: 909394311}
   - component: {fileID: 909394312}
+  - component: {fileID: 909394313}
   m_Layer: 5
   m_Name: StorePanel
   m_TagString: Respawn
@@ -7754,10 +7755,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _storeRefreshFrequencyInSeconds: 1
-  _featuredPacksParent: {fileID: 124187800}
-  _offerPacksParent: {fileID: 8009131974073541159}
-  _gemsPacksParent: {fileID: 557400172}
-  _coinsPacksParent: {fileID: 1985560658}
 --- !u!114 &909394312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7770,6 +7767,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fefbc0e68ca9594b9fe4469dffdf18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &909394313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909394309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3aae8b46fb47140876dfbeac7a0003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _featuredOfferPacksParent: {fileID: 124187800}
+  _offerPacksParent: {fileID: 8009131974073541159}
+  _gemsPacksParent: {fileID: 557400172}
+  _coinsPacksParent: {fileID: 1985560658}
 --- !u!1 &959517295
 GameObject:
   m_ObjectHideFlags: 0
@@ -9350,7 +9363,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 197915881}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5375491
+  m_Size: 0.52739143
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10117,7 +10130,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9143597709797811632, guid: 223cf4cb820748547916e2420ca7e447, type: 3}
       propertyPath: m_Name
-      value: CoinsPackParent
+      value: CoinsPacksParent
       objectReference: {fileID: 0}
     - target: {fileID: 9143597709797811633, guid: 223cf4cb820748547916e2420ca7e447, type: 3}
       propertyPath: m_Pivot.x
@@ -11952,7 +11965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2028655220667866215, guid: c405a586ea84af44b9b368fb469ca78b, type: 3}
       propertyPath: m_Name
-      value: OffersPackParent
+      value: OfferPacksParent
       objectReference: {fileID: 0}
     - target: {fileID: 3806998122397871592, guid: c405a586ea84af44b9b368fb469ca78b, type: 3}
       propertyPath: m_Spacing
