@@ -1,8 +1,13 @@
 ﻿namespace JGM.GameStore.Events.Data
 {
-    public class RefreshCurrencyAmountEventData : IGameEventData
+    public interface ICurrencyEventData : IGameEventData
     {
-        public readonly float Amount;
+        float Amount { get; }
+    }
+
+    public class RefreshCurrencyAmountEventData : ICurrencyEventData
+    {
+        public float Amount { get; private set; }
 
         public RefreshCurrencyAmountEventData(float amount)
         {

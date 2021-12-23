@@ -694,6 +694,7 @@ GameObject:
   - component: {fileID: 183866095}
   - component: {fileID: 183866097}
   - component: {fileID: 183866096}
+  - component: {fileID: 183866098}
   m_Layer: 5
   m_Name: AmountText
   m_TagString: Untagged
@@ -817,6 +818,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183866094}
   m_CullTransparentMesh: 1
+--- !u!114 &183866098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183866094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeed92b94cb4a7940ab713cbaee1fa57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &187123046
 GameObject:
   m_ObjectHideFlags: 0
@@ -7058,6 +7071,7 @@ GameObject:
   - component: {fileID: 684481826}
   - component: {fileID: 684481828}
   - component: {fileID: 684481827}
+  - component: {fileID: 684481829}
   m_Layer: 5
   m_Name: AmountText
   m_TagString: Untagged
@@ -7181,6 +7195,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684481825}
   m_CullTransparentMesh: 1
+--- !u!114 &684481829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684481825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeed92b94cb4a7940ab713cbaee1fa57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &792762082
 GameObject:
   m_ObjectHideFlags: 0
@@ -9810,7 +9836,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1870445914}
   - component: {fileID: 1870445915}
-  - component: {fileID: 1870445916}
   - component: {fileID: 1870445917}
   m_Layer: 5
   m_Name: CoinsHUD
@@ -9866,19 +9891,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
---- !u!114 &1870445916
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870445913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeed92b94cb4a7940ab713cbaee1fa57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _amountText: {fileID: 183866096}
 --- !u!114 &1870445917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9895,7 +9907,7 @@ MonoBehaviour:
   _onTriggerEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1870445916}
+      - m_Target: {fileID: 183866098}
         m_TargetAssemblyTypeName: JGM.GameStore.HUD.CurrencyHUD, JGM.GameStore
         m_MethodName: RefreshCurrencyAmount
         m_Mode: 0
@@ -10494,7 +10506,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2039971824}
   - component: {fileID: 2039971825}
-  - component: {fileID: 2039971827}
   - component: {fileID: 2039971826}
   m_Layer: 5
   m_Name: GemsHUD
@@ -10566,7 +10577,7 @@ MonoBehaviour:
   _onTriggerEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2039971827}
+      - m_Target: {fileID: 684481829}
         m_TargetAssemblyTypeName: JGM.GameStore.HUD.CurrencyHUD, JGM.GameStore
         m_MethodName: RefreshCurrencyAmount
         m_Mode: 0
@@ -10578,19 +10589,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2039971827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039971823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeed92b94cb4a7940ab713cbaee1fa57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _amountText: {fileID: 684481827}
 --- !u!1 &2055040874
 GameObject:
   m_ObjectHideFlags: 0
