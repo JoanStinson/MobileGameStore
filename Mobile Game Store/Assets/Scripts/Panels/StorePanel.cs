@@ -97,7 +97,7 @@ namespace JGM.GameStore.Panels
                 }
                 else if (_featuredPackSlot != _packDisplayers[i])
                 {
-                    _packsFactory.SetPackDisplayerParent(_packDisplayers[i], i);
+                    _packsFactory.SetPackDisplayerParent(_packDisplayers[i], i - 1);
                 }
             }
 
