@@ -1355,7 +1355,7 @@ GameObject:
   - component: {fileID: 309656038}
   - component: {fileID: 309656037}
   m_Layer: 5
-  m_Name: OfferPacksScrollView
+  m_Name: PacksScrollView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9662,7 +9662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a67c854b7131d448d8c1af9bf79220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scrollRect: {fileID: 0}
+  _scrollRect: {fileID: 309656037}
   yOffset: 0
   _offersPackParent: {fileID: 1178845054}
   _gemsPackParent: {fileID: 4144877625893886161}
@@ -10106,7 +10106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 870889558966858488, guid: 75112681919e1a74a880e869fc3a4879, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 67.07648
+      value: 61.62201
       objectReference: {fileID: 0}
     - target: {fileID: 870889558966858488, guid: 75112681919e1a74a880e869fc3a4879, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -11745,7 +11745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 870889558966858488, guid: 75112681919e1a74a880e869fc3a4879, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 67.07648
+      value: 61.62201
       objectReference: {fileID: 0}
     - target: {fileID: 870889558966858488, guid: 75112681919e1a74a880e869fc3a4879, type: 3}
       propertyPath: m_AnchoredPosition.y
