@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5951822128151518997}
   - component: {fileID: 5951822128151518998}
   - component: {fileID: 4521603136985414114}
-  - component: {fileID: 979757853121041926}
+  - component: {fileID: 4233702067377613315}
   m_Layer: 5
   m_Name: TitleText
   m_TagString: Untagged
@@ -34,10 +34,10 @@ RectTransform:
   m_Father: {fileID: 5951822128763982868}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 550, y: 0}
+  m_SizeDelta: {x: -80, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5951822128151518997
 CanvasRenderer:
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -1.6636047, y: -132.32031, z: 1.3600159, w: 0}
+  m_margin: {x: 5.8785706, y: -132.32031, z: 19.461395, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _localizedKey: INSERT_KEY_HERE
---- !u!95 &979757853121041926
+--- !u!95 &4233702067377613315
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -159,7 +159,7 @@ Animator:
   m_GameObject: {fileID: 5951822128151518992}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 84c4dad7347463c49b06342605af551c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 425d7df94f2fa834e80995d6db0ddf61, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
