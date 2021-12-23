@@ -6,7 +6,7 @@ namespace JGM.GameStore.Tabs
     public class TabsController : MonoBehaviour
     {
         [SerializeField] private ScrollRect _scrollRect;
-        [SerializeField] [Range(-100f, 100f)] private float yOffset = 0f;
+        [SerializeField] [Range(-200f, 0f)] private float _heightOffset = -100f;
         [Space]
         [SerializeField] private RectTransform _offersPackParent;
         [SerializeField] private RectTransform _gemsPackParent;
@@ -14,26 +14,32 @@ namespace JGM.GameStore.Tabs
 
         public void CenterScrollViewToOffers()
         {
-            _scrollRect.content.localPosition = CenterScrollViewToTarget(_offersPackParent);
+            Vector3 centeredPosition = new Vector3(_scrollRect.content.localPosition.x, GetScrollRectPositionToCenterTarget(_offersPackParent).y, _scrollRect.content.localPosition.z);
+            _scrollRect.content.localPosition = centeredPosition;
         }
 
         public void CenterScrollViewToGems()
         {
-            _scrollRect.content.localPosition = CenterScrollViewToTarget(_gemsPackParent);
+            Vector3 centeredPosition = new Vector3(_scrollRect.content.localPosition.x, GetScrollRectPositionToCenterTarget(_gemsPackParent).y, _scrollRect.content.localPosition.z);
+            _scrollRect.content.localPosition = centeredPosition;
         }
 
         public void CenterScrollViewToCoins()
         {
-            _scrollRect.content.localPosition = CenterScrollViewToTarget(_coinsPackParent);
+            Vector3 centeredPosition = new Vector3(_scrollRect.content.localPosition.x, GetScrollRectPositionToCenterTarget(_coinsPackParent).y, _scrollRect.content.localPosition.z);
+            _scrollRect.content.localPosition = centeredPosition;
         }
 
-        public Vector2 CenterScrollViewToTarget(RectTransform target)
+        public Vector2 GetScrollRectPositionToCenterTarget(RectTransform target)
         {
             Canvas.ForceUpdateCanvases();
-            Vector2 viewportLocalPosition = _scrollRect.viewport.localPosition;
-            Vector2 childLocalPosition = target.localPosition;
-            Vector2 result = new Vector2(0 - (viewportLocalPosition.x + childLocalPosition.x), 0 - (viewportLocalPosition.y + childLocalPosition.y) - yOffset);
-            return result;
+            float xPositionResult = 0 - (_scrollRect.viewport.localPosition.x + target.localPosition.x);
+            float yPositionResult = 0 - (_scrollRect.viewport.localPosition.y + target.localPosition.y) - _heightOffset;
+            if (yPositionResult < 0)
+            {
+                yPositionResult = 0;
+            }
+            return new Vector2(xPositionResult, yPositionResult);
         }
     }
 }

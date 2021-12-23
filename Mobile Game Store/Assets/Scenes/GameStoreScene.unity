@@ -9663,7 +9663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scrollRect: {fileID: 309656037}
-  yOffset: 0
+  _heightOffset: -100
   _offersPackParent: {fileID: 1178845054}
   _gemsPackParent: {fileID: 4144877625893886161}
   _coinsPackParent: {fileID: 1958062570}
