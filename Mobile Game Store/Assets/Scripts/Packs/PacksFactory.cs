@@ -59,6 +59,11 @@ namespace JGM.GameStore.Packs
 
         public void SetPackDisplayerParent(PackDisplayer packDisplayer, int index)
         {
+            if (index < 0)
+            {
+                index = 0;
+            }
+
             switch (packDisplayer.Pack.Data.PackType)
             {
                 case PackData.Type.Offer:
