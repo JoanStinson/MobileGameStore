@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 6899449640193446850}
   - component: {fileID: 6899449640193446851}
   - component: {fileID: 2411253682592539710}
+  - component: {fileID: 8877774982635084260}
   m_Layer: 5
   m_Name: OfferPack
   m_TagString: Untagged
@@ -488,6 +489,26 @@ MonoBehaviour:
   _priceBeforeDiscountText: {fileID: 6899449639993391203}
   _priceText: {fileID: 6899449639915442802}
   _packItemsParent: {fileID: 6899449640608309750}
+--- !u!114 &8877774982635084260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899449640193446853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: 310.745
+  m_FlexibleWidth: 1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &6899449640541148670
 GameObject:
   m_ObjectHideFlags: 0
