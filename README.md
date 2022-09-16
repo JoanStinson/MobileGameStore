@@ -1,4 +1,4 @@
-# MobileGameStore
+# Mobile Game Store
 A mobile game store UI implementation scalable for multiple mobile devices resolutions done in one week.
 
 <p align="center">
