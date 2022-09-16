@@ -6,7 +6,7 @@ A mobile game store UI implementation scalable for multiple mobile devices resol
     <img alt="Made With Unity" src="https://img.shields.io/badge/made%20with-Unity-57b9d3.svg?logo=Unity">
   </a>
   <a>
-    <img alt="License" src="https://img.shields.io/github/license/JoanStinson/Zork?&logo=github">
+    <img alt="License" src="https://img.shields.io/github/license/JoanStinson/MobileGameStore?logo=github">
   </a>
   <a>
     <img alt="Last Commit" src="https://img.shields.io/github/last-commit/JoanStinson/MobileGameStore?logo=Mapbox&color=orange">
