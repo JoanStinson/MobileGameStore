@@ -22,14 +22,27 @@ A mobile game store UI implementation scalable for multiple mobile devices resol
   </a>
 </p>
 
-## Resolution Independent Scalable UI
+## Scalable UI
+<p align="center">
+  <img width="942" height="586" src="https://github.com/JoanStinson/MobileGameStore/blob/main/Previews/scaling preview.gif">
+</p>
 
 ## Runtime Localization
-
-## Visual Effects
-
-## 3D Rewards Previews
+<p align="center">
+  <img width="984" height="522" src="https://github.com/JoanStinson/MobileGameStore/blob/main/Previews/localization preview.gif">
+</p>
 
 ## Filtering Tabs
+<p align="center">
+  <img width="970" height="506" src="https://github.com/JoanStinson/MobileGameStore/blob/main/Previews/tabs preview.gif">
+</p>
 
-Store data populated by jsons. Applied single responsibility principle, dependency inversion (Zenject), wrote an events system and some unit tests.
+## Visual Effects
+<p align="center">
+  <img width="968" height="508" src="https://github.com/JoanStinson/MobileGameStore/blob/main/Previews/visual effects preview.gif">
+</p>
+
+## Reward Previews
+<p align="center">
+  <img width="966" height="502" src="https://github.com/JoanStinson/MobileGameStore/blob/main/Previews/reward preview.gif">
+</p>
