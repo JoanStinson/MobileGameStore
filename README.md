@@ -22,4 +22,14 @@ A mobile game store UI implementation scalable for multiple mobile devices resol
   </a>
 </p>
 
+## Resolution Independent Scalable UI
+
+## Runtime Localization
+
+## Visual Effects
+
+## 3D Rewards Previews
+
+## Filtering Tabs
+
 Store data populated by jsons. Applied single responsibility principle, dependency inversion (Zenject), wrote an events system and some unit tests.
