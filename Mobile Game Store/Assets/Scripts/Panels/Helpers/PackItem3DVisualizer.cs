@@ -24,6 +24,7 @@ namespace JGM.GameStore.Panels.Helpers
         {
             var previewsParent = new GameObject("3DPreviews").transform;
             var previewPrefabs = _assetsLibrary.Get3DPreviews();
+            var renderTexture = new RenderTexture(512, 512, 0);
 
             for (int i = 0; i < previewPrefabs.Length; ++i)
             {
@@ -31,7 +32,6 @@ namespace JGM.GameStore.Panels.Helpers
                 spawnedPreview.transform.SetParent(previewsParent, false);
                 spawnedPreview.transform.localPosition += Vector3.right * i * _spacingBetweenObjects;
 
-                var renderTexture = new RenderTexture(512, 512, 0);
                 var spawnedCamera = GameObject.Instantiate(cameraPrefab);
                 spawnedCamera.transform.SetParent(spawnedPreview.transform, false);
                 var cameraPositioner = new PackItem3DCameraPositioner();
